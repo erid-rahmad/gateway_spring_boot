@@ -1,0 +1,25 @@
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  MAVEN_CLI_OPTS: "--show-version"
+  APP_DIR: "$HOME/applications/$CI_PROJECT_ID"
+
+cache:
+  paths:
+    - .m2/repository
+
+building:
+  stage: build
+  before_script:
+    - 'mvn versions:set -DnewVersion=$CI_COMMIT_TAG'
+  script:
+    - 'mvn $MAVEN_CLI_OPTS clean package -DskipTests'
+  only:
+    - /-release$/
+  artifacts:
+    paths:
+      - target/*.jar
+    name: $CI_PROJECT_NAME-$CI_COMMIT_TAG

@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  postgres:
+    image: ${private_repository}/postgres:${postgres_version}
+    environment:
+      - POSTGRES_PASSWORD
+      - POSTGRES_USER
+      - POSTGRES_DB
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - postgres_network
+volumes:
+  postgres_data:
+networks:
+  postgres_network:

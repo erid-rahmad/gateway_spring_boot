@@ -4,10 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RouteKasdaGatewayApplication {
+public class KasdaGatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RouteKasdaGatewayApplication.class, args);
+		System.setProperty("nfs.rpc.tcp.nodelay", "true");
+		SpringApplication.run(KasdaGatewayApplication.class, args);
 	}
 
 }
