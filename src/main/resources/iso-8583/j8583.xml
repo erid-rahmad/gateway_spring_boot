@@ -84,13 +84,4 @@
         <field num="39" type="ALPHA" length="2"/>
     </parse>
 
-    <parse type="0820" extends="0810"/>
-    <parse type="0830" extends="0810"/>
-    <parse type="0840" extends="0810"/>
-    <parse type="0850" extends="0810"/>
-    <parse type="0860" extends="0810"/>
-    <parse type="0870" extends="0810"/>
-    <parse type="0880" extends="0810"/>
-    <parse type="0890" extends="0810"/>
-
 </j8583-config>
