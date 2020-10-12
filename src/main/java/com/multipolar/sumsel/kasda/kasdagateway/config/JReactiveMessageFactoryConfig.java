@@ -29,7 +29,7 @@ public class JReactiveMessageFactoryConfig {
                 .frameLengthFieldLength(4)
 //                .describeFieldsInLog(true)
                 .logSensitiveData(true)
-                .reconnectInterval(5 * 1000)
+                .reconnectInterval(5 * 10000)
                 .build();
     }
 

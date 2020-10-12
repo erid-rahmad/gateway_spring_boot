@@ -8,7 +8,9 @@ application:
     name: @license.name@
     url: @license.url@
 server:
-  port: ${APPLICATION_PORT:8080}
+  port: ${APPLICATION_PORT:9999}
+  servlet:
+    context-path: /@project.artifactId@
 socket:
   hostname: ${SOCKET_ISO8583_HOSTNAME:localhost}
   port: ${SOCKET_ISO8583_PORT:8000}
@@ -53,16 +55,4 @@ logging:
     org.springframework: ERROR
     com.multipolar.sumsel.kasda.kasdagateway: ${LOG_LEVEL:DEBUG}
   file:
-    name: ${LOG_LOCATION:./logs/${spring.application.name}.log}
-feign:
-  hystrix:
-    enabled: true
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 15000
-  metrics:
-    enabled: true
+    name: ${LOG_LOCATION:./.logs/${spring.application.name}.log}
