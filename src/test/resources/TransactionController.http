@@ -2,7 +2,7 @@ POST http://{{host}}:{{port}}{{context-path}}/api/payment-gateway/v1.0/transacti
 Content-Type: application/json
 
 {
-  "tahunAnggaran": "2020",
+  "tahunAnggaran": "2019",
   "nomorSpm": "asdb",
   "namaPenerima": "qwerty",
   "bankPenerima": "zxcvb",
