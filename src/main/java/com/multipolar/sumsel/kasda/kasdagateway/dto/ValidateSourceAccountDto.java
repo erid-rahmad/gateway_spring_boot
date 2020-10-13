@@ -1,5 +1,6 @@
 package com.multipolar.sumsel.kasda.kasdagateway.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 public class ValidateSourceAccountDto {
@@ -19,8 +20,18 @@ public class ValidateSourceAccountDto {
     }
 
     @Data
-    public static class Response extends Request {
+    @Builder
+    public static class Response {
 
+        private String tahunAnggaran;
+        private String nomorSpm;
+        private String namaPenerima;
+        private String bankPenerima;
+        private String rekeningPenerima;
+        private String dateCreated;
+        private String uraian;
+        private String namaUnit;
+        private String namaSubUnit;
         private String status;
     }
 }
