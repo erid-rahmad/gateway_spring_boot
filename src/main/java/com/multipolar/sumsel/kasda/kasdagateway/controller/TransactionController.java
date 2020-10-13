@@ -7,6 +7,7 @@ import com.solab.iso8583.IsoMessage;
 import io.netty.channel.ChannelFuture;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,9 +31,14 @@ public class TransactionController {
     public ResponseEntity<?> validateAccountSource(@RequestBody ValidateSourceAccountDto.Request request)
             throws InterruptedException {
         IsoMessage isoMessage = this.messageMapper.validationSourceAccount(request);
-        ChannelFuture channel = client.sendAsync(isoMessage).await();
-        log.info("status: {isDone: {}, isSuccess: {}, isCancelled: {}, isCancellable: {}, isVoid: {}}",
-                channel.isDone(), channel.isSuccess(), channel.isCancelled(), channel.isCancellable(), channel.isVoid());
-        return ok(isoMessage.debugString());
+        try {
+            ChannelFuture channel = client.sendAsync(isoMessage).await();
+            log.info("status: {isDone: {}, isSuccess: {}, isCancelled: {}, isCancellable: {}, isVoid: {}}",
+                    channel.isDone(), channel.isSuccess(), channel.isCancelled(), channel.isCancellable(), channel.isVoid());
+            return ok(isoMessage.debugString());
+        } catch (java.lang.IllegalStateException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
+                    .body(ex.getLocalizedMessage());
+        }
     }
 }

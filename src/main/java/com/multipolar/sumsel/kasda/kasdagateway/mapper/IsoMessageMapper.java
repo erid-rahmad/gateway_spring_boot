@@ -42,7 +42,7 @@ public class IsoMessageMapper {
 
         isoMessage.setValue(48, bit48, bit48, IsoType.LLLVAR, 0);
         isoMessage.setField(49, IsoType.NUMERIC.value("100", 3));
-        log.info("iso message: [{}]", isoMessage.debugString());
+        log.debug("iso message: [{}]", isoMessage.debugString());
         return isoMessage;
     }
 
@@ -58,6 +58,7 @@ public class IsoMessageMapper {
         IsoValue<String> fieldUraian = field48.getField(6);
         IsoValue<String> fieldNamaUnit = field48.getField(7);
         IsoValue<String> fieldNamaSubUnit = field48.getField(8);
+        IsoValue<String> fieldStatus = field48.getField(9);
 
         return Response.builder()
                 .tahunAnggaran(fieldTahunAnggaran.getValue())
@@ -69,6 +70,7 @@ public class IsoMessageMapper {
                 .uraian(fieldUraian.getValue())
                 .namaUnit(fieldNamaUnit.getValue())
                 .namaSubUnit(fieldNamaSubUnit.getValue())
+                .status(fieldStatus.getValue())
                 .build();
     }
 }
