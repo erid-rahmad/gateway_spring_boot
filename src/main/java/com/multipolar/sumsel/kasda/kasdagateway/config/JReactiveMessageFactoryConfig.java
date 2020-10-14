@@ -3,6 +3,7 @@ package com.multipolar.sumsel.kasda.kasdagateway.config;
 import com.github.kpavlov.jreactive8583.client.ClientConfiguration;
 import com.github.kpavlov.jreactive8583.iso.ISO8583Version;
 import com.github.kpavlov.jreactive8583.iso.J8583MessageFactory;
+import com.multipolar.sumsel.kasda.kasdagateway.utils.Constants;
 import com.solab.iso8583.IsoMessage;
 import com.solab.iso8583.MessageFactory;
 import com.solab.iso8583.impl.SimpleTraceGenerator;
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.TimeZone;
 
 @Slf4j
 @Configuration
@@ -39,6 +41,10 @@ public class JReactiveMessageFactoryConfig {
         messageFactory.setCharacterEncoding(StandardCharsets.US_ASCII.name());
 //        messageFactory.setEtx(-1);
         messageFactory.setForceStringEncoding(true);
+        messageFactory.setTimezoneForParseGuide(0x200, 7,
+                TimeZone.getTimeZone(Constants.TIME_ZONE_GMT));
+        messageFactory.setTimezoneForParseGuide(0x210, 7,
+                TimeZone.getTimeZone(Constants.TIME_ZONE_GMT));
         messageFactory.setForceSecondaryBitmap(true);
         messageFactory.setIgnoreLastMissingField(true);
         messageFactory.setVariableLengthFieldsInHex(false);

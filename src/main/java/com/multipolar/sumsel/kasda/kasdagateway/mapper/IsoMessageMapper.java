@@ -24,12 +24,15 @@ public class IsoMessageMapper {
         IsoMessage isoMessage = this.messageFactory.newMessage(0x200);
         isoMessage.setValue(2, "9999999999999999", IsoType.NUMERIC, 16);
         isoMessage.setValue(3, Constants.BIT3_VALIDATE_ACCOUNT_SOURCE, IsoType.NUMERIC, 6);
+        isoMessage.setValue(12, "104200", IsoType.TIME, 6);
+        isoMessage.setValue(13, "1410", IsoType.DATE4, 4);
         isoMessage.setValue(18, Constants.CHANNEL_ID, IsoType.NUMERIC, 4);
         isoMessage.setValue(32, Constants.AQUIERER_ID, IsoType.LLVAR, 11);
+        isoMessage.setValue(33, "33333333333", IsoType.LLVAR, 11);
         isoMessage.setValue(37, "111111111111", IsoType.NUMERIC, 12);
         isoMessage.setValue(41, "22222222", IsoType.NUMERIC, 8);
 
-        CompositeField bit48 = new CompositeField()
+        CompositeField bit128 = new CompositeField()
                 .addValue(IsoType.NUMERIC.value(request.getTahunAnggaran(), 4))
                 .addValue(IsoType.ALPHA.value(request.getNomorSpm(), 50))
                 .addValue(IsoType.ALPHA.value(request.getNamaPenerima(), 100))
@@ -38,39 +41,39 @@ public class IsoMessageMapper {
                 .addValue(IsoType.ALPHA.value(request.getDateCreated(), 20))
                 .addValue(IsoType.ALPHA.value(request.getUraian(), 255))
                 .addValue(IsoType.ALPHA.value(request.getNamaUnit(), 255))
-                .addValue(IsoType.ALPHA.value(request.getNamaSubUnit(), 200));
+                .addValue(IsoType.ALPHA.value(request.getNamaSubUnit(), 255));
 
-        isoMessage.setValue(48, bit48, bit48, IsoType.LLLVAR, 0);
-        isoMessage.setField(49, IsoType.NUMERIC.value("100", 3));
+        isoMessage.setField(49, IsoType.NUMERIC.value(Constants.CURRENCY_CODE, 3));
+        isoMessage.setValue(120, bit128, bit128, IsoType.LLLLVAR, 0);
         log.debug("iso message: [{}]", isoMessage.debugString());
         return isoMessage;
     }
 
     public Response validationSourceAccount(IsoMessage message) {
-        CompositeField field48 = message.getObjectValue(48);
+        CompositeField field120 = message.getObjectValue(120);
 
-        IsoValue<String> fieldTahunAnggaran = field48.getField(0);
-        IsoValue<String> fieldNomorSpm = field48.getField(1);
-        IsoValue<String> fieldNamaPenerima = field48.getField(2);
-        IsoValue<String> fieldBankPenerima = field48.getField(3);
-        IsoValue<String> fieldRekeningPenerima = field48.getField(4);
-        IsoValue<String> fieldDateCreated = field48.getField(5);
-        IsoValue<String> fieldUraian = field48.getField(6);
-        IsoValue<String> fieldNamaUnit = field48.getField(7);
-        IsoValue<String> fieldNamaSubUnit = field48.getField(8);
-        IsoValue<String> fieldStatus = field48.getField(9);
+        IsoValue<String> fieldTahunAnggaran = field120.getField(0);
+        IsoValue<String> fieldNomorSpm = field120.getField(1);
+        IsoValue<String> fieldNamaPenerima = field120.getField(2);
+        IsoValue<String> fieldBankPenerima = field120.getField(3);
+        IsoValue<String> fieldRekeningPenerima = field120.getField(4);
+        IsoValue<String> fieldDateCreated = field120.getField(5);
+        IsoValue<String> fieldUraian = field120.getField(6);
+        IsoValue<String> fieldNamaUnit = field120.getField(7);
+        IsoValue<String> fieldNamaSubUnit = field120.getField(8);
+        IsoValue<String> fieldStatus = field120.getField(9);
 
         return Response.builder()
-                .tahunAnggaran(fieldTahunAnggaran.getValue())
-                .nomorSpm(fieldNomorSpm.getValue())
-                .namaPenerima(fieldNamaPenerima.getValue())
-                .bankPenerima(fieldBankPenerima.getValue())
-                .rekeningPenerima(fieldRekeningPenerima.getValue())
-                .dateCreated(fieldDateCreated.getValue())
-                .uraian(fieldUraian.getValue())
-                .namaUnit(fieldNamaUnit.getValue())
-                .namaSubUnit(fieldNamaSubUnit.getValue())
-                .status(fieldStatus.getValue())
+                .tahunAnggaran(fieldTahunAnggaran.getValue().trim())
+                .nomorSpm(fieldNomorSpm.getValue().trim())
+                .namaPenerima(fieldNamaPenerima.getValue().trim())
+                .bankPenerima(fieldBankPenerima.getValue().trim())
+                .rekeningPenerima(fieldRekeningPenerima.getValue().trim())
+                .dateCreated(fieldDateCreated.getValue().trim())
+                .uraian(fieldUraian.getValue().trim())
+                .namaUnit(fieldNamaUnit.getValue().trim())
+                .namaSubUnit(fieldNamaSubUnit.getValue().trim())
+                .status(fieldStatus.getValue().trim())
                 .build();
     }
 }
