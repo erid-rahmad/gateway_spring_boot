@@ -22,23 +22,29 @@
         <field num="37" type="NUMERIC" length="12"/>
         <field num="41" type="NUMERIC" length="8"/>
         <field num="49" type="ALPHA" length="3"/>
-        <field num="120" type="LLLLVAR"/>
-    </parse>
-
-<!-- parse validasi rekening -->
-    <parse type="0210" extends="0200">
-        <field num="39" type="ALPHA" length="2"/>
-        <field num="120" type="LLLLVAR">
+        <field num="120" type="LLLVAR">
             <field num="1" type="NUMERIC" length="4"/>
             <field num="2" type="ALPHA" length="50"/>
             <field num="3" type="ALPHA" length="100"/>
             <field num="4" type="ALPHA" length="50"/>
             <field num="5" type="NUMERIC" length="11"/>
             <field num="6" type="ALPHA" length="20"/>
-            <field num="7" type="ALPHA" length="255"/>
-            <field num="8" type="ALPHA" length="255"/>
-            <field num="9" type="ALPHA" length="255"/>
-            <field num="10" type="ALPHA" length="1"/>
+        </field>
+        <field num="121" type="LLLVAR">
+            <field num="1" type="ALPHA" length="255"/>
+            <field num="2" type="ALPHA" length="255"/>
+            <field num="3" type="ALPHA" length="255"/>
+        </field>
+        <field num="120" type="LLLVAR"/>
+    </parse>
+
+    <parse type="0210" extends="0200">
+        <field num="39" type="ALPHA" length="2"/>
+        <field num="121" type="LLLVAR">
+            <field num="1" type="ALPHA" length="255"/>
+            <field num="2" type="ALPHA" length="255"/>
+            <field num="3" type="ALPHA" length="255"/>
+            <field num="4" type="ALPHA" length="1"/>
         </field>
     </parse>
 

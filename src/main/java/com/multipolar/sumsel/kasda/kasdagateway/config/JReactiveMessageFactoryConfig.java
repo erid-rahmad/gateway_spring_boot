@@ -42,9 +42,11 @@ public class JReactiveMessageFactoryConfig {
 //        messageFactory.setEtx(-1);
         messageFactory.setForceStringEncoding(true);
         messageFactory.setTimezoneForParseGuide(0x200, 7,
-                TimeZone.getTimeZone(Constants.TIME_ZONE_GMT));
+                TimeZone.getTimeZone(Constants.TIME_ZONE_GMT)
+        );
         messageFactory.setTimezoneForParseGuide(0x210, 7,
-                TimeZone.getTimeZone(Constants.TIME_ZONE_GMT));
+                TimeZone.getTimeZone(Constants.TIME_ZONE_GMT)
+        );
         messageFactory.setForceSecondaryBitmap(true);
         messageFactory.setIgnoreLastMissingField(true);
         messageFactory.setVariableLengthFieldsInHex(false);

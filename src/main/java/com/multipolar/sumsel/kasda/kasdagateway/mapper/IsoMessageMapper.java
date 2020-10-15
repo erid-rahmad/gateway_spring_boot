@@ -31,20 +31,22 @@ public class IsoMessageMapper {
         isoMessage.setValue(33, "33333333333", IsoType.LLVAR, 11);
         isoMessage.setValue(37, "111111111111", IsoType.NUMERIC, 12);
         isoMessage.setValue(41, "22222222", IsoType.NUMERIC, 8);
+        isoMessage.setField(49, IsoType.NUMERIC.value(Constants.CURRENCY_CODE, 3));
 
-        CompositeField bit128 = new CompositeField()
+        CompositeField bit120 = new CompositeField()
                 .addValue(IsoType.NUMERIC.value(request.getTahunAnggaran(), 4))
                 .addValue(IsoType.ALPHA.value(request.getNomorSpm(), 50))
                 .addValue(IsoType.ALPHA.value(request.getNamaPenerima(), 100))
                 .addValue(IsoType.ALPHA.value(request.getBankPenerima(), 50))
                 .addValue(IsoType.NUMERIC.value(request.getRekeningPenerima(), 11))
-                .addValue(IsoType.ALPHA.value(request.getDateCreated(), 20))
+                .addValue(IsoType.ALPHA.value(request.getDateCreated(), 20));
+        isoMessage.setValue(120, bit120, bit120, IsoType.LLLVAR, 0);
+
+        CompositeField bit121 = new CompositeField()
                 .addValue(IsoType.ALPHA.value(request.getUraian(), 255))
                 .addValue(IsoType.ALPHA.value(request.getNamaUnit(), 255))
                 .addValue(IsoType.ALPHA.value(request.getNamaSubUnit(), 255));
-
-        isoMessage.setField(49, IsoType.NUMERIC.value(Constants.CURRENCY_CODE, 3));
-        isoMessage.setValue(120, bit128, bit128, IsoType.LLLLVAR, 0);
+        isoMessage.setValue(121, bit121, bit121, IsoType.LLLVAR, 0);
         log.debug("iso message: [{}]", isoMessage.debugString());
         return isoMessage;
     }
@@ -58,10 +60,12 @@ public class IsoMessageMapper {
         IsoValue<String> fieldBankPenerima = field120.getField(3);
         IsoValue<String> fieldRekeningPenerima = field120.getField(4);
         IsoValue<String> fieldDateCreated = field120.getField(5);
-        IsoValue<String> fieldUraian = field120.getField(6);
-        IsoValue<String> fieldNamaUnit = field120.getField(7);
-        IsoValue<String> fieldNamaSubUnit = field120.getField(8);
-        IsoValue<String> fieldStatus = field120.getField(9);
+
+        CompositeField field121 = message.getObjectValue(121);
+        IsoValue<String> fieldUraian = field121.getField(6);
+        IsoValue<String> fieldNamaUnit = field121.getField(7);
+        IsoValue<String> fieldNamaSubUnit = field121.getField(8);
+        IsoValue<String> fieldStatus = field121.getField(9);
 
         return Response.builder()
                 .tahunAnggaran(fieldTahunAnggaran.getValue().trim())
