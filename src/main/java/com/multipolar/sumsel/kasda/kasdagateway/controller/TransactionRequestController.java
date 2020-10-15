@@ -7,17 +7,14 @@ import com.multipolar.sumsel.kasda.kasdagateway.servlet.filter.FeatureContextHol
 import org.jpos.iso.ISOException;
 import org.jpos.iso.ISOMsg;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.ConnectException;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1.0/verificationCard")
-public class VerificationAccountSourceController {
+@RequestMapping("/api/v1.0/request")
+public class TransactionRequestController {
 
     @Autowired
     private NetworkMessageGateway gateway;
@@ -26,7 +23,9 @@ public class VerificationAccountSourceController {
     private MessageConverterFactory converterFactory;
 
     @PostMapping("/transaction")
-    public ISOMsg defaultController(@RequestBody ISOMsg msg) throws ISOException, ConnectException {
+    public ISOMsg defaultController(
+            @RequestBody ISOMsg msg,
+            @RequestParam(value = "transactionType") String transactionType) throws ISOException, ConnectException {
         Map<String, Object> map = FeatureContextHolder.getContext().getParameters();
         String context = FeatureContextHolder.getContext().getFeatureName();
 

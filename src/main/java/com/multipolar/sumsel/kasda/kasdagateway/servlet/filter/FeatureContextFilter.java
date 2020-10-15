@@ -20,7 +20,9 @@ public class FeatureContextFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        String feature = getFeatureFromRequest(httpServletRequest.getRequestURI());
+        String feature = getFeatureFromRequest(
+                httpServletRequest.getRequestURI(),
+                httpServletRequest.getParameter("transactionType"));
 
         if (feature != null) {
             FeatureContextHolder.getContext().setFeatureName(feature);
@@ -42,8 +44,23 @@ public class FeatureContextFilter implements Filter {
         if (result == null)
             result = StringUtils.substringAfter(requestUri, "/");
 
-        return "validationAccountSource";
-//        return result;
+        return result;
+    }
+
+    private String getFeatureFromRequest(String requestUri, String transactionType) {
+
+        if (StringUtils.containsIgnoreCase(requestUri, "/api/v1.0/request/transaction")) {
+            return transactionType;
+        } else {
+            String result = StringUtils.substringBetween(requestUri, "/", "?");
+            if (result == null)
+                result = StringUtils.substringBetween(requestUri, "/", "/");
+
+            if (result == null)
+                result = StringUtils.substringAfter(requestUri, "/");
+
+            return result;
+        }
     }
 }
 
