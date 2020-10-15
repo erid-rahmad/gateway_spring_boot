@@ -2,8 +2,8 @@
 
 <channel-adaptor name="vlink-channel" class="org.jpos.q2.iso.ChannelAdaptor" logger="Q2">
     <channel class="org.jpos.iso.channel.ASCIIChannel"
-          packager="org.jpos.iso.packager.ISO87APackager">
-         <property name="host" value="localhost"/>
+             packager="org.jpos.iso.packager.ISO87APackager">
+        <property name="host" value="localhost"/>
         <property name="port" value="8000"/>
     </channel>
     <in>vlink-send</in>

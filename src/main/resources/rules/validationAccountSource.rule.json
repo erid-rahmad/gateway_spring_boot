@@ -1,0 +1,133 @@
+{
+  "pcode": "330002",
+  "request": [
+    {
+      "bit": "2",
+      "value": [
+        {
+          "key": "card_no",
+          "length": "16"
+        }
+      ]
+    },
+    {
+      "bit": "120",
+      "value": [
+        {
+          "key": "thn_angaran",
+          "length": "4"
+        },
+        {
+          "key": "no_spm",
+          "length": "50",
+          "leftpad": "0"
+        },
+        {
+          "key": "nama_penerima",
+          "length": "100",
+          "leftpad": " "
+        },
+        {
+          "key": "bank_penerima",
+          "length": "50",
+          "leftpad": " "
+        },
+        {
+          "key": "rekening_penerima",
+          "length": "11",
+          "leftpad": "0"
+        },
+        {
+          "key": "date_create",
+          "length": "20",
+          "leftpad": " "
+        }
+      ]
+    },
+    {
+      "bit": "121",
+      "value": [
+        {
+          "key": "nama_unit",
+          "length": "255",
+          "leftpad": " "
+        },
+        {
+          "key": "nama_sub_unit",
+          "length": "255",
+          "leftpad": " "
+        },
+        {
+          "key": "uraian",
+          "length": "255",
+          "leftpad": " "
+        }
+      ]
+    }
+  ],
+  "response": [
+    {
+      "bit": "2",
+      "value": [
+        {
+          "key": "cardNo",
+          "length": "16"
+        }
+      ]
+    },
+    {
+      "bit": "120",
+      "value": [
+        {
+          "key": "thn_angaran",
+          "length": "4"
+        },
+        {
+          "key": "no_spm",
+          "length": "50",
+          "leftpad": "0"
+        },
+        {
+          "key": "nama_penerima",
+          "length": "100",
+          "leftpad": " "
+        },
+        {
+          "key": "bank_penerima",
+          "length": "50",
+          "leftpad": " "
+        },
+        {
+          "key": "rekening_penerima",
+          "length": "11",
+          "leftpad": "0"
+        },
+        {
+          "key": "date_create",
+          "length": "20",
+          "leftpad": " "
+        }
+      ]
+    },
+    {
+      "bit": "121",
+      "value": [
+        {
+          "key": "nama_unit",
+          "length": "255",
+          "leftpad": " "
+        },
+        {
+          "key": "nama_sub_unit",
+          "length": "255",
+          "leftpad": " "
+        },
+        {
+          "key": "uraian",
+          "length": "255",
+          "leftpad": " "
+        }
+      ]
+    }
+  ]
+}

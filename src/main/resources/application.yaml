@@ -7,6 +7,7 @@ application:
   license:
     name: @license.name@
     url: @license.url@
+
 server:
   port: ${APPLICATION_PORT:9999}
   servlet:
@@ -14,7 +15,10 @@ server:
 socket:
   hostname: ${SOCKET_ISO8583_HOSTNAME:localhost}
   port: ${SOCKET_ISO8583_PORT:8000}
+
 spring:
+  devtools:
+    add-properties: false
   application:
     name: @project.artifactId@
     version: @project.version@

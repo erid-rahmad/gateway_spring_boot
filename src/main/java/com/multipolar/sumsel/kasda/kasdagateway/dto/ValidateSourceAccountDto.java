@@ -3,6 +3,7 @@ package com.multipolar.sumsel.kasda.kasdagateway.dto;
 import lombok.Builder;
 import lombok.Data;
 
+@Deprecated
 public class ValidateSourceAccountDto {
 
     @Data

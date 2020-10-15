@@ -8,5 +8,9 @@ public interface Constants {
     String TIME_ZONE_GMT = "GMT";
     String TIME_ZONE_MST = "MST";
     String CURRENCY_CODE = "360";
-
+    String TERMINAL_ID = "KASDA";
+    String MERCHANT_TYPE = "";
+    String MTI_NETWORK = "0800";
+    String ECHO = "301";
+    String SIGN = "001";
 }
