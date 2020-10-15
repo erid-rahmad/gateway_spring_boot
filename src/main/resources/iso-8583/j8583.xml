@@ -35,7 +35,6 @@
             <field num="2" type="ALPHA" length="255"/>
             <field num="3" type="ALPHA" length="255"/>
         </field>
-        <field num="120" type="LLLVAR"/>
     </parse>
 
     <parse type="0210" extends="0200">

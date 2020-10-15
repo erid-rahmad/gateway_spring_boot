@@ -30,7 +30,8 @@ import static com.github.kpavlov.jreactive8583.iso.MessageFunction.REQUEST_RESPO
 import static com.github.kpavlov.jreactive8583.iso.MessageOrigin.ACQUIRER;
 
 @Slf4j
-@Configuration
+@Deprecated
+//@Configuration
 public class JReactiveClientConnection implements InitializingBean, DisposableBean {
 
     private final String socketConnectionHost;

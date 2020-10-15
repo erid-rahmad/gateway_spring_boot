@@ -14,7 +14,8 @@ import static com.multipolar.sumsel.kasda.kasdagateway.dto.ValidateSourceAccount
 import static com.multipolar.sumsel.kasda.kasdagateway.dto.ValidateSourceAccountDto.Response;
 
 @Slf4j
-@Component
+@Deprecated
+//@Component
 public class IsoMessageMapper {
 
     @Autowired
@@ -62,10 +63,10 @@ public class IsoMessageMapper {
         IsoValue<String> fieldDateCreated = field120.getField(5);
 
         CompositeField field121 = message.getObjectValue(121);
-        IsoValue<String> fieldUraian = field121.getField(6);
-        IsoValue<String> fieldNamaUnit = field121.getField(7);
-        IsoValue<String> fieldNamaSubUnit = field121.getField(8);
-        IsoValue<String> fieldStatus = field121.getField(9);
+        IsoValue<String> fieldUraian = field121.getField(1);
+        IsoValue<String> fieldNamaUnit = field121.getField(2);
+        IsoValue<String> fieldNamaSubUnit = field121.getField(3);
+        IsoValue<String> fieldStatus = field121.getField(4);
 
         return Response.builder()
                 .tahunAnggaran(fieldTahunAnggaran.getValue().trim())

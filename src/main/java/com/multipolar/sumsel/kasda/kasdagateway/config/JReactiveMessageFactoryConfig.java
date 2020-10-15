@@ -17,7 +17,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.TimeZone;
 
 @Slf4j
-@Configuration
+@Deprecated
+//@Configuration
 public class JReactiveMessageFactoryConfig {
 
     @Bean
