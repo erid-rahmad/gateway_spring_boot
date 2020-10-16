@@ -5,8 +5,6 @@ import com.multipolar.sumsel.kasda.kasdagateway.model.ISOMsgLogEntry;
 import com.multipolar.sumsel.kasda.kasdagateway.utils.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jpos.core.ConfigurationException;
 import org.jpos.iso.ISOException;
 import org.jpos.iso.ISOMsg;
@@ -14,6 +12,7 @@ import org.jpos.iso.ISOUtil;
 import org.jpos.iso.MUX;
 import org.jpos.iso.packager.ISO87APackager;
 import org.jpos.util.NameRegistrar;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
@@ -28,6 +27,10 @@ import java.util.TimeZone;
 @Slf4j
 @Service
 public class NetworkMessageGateway {
+
+    @Value("${q2.mux-name}")
+    private String muxName;
+
     private static final long DEFAULT_TIMEOUT = 62000L;
     //    private static final long DEFAULT_REVERSAL_TIMEOUT = 62000L;
     private static final long DEFAULT_WAIT_TIMEOUT = 12000L;
@@ -36,10 +39,8 @@ public class NetworkMessageGateway {
     private static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMddHHmmss");
 
-    private Logger logIso = LogManager.getLogger("network-log");
-
-//    @Autowired
-//    private TraceNumberGenerator stan;
+    //    @Autowired
+    //    private TraceNumberGenerator stan;
 
     public ISOMsg checkConnectivity() throws ConnectException, ISOException {
         Date date = new Date();
@@ -73,7 +74,6 @@ public class NetworkMessageGateway {
     }
 
     public ISOMsg sendToHost(final ISOMsg m, long timeout) throws ConnectException, ISOException {
-        String muxName = "mux.vlink-mux";
         MUX mux = (MUX) NameRegistrar.getIfExists(muxName);
         if (mux == null)
             throw new ConfigurationException("mux is not configured");
@@ -86,18 +86,13 @@ public class NetworkMessageGateway {
                 final ISOMsgLogEntry responseEntry = new ISOMsgLogEntry(resp, new Date());
 
                 if (resp == null) {
-                    log.info("No response for message with trace number: {} .Log request for trace number: {}", m.getString(11), m.getString(11));
+                    log.info("No response for message with trace number: {}.Log request for trace number: {}",
+                            m.getString(11), m.getString(11));
                     logRequest(requestEntry);
                     return resp;
                 }
 
-                Thread thread = new Thread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        log(requestEntry, responseEntry);
-                    }
-                });
+                Thread thread = new Thread(() -> log(requestEntry, responseEntry));
                 thread.start();
 
                 return resp;
@@ -123,22 +118,18 @@ public class NetworkMessageGateway {
 
     protected void log(ISOMsgLogEntry req, ISOMsgLogEntry resp) {
         try {
-            logIso.info(dumpMessage(req));
-            logIso.info(dumpMessage(resp));
+            log.info(dumpMessage(req));
+            log.info(dumpMessage(resp));
         } catch (ISOException ex) {
-            logIso.error("Something happen when log the message");
-            logIso.error(ex.getMessage());
-            ex.printStackTrace();
+            log.error("Something happen when log the message", ex);
         }
     }
 
     protected void logRequest(ISOMsgLogEntry req) {
         try {
-            logIso.info(dumpMessage(req));
+            log.info(dumpMessage(req));
         } catch (ISOException ex) {
-            logIso.error("Something happen when log the message");
-            logIso.error(ex.getMessage());
-            ex.printStackTrace();
+            log.error("Something happen when log the message", ex);
         }
     }
 

@@ -20,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import java.net.InetSocketAddress;
 
@@ -34,8 +33,10 @@ import static com.github.kpavlov.jreactive8583.iso.MessageOrigin.ACQUIRER;
 //@Configuration
 public class JReactiveClientConnection implements InitializingBean, DisposableBean {
 
-    private final String socketConnectionHost;
-    private final Integer socketConnectionPort;
+    @Value("${socket.hostname}")
+    private String socketConnectionHost;
+    @Value("${socket.port}")
+    private Integer socketConnectionPort;
     private final ClientConfiguration clientConfiguration;
     private final J8583MessageFactory<IsoMessage> messageFactory;
     Iso8583Client<IsoMessage> client;
@@ -45,12 +46,8 @@ public class JReactiveClientConnection implements InitializingBean, DisposableBe
 
     @Autowired
     public JReactiveClientConnection(
-            @Value("${socket.hostname}") String socketConnectionHost,
-            @Value("${socket.port}") Integer socketConnectionPort,
             @Qualifier("clientConfiguration") ClientConfiguration clientConfiguration,
             @Qualifier("messageFactory") J8583MessageFactory<IsoMessage> messageFactory) {
-        this.socketConnectionHost = socketConnectionHost;
-        this.socketConnectionPort = socketConnectionPort;
         this.clientConfiguration = clientConfiguration;
         this.messageFactory = messageFactory;
     }

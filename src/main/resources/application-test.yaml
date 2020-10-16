@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:kasda_gateway_test}
+    username: ${DATABASE_USER:kasda_gateway}
+    password: ${DATABASE_PASSWORD:kasda_gateway}
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    locations: classpath:/db/migration/schema, classpath:/db/migration/data/test

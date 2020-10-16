@@ -22,8 +22,8 @@ public class NetworkManagementService implements CommandLineRunner {
     @Transactional
     @Scheduled(cron = "0 0/60 * * * ?")
     public void echoUser() {
-        System.out.println("scheduler run at: " + System.currentTimeMillis());
         try {
+            log.info("scheduler run at: {}", System.currentTimeMillis());
             networkMessageGateway.checkConnectivity();
         } catch (ConnectException e) {
             log.error("connection exception", e);
@@ -35,8 +35,8 @@ public class NetworkManagementService implements CommandLineRunner {
 
     @Transactional
     public void signOn() {
-        log.info("application started at: {}", System.currentTimeMillis());
         try {
+            log.info("application started at: {}", System.currentTimeMillis());
             networkMessageGateway.signOn();
         } catch (ConnectException e) {
             log.info("connection exception", e);

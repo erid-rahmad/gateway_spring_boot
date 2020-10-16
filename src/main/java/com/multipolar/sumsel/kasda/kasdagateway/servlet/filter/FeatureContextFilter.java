@@ -36,6 +36,7 @@ public class FeatureContextFilter implements Filter {
         // do nothing
     }
 
+    @Deprecated
     private String getFeatureFromRequest(String requestUri) {
         String result = StringUtils.substringBetween(requestUri, "/", "?");
         if (result == null)
@@ -48,19 +49,11 @@ public class FeatureContextFilter implements Filter {
     }
 
     private String getFeatureFromRequest(String requestUri, String transactionType) {
-
         if (StringUtils.containsIgnoreCase(requestUri, "/api/v1.0/request/transaction")) {
             return transactionType;
-        } else {
-            String result = StringUtils.substringBetween(requestUri, "/", "?");
-            if (result == null)
-                result = StringUtils.substringBetween(requestUri, "/", "/");
-
-            if (result == null)
-                result = StringUtils.substringAfter(requestUri, "/");
-
-            return result;
         }
+
+        return null;
     }
 }
 

@@ -7,15 +7,17 @@ application:
   license:
     name: @license.name@
     url: @license.url@
-
 server:
   port: ${APPLICATION_PORT:9999}
   servlet:
     context-path: /@project.artifactId@
-socket:
-  hostname: ${SOCKET_ISO8583_HOSTNAME:localhost}
-  port: ${SOCKET_ISO8583_PORT:8000}
-
+#socket:
+#  hostname: ${SOCKET_ISO8583_HOSTNAME:localhost}
+#  port: ${SOCKET_ISO8583_PORT:8000}
+q2:
+  basepath: ${Q2_BASEPATH:./q2}
+  default-timeout: ${Q2_DEFAULT_TIMEOUT:60}
+  mux-name: ${Q2_MUX_NAME:mux.vlink-mux}
 spring:
   devtools:
     add-properties: false
@@ -48,12 +50,13 @@ spring:
           use_jdbc_metadata_defaults: false
   flyway:
     encoding: UTF-8
-    enabled: false
+    enabled: ${FLYWAY_ENABLED:true}
     baseline-on-migrate: true
-    locations: classpath:/db/migration
     clean-disabled: false
     clean-on-validation-error: true
     connect-retries: 3
+  profiles:
+    active: dev
 logging:
   level:
     org.springframework: ERROR
