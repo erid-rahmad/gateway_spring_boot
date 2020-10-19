@@ -1,0 +1,308 @@
+{
+  "pcode": "330003",
+  "request": [
+    {
+      "bit": "2",
+      "value": [
+        {
+          "key": "card_no",
+          "length": "16"
+        }
+      ]
+    },
+    {
+      "bit": "122",
+      "value": [
+        {
+          "key": "thn_angaran",
+          "length": "4"
+        },
+        {
+          "key": "kode_urusan",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_bindang",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_unit",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_sub",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "no_sp2d",
+          "length": "50",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_rek_1",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_rek_2",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_rek_3",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_rek_4",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_rek_5",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "no_spm",
+          "length": "50",
+          "leftpad": "0"
+        },
+        {
+          "key": "jenis_spm",
+          "length": "2",
+          "leftpad": "0"
+        },
+        {
+          "key": "nama_rekening",
+          "length": "50",
+          "leftpad": " "
+        },
+        {
+          "key": "nilai",
+          "length": "15",
+          "leftpad": "0"
+        }
+      ]
+    }
+  ],
+  "response": [
+    {
+      "bit": "2",
+      "value": [
+        {
+          "key": "cardNo",
+          "length": "16"
+        }
+      ]
+    },
+    {
+      "bit": "120",
+      "value": [
+        {
+          "key": "kode_urusan",
+          "length": "1"
+        },
+        {
+          "key": "kode_bidang",
+          "length": "1"
+        },
+        {
+          "key": "kode_unit",
+          "length": "1"
+        },
+        {
+          "key": "kode_sub",
+          "length": "1"
+        },
+        {
+          "key": "tahun_anggaran",
+          "length": "4"
+        },
+        {
+          "key": "no_sp2d",
+          "length": "50",
+          "leftpad": "0"
+        },
+        {
+          "key": "tanggal_sp2d",
+          "length": "10",
+          "leftpad": " "
+        },
+        {
+          "key": "no_spm",
+          "length": "50",
+          "leftpad": "0"
+        },
+        {
+          "key": "tanggal_spm",
+          "length": "10",
+          "leftpad": " "
+        },
+        {
+          "key": "jenis_spm",
+          "length": "2",
+          "leftpad": " "
+        },
+        {
+          "key": "nama_penerima",
+          "length": "40",
+          "leftpad": " "
+        },
+        {
+          "key": "keterangan",
+          "length": "255",
+          "leftpad": " "
+        },
+        {
+          "key": "npwp",
+          "length": "20",
+          "leftpad": "0"
+        },
+        {
+          "key": "bank_penerima",
+          "length": "50",
+          "leftpad": " "
+        },
+        {
+          "key": "rekening_penerima",
+          "length": "11",
+          "leftpad": "0"
+        },
+        {
+          "key": "tanggal_penguji",
+          "length": "10",
+          "leftpad": " "
+        },
+        {
+          "key": "nama_bank",
+          "length": "50",
+          "leftpad": " "
+        },
+        {
+          "key": "nomor_rekening",
+          "length": "11",
+          "leftpad": "0"
+        },
+        {
+          "key": "nilai",
+          "length": "15",
+          "leftpad": "0"
+        },
+        {
+          "key": "date_created",
+          "length": "20",
+          "leftpad": " "
+        },
+        {
+          "key": "gaji",
+          "length": "1",
+          "leftpad": " "
+        }
+      ]
+    },
+    {
+      "bit": "121",
+      "value": [
+        {
+          "key": "nama_unit",
+          "length": "255",
+          "leftpad": " "
+        },
+        {
+          "key": "nama_sub_unit",
+          "length": "255",
+          "leftpad": " "
+        },
+        {
+          "key": "uraian",
+          "length": "255",
+          "leftpad": " "
+        }
+      ]
+    },
+    {
+      "bit": "122",
+      "value": [
+        {
+          "key": "thn_angaran",
+          "length": "4"
+        },
+        {
+          "key": "kode_urusan",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_bindang",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_unit",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_sub",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "no_sp2d",
+          "length": "50",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_rek_1",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_rek_2",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_rek_3",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_rek_4",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_rek_5",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "no_spm",
+          "length": "50",
+          "leftpad": "0"
+        },
+        {
+          "key": "jenis_spm",
+          "length": "2",
+          "leftpad": "0"
+        },
+        {
+          "key": "nama_rekening",
+          "length": "50",
+          "leftpad": " "
+        },
+        {
+          "key": "nilai",
+          "length": "15",
+          "leftpad": "0"
+        }
+      ]
+    }
+  ]
+}
