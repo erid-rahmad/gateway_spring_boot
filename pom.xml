@@ -206,14 +206,10 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/target</outputDirectory>
+                            <outputDirectory>${basedir}/target/q2</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>q2</directory>
-                                    <filtering>true</filtering>
-                                </resource>
-                                <resource>
-                                    <directory>log</directory>
                                     <filtering>true</filtering>
                                 </resource>
                             </resources>
