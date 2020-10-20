@@ -9,9 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.jpos.iso.ISOException;
 import org.jpos.iso.ISOMsg;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,17 +27,11 @@ public abstract class AbstractMessageConverter implements MessageConverterHandle
     private static final SimpleDateFormat LOCAL_DATE = new SimpleDateFormat("MMdd");
     private static final SimpleDateFormat LOCAL_TIME = new SimpleDateFormat("HHmmss");
     private static final SimpleDateFormat YEAR_FORMAT = new SimpleDateFormat("yyyy");
-    private String defaultMTI = "0200";
-    private String defaultBIN = "627486";
-    private String defaultAcquirer = Constants.AQUIERER_ID;
-    private String defaultForwarder = "100800";
-    private String defaultErrorDesc = "0000000";
-    private String defaultCurrency = Constants.CURRENCY_CODE;
 
     private static final String RULE_EXTENSION = ".rule.json";
 
-//    @Autowired
-//    private TraceNumberGenerator stan;
+    @Autowired
+    private TraceNumberGenerator stan;
 
     public Map<String, Object> doConvertToJSon(ISOMsg msg, boolean fl) throws InvalidMessageException {
         // log iso msg here
@@ -54,20 +50,19 @@ public abstract class AbstractMessageConverter implements MessageConverterHandle
         FeatureContextHolder.getContext().setFeatureTransactionDate(date);
         try {
             ISOMsg msg = new ISOMsg();
-            setMti(msg, defaultMTI);
+            setMti(msg, Constants.TRANSACTION_MTI);
             // setPan(msg, defaultBIN);
             setTransmissionDateTime(msg, date);
             setTraceAuditNumber(msg);
             setTransmissionTime(msg, date);
             setTransmissionDate(msg, date);
 //            setSettlementDate(msg, date);
-            setChannelID(msg, Constants.MERCHANT_TYPE);
-            setAcquirer(msg, defaultAcquirer);
-            setForwarder(msg, defaultForwarder);
-            setCurrency(msg, defaultCurrency);
+            setChannelID(msg, Constants.CHANNEL_ID);
+            setAcquirer(msg, Constants.AQUIERER_ID);
+            setForwarder(msg, Constants.DEFAULT_FORWARD_ID);
+            setCurrency(msg, Constants.CURRENCY_CODE);
             // setBit62(msg);
-//            FIXME: relate with stan
-//            setRefferenceNumber(msg, getReferenceNumber());
+            setRefferenceNumber(msg, stan.getReferenceNumber());
             // setTerminal(msg);
             // setTerminalLocation(msg);
             setPrivateMessage(msg, map);
@@ -98,11 +93,10 @@ public abstract class AbstractMessageConverter implements MessageConverterHandle
         msg.set(7, DATE_FORMAT.format(FeatureContextHolder.getContext().getFeatureTransactionDate()));
     }
 
-    // FIXME: for stan generator
     protected void setTraceAuditNumber(ISOMsg msg) throws ISOException {
-//        String s = stan.getTraceNumber();
-//        FeatureContextHolder.getContext().setTraceNumber(s);
-//        msg.set(11, s);
+        String value = stan.getTraceNumber();
+        FeatureContextHolder.getContext().setTraceNumber(value);
+        msg.set(11, value);
     }
 
     protected void setTransmissionTime(ISOMsg msg, Date date) throws ISOException {
@@ -113,6 +107,7 @@ public abstract class AbstractMessageConverter implements MessageConverterHandle
         msg.set(13, LOCAL_DATE.format(date));
     }
 
+    @Deprecated
     protected void setSettlementDate(ISOMsg msg, Date date) throws ISOException {
         msg.set(15, LOCAL_DATE.format(date));
     }
@@ -137,12 +132,6 @@ public abstract class AbstractMessageConverter implements MessageConverterHandle
         msg.set(37, StringUtils.leftPad(s, 12, "0"));
     }
 
-    protected void setBit62(ISOMsg msg) throws ISOException {
-        String year = YEAR_FORMAT.format(new Date());
-        String s = year + defaultErrorDesc + defaultForwarder + "     ";
-        msg.set(62, s);
-    }
-
     protected void setCheckNumber(ISOMsg isoMsg) throws ISOException {
         String checkNumber = isoMsg.getString(58);
         if (checkNumber == null) {
@@ -156,25 +145,9 @@ public abstract class AbstractMessageConverter implements MessageConverterHandle
         isoMsg.set(3, stringBuilder.toString());
     }
 
-    protected void setDefaultMTI(String mti) {
-        defaultMTI = mti;
-    }
-
-    protected void setDefaultBIN(String bin) {
-        defaultBIN = bin;
-    }
-
     protected abstract void setPrivateMessage(ISOMsg msg, Map<String, Object> map) throws ISOException;
 
     protected abstract Map<String, Object> translatePrivateMessage(ISOMsg msg, boolean fl) throws ISOException;
-
-//    protected String getStan() {
-//        return stan.getTraceNumber();
-//    }
-//
-//    protected String getReferenceNumber() {
-//        return stan.getReferenceNumber();
-//    }
 
     protected void setTerminalID(ISOMsg msg) throws ISOException {
         msg.set(41, Constants.TERMINAL_ID);
@@ -191,6 +164,10 @@ public abstract class AbstractMessageConverter implements MessageConverterHandle
         ObjectMapper objectMapper = new ObjectMapper();
 
         Resource resource = new ClassPathResource("rules/" + filename);
+
+        if (!resource.exists()) {
+            throw new FileNotFoundException(resource.getFilename() + " not found!");
+        }
 
         // convert json string to object
         return objectMapper.readValue(resource.getInputStream(), Rule.class);

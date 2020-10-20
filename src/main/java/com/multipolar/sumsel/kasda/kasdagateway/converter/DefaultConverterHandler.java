@@ -108,10 +108,6 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             String sourceName = FeatureContextHolder.getContext().getSourceName();
 //            UserDetailImpl userDetail = (UserDetailImpl) SecurityContextHolder.getContext().getAuthentication().getDetails();
             map.put("sourceName", sourceName);
-//            map.put("userId", userDetail.getUsername());
-//            map.put("branchCode", userDetail.getBranchCode());
-//            map.put("branchName", userDetail.getBranchName());
-//            map.put("archiveNumber", userDetail.getUsername() + FeatureContextHolder.getContext().getTraceNumber());
             map.put("transactionDate", DATE.format(FeatureContextHolder.getContext().getFeatureTransactionDate()));
 
             String destName = FeatureContextHolder.getContext().getDestinationName();

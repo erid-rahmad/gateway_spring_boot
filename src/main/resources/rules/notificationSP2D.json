@@ -1,0 +1,285 @@
+{
+  "pcode": "330005",
+  "request": [
+    {
+      "bit": "2",
+      "value": [
+        {
+          "key": "card_no",
+          "length": "16"
+        }
+      ]
+    },
+    {
+      "bit": "120",
+      "value": [
+        {
+          "key": "kode_cabang",
+          "length": "5",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_wilayah",
+          "length": "5",
+          "leftpad": "0"
+        },
+        {
+          "key": "no_bukti",
+          "length": "50",
+          "leftpad": "0"
+        },
+        {
+          "key": "tanggal_transaksi",
+          "length": "8",
+          "leftpad": " "
+        },
+        {
+          "key": "tanggal_bukti",
+          "length": "8",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_1",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_2",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_3",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_4",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_5",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_6",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_7",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_8",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_9",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_10",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_1",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_2",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_3",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_4",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_5",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_6",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_7",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_8",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_9",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_10",
+          "length": "16",
+          "leftpad": " "
+        }
+      ]
+    }
+  ],
+  "response": [
+    {
+      "bit": "2",
+      "value": [
+        {
+          "key": "card_no",
+          "length": "16"
+        }
+      ]
+    },
+    {
+      "bit": "120",
+      "value": [
+        {
+          "key": "kode_cabang",
+          "length": "5",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_wilayah",
+          "length": "5",
+          "leftpad": "0"
+        },
+        {
+          "key": "no_bukti",
+          "length": "50",
+          "leftpad": "0"
+        },
+        {
+          "key": "tanggal_transaksi",
+          "length": "8",
+          "leftpad": " "
+        },
+        {
+          "key": "tanggal_bukti",
+          "length": "8",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_1",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_2",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_3",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_4",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_5",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_6",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_7",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_8",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_9",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "id_bil_10",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_1",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_2",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_3",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_4",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_5",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_6",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_7",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_8",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_9",
+          "length": "16",
+          "leftpad": " "
+        },
+        {
+          "key": "ntpn_10",
+          "length": "16",
+          "leftpad": " "
+        }
+      ]
+    }
+  ]
+}

@@ -8893,3 +8893,315 @@ q9ulRPEqH9NR79619lNKVUkE206dVlXo7xHmJS1QZy5v/GT66xBxyDVfTduPFXk=
   </trace>
 </log>
 </logger>
+<?xml version="1.0" encoding="UTF-8"?>
+<logger class="org.jpos.util.DailyLogListener">
+<log realm="Q2.system" at="Tue Oct 20 16:30:39.074 ICT 2020" lifespan="279ms">
+  <info>
+    Q2 started, deployDir=C:\Users\dimasm93\Workspaces\multipolar\kasda\kasda-gateway\.\q2\deploy
+    
+    jPOS 2.0.2 master/3726623 (2015-06-08 22:17:40 UYT) 
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+jPOS Community Edition, licensed under GNU AGPL v3.0.
+This software is probably not suitable for commercial use.
+Please see http://jpos.org/license for details.
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.9 (Darwin)
+
+iQEcBAEBAgAGBQJMolHDAAoJEOQyeO71nYtFv74H/3OgehDGEy1VXp2U3/GcAobg
+HH2eZjPUz53r38ARPiU3pzm9LwDa3WZgJJaa/b9VrJwKvbPwe9+0kY3gScDE1skT
+ladHt+KHHmGQArEutkzHlpZa73RbroFEIa1qmN6MaDEHGoxZqDh0Sv2cpvOaVYGO
+St8ZaddLBPC17bSjAPWo9sWbvL7FgPFOHhnPmbeux8SLtnfWxXWsgo5hLBanKmO1
+1z+I/w/6DL6ZYZU6bAJUk+eyVVImJqw0x3IEElI07Nh9MC6BA4iJ77ejobj8HI2r
+q9ulRPEqH9NR79619lNKVUkE206dVlXo7xHmJS1QZy5v/GT66xBxyDVfTduPFXk=
+=oP+v
+-----END PGP SIGNATURE-----
+
+  </info>
+</log>
+<log realm="Q2.system" at="Tue Oct 20 16:30:39.081 ICT 2020" lifespan="4ms">
+  <info>
+    deploy: C:\Users\dimasm93\Workspaces\multipolar\kasda\kasda-gateway\q2\deploy\10_channel_jpos.xml
+  </info>
+</log>
+<log realm="Q2.system" at="Tue Oct 20 16:30:39.085 ICT 2020" lifespan="3ms">
+  <info>
+    deploy: C:\Users\dimasm93\Workspaces\multipolar\kasda\kasda-gateway\q2\deploy\20_mux_jpos.xml
+  </info>
+</log>
+<log realm="Q2.system" at="Tue Oct 20 16:30:39.089 ICT 2020" lifespan="3ms">
+  <info>
+    deploy: C:\Users\dimasm93\Workspaces\multipolar\kasda\kasda-gateway\q2\deploy\99_sysmon.xml
+  </info>
+</log>
+<log realm="org.jpos.q2.qbean.SystemMonitor" at="Tue Oct 20 16:30:39.101 ICT 2020">
+  <info>
+    Starting SystemMonitor
+  </info>
+</log>
+<log realm="org.jpos.q2.qbean.SystemMonitor" at="Tue Oct 20 16:30:39.102 ICT 2020">
+  <info>
+               OS: Windows 10
+             host: MSI-z390/192.168.56.1
+          version: 2.0.2 (3726623)
+         instance: 936ef1f3-398a-4178-aeec-cb08f374cb6f
+           uptime: 00:00:00.411
+       processors: 16
+           drift : 0
+    memory(t/u/f): 525/91/434
+          threads: 18
+            Thread[Reference Handler,10,system]
+            Thread[Finalizer,8,system]
+            Thread[Signal Dispatcher,9,system]
+            Thread[Attach Listener,5,system]
+            Thread[main,5,main]
+            Thread[Thread-0,5,main]
+            Thread[restartedMain,5,main]
+            Thread[spring.cloud.inetutils,5,main]
+            Thread[spring.cloud.inetutils,5,main]
+            Thread[Catalina-utility-1,1,main]
+            Thread[Catalina-utility-2,1,main]
+            Thread[container-0,5,main]
+            Thread[PostgreSQL-JDBC-SharedTimer-1,5,main]
+            Thread[HikariPool-1 housekeeper,5,main]
+            Thread[HikariPool-1 connection adder,5,main]
+            Thread[task-1,5,main]
+            Thread[Q2-936ef1f3-398a-4178-aeec-cb08f374cb6f,5,main]
+            Thread[pool-1-thread-1,5,main]
+            Thread[Timer-0,5,main]
+            Thread[channel-sender-vlink-send,5,main]
+            Thread[channel-receiver-vlink-receive,5,main]
+            Thread[SystemMonitor,5,main]
+         encoding: windows-1252
+    name-registrar:
+      tspace:default: org.jpos.space.TSpace
+        <keycount>-1</keycount>
+        <gcinfo>0,0</gcinfo>
+
+      mux.vlink-mux: org.jpos.q2.iso.QMUX
+        tx=0, rx=0, tx_expired=0, tx_pending=0, rx_expired=0, rx_pending=0, rx_unhandled=0, rx_forwarded=0, connected=false, last=0
+      logger.Q2: org.jpos.util.Logger
+      vlink-channel: org.jpos.q2.iso.ChannelAdaptor
+        tx=0, rx=0, connects=0, last=0
+      channel.vlink-channel: org.jpos.iso.channel.ASCIIChannel
+  </info>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:30:41.141 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:30:53.195 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:31:05.254 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:31:17.312 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:31:29.385 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:31:41.424 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:31:53.492 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:32:05.553 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:32:17.604 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:32:29.668 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:32:41.711 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:32:53.755 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:33:05.790 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:33:17.839 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:33:29.889 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:33:41.944 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:33:53.992 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:34:06.057 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:34:18.093 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:34:30.131 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:34:42.165 ICT 2020">
+  <warn>
+    check-connection
+    Unable to connect
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:36:20.422 ICT 2020">
+  <warn>
+    channel-receiver-vlink-receive
+    <exception name="null">
+    java.io.EOFException
+	at java.io.DataInputStream.readFully(DataInputStream.java:197)
+	at org.jpos.iso.channel.ASCIIChannel.getMessageLength(ASCIIChannel.java:93)
+	at org.jpos.iso.BaseChannel.receive(BaseChannel.java:699)
+	at org.jpos.q2.iso.ChannelAdaptor$Receiver.run(ChannelAdaptor.java:317)
+	at java.lang.Thread.run(Thread.java:748)
+    </exception>
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:39:30.521 ICT 2020">
+  <warn>
+    channel-receiver-vlink-receive
+    <exception name="null">
+    java.io.EOFException
+	at java.io.DataInputStream.readFully(DataInputStream.java:197)
+	at org.jpos.iso.channel.ASCIIChannel.getMessageLength(ASCIIChannel.java:93)
+	at org.jpos.iso.BaseChannel.receive(BaseChannel.java:699)
+	at org.jpos.q2.iso.ChannelAdaptor$Receiver.run(ChannelAdaptor.java:317)
+	at java.lang.Thread.run(Thread.java:748)
+    </exception>
+  </warn>
+</log>
+<log realm="org.jpos.q2.iso.ChannelAdaptor" at="Tue Oct 20 16:42:40.583 ICT 2020">
+  <warn>
+    channel-receiver-vlink-receive
+    <exception name="null">
+    java.io.EOFException
+	at java.io.DataInputStream.readFully(DataInputStream.java:197)
+	at org.jpos.iso.channel.ASCIIChannel.getMessageLength(ASCIIChannel.java:93)
+	at org.jpos.iso.BaseChannel.receive(BaseChannel.java:699)
+	at org.jpos.q2.iso.ChannelAdaptor$Receiver.run(ChannelAdaptor.java:317)
+	at java.lang.Thread.run(Thread.java:748)
+    </exception>
+  </warn>
+</log>
+<log realm="Q2.system" at="Tue Oct 20 16:43:19.572 ICT 2020">
+  <info>
+    shutting down (hook)
+  </info>
+</log>
+<log realm="Q2.system" at="Tue Oct 20 16:43:19.692 ICT 2020">
+  <info>
+    shutting down
+  </info>
+</log>
+<log realm="Q2.system" at="Tue Oct 20 16:43:19.694 ICT 2020">
+  <trace>
+    undeploying:C:\Users\dimasm93\Workspaces\multipolar\kasda\kasda-gateway\q2\deploy\99_sysmon.xml
+  </trace>
+</log>
+<log realm="org.jpos.q2.qbean.SystemMonitor" at="Tue Oct 20 16:43:19.696 ICT 2020">
+  <info>
+    Stopping SystemMonitor
+  </info>
+</log>
+<log realm="Q2.system" at="Tue Oct 20 16:43:19.697 ICT 2020">
+  <info>
+    undeployed:C:\Users\dimasm93\Workspaces\multipolar\kasda\kasda-gateway\q2\deploy\99_sysmon.xml
+  </info>
+</log>
+<log realm="Q2.system" at="Tue Oct 20 16:43:19.698 ICT 2020">
+  <trace>
+    undeploying:C:\Users\dimasm93\Workspaces\multipolar\kasda\kasda-gateway\q2\deploy\20_mux_jpos.xml
+  </trace>
+</log>
+<log realm="Q2.system" at="Tue Oct 20 16:43:19.699 ICT 2020">
+  <info>
+    undeployed:C:\Users\dimasm93\Workspaces\multipolar\kasda\kasda-gateway\q2\deploy\20_mux_jpos.xml
+  </info>
+</log>
+<log realm="Q2.system" at="Tue Oct 20 16:43:19.700 ICT 2020">
+  <trace>
+    undeploying:C:\Users\dimasm93\Workspaces\multipolar\kasda\kasda-gateway\q2\deploy\10_channel_jpos.xml
+  </trace>
+</log>
+<log realm="Q2.system" at="Tue Oct 20 16:43:19.701 ICT 2020">
+  <info>
+    undeployed:C:\Users\dimasm93\Workspaces\multipolar\kasda\kasda-gateway\q2\deploy\10_channel_jpos.xml
+  </info>
+</log>
+<log realm="Q2.system" at="Tue Oct 20 16:43:19.703 ICT 2020">
+  <trace>
+    undeploying:C:\Users\dimasm93\Workspaces\multipolar\kasda\kasda-gateway\q2\deploy\00_logger.xml
+  </trace>
+</log>
+</logger>
