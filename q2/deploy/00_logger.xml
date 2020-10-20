@@ -7,7 +7,7 @@
   <log-listener class="org.jpos.util.DailyLogListener">
     <property name="window" value="86400" /> <!-- optional, default one day -->
     <!--needed-->
-    <property name="prefix" value="log/q2" />
+    <property name="prefix" value="q2/log/server-q2" />
     <property name="suffix" value=".log"/> <!-- optional -->
 
     <!--optional the default is "-yyyy-MM-dd" -->
