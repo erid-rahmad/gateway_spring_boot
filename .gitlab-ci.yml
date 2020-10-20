@@ -13,6 +13,8 @@ cache:
 
 building:
   stage: build
+  tag:
+    - docker
   before_script:
     - 'mvn versions:set -DnewVersion=$CI_COMMIT_TAG'
   script:
@@ -22,4 +24,5 @@ building:
   artifacts:
     paths:
       - target/*.jar
+      - target/q2
     name: $CI_PROJECT_NAME-$CI_COMMIT_TAG
