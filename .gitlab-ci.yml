@@ -16,9 +16,9 @@ building:
   tags:
     - docker
   before_script:
-    - 'mvn -s M2_PROXY versions:set -DnewVersion=$CI_COMMIT_TAG'
+    - 'mvn -s $M2_PROXY versions:set -DnewVersion=$CI_COMMIT_TAG'
   script:
-    - 'mvn -s M2_PROXY $MAVEN_CLI_OPTS clean package -DskipTests'
+    - 'mvn -s $M2_PROXY $MAVEN_CLI_OPTS clean package -DskipTests'
   only:
     - /-release$/
   artifacts:
