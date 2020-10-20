@@ -5,6 +5,7 @@ import com.multipolar.sumsel.kasda.kasdagateway.converter.MessageConverterHandle
 import com.multipolar.sumsel.kasda.kasdagateway.service.NetworkMessageGateway;
 import com.multipolar.sumsel.kasda.kasdagateway.servlet.filter.FeatureContextHolder;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.jpos.iso.ISOException;
 import org.jpos.iso.ISOMsg;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,11 @@ public class TransactionRequestController extends ResponseEntityExceptionHandler
     @PostMapping("/transaction")
     public ResponseEntity<?> defaultController(
             @RequestBody ISOMsg msg,
-            @RequestParam(value = "transactionType") String transactionType) throws ISOException, ConnectException {
+            @RequestParam(value = "transactionType") String transactionType,
+            @RequestParam(value = "terminalId") String terminalId) throws ISOException, ConnectException {
         String context = FeatureContextHolder.getContext().getFeatureName();
+
+        msg.set(41, StringUtils.leftPad(terminalId, 8, "0"));
         ISOMsg response = gateway.sendToHost(msg, defaultTimeout);
         MessageConverterHandler converter = converterFactory.get(context);
 

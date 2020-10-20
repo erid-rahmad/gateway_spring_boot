@@ -193,3 +193,6 @@ fabric.properties
 .history/
 log/
 .logs/
+.~*.xls*
+.~*.doc*
+.~*.ppt*

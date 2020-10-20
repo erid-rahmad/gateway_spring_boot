@@ -1,4 +1,4 @@
-POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=validationAccountSource
+POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=validationAccountSource&terminalId=123456
 Content-Type: application/json
 
 {
