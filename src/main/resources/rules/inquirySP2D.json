@@ -1,5 +1,5 @@
 {
-  "pcode": "330003",
+  "pcode": "330054",
   "request": [
     {
       "bit": "2",
@@ -11,80 +11,21 @@
       ]
     },
     {
-      "bit": "122",
+      "bit": "120",
       "value": [
         {
-          "key": "thn_angaran",
-          "length": "4"
-        },
-        {
-          "key": "kode_urusan",
-          "length": "1",
+          "key": "kode_cabang",
+          "length": "5",
           "leftpad": "0"
         },
         {
-          "key": "kode_bindang",
-          "length": "1",
-          "leftpad": "0"
-        },
-        {
-          "key": "kode_unit",
-          "length": "1",
-          "leftpad": "0"
-        },
-        {
-          "key": "kode_sub",
-          "length": "1",
+          "key": "kode_wilayah",
+          "length": "5",
           "leftpad": "0"
         },
         {
           "key": "no_sp2d",
           "length": "50",
-          "leftpad": "0"
-        },
-        {
-          "key": "kode_rek_1",
-          "length": "1",
-          "leftpad": "0"
-        },
-        {
-          "key": "kode_rek_2",
-          "length": "1",
-          "leftpad": "0"
-        },
-        {
-          "key": "kode_rek_3",
-          "length": "1",
-          "leftpad": "0"
-        },
-        {
-          "key": "kode_rek_4",
-          "length": "1",
-          "leftpad": "0"
-        },
-        {
-          "key": "kode_rek_5",
-          "length": "1",
-          "leftpad": "0"
-        },
-        {
-          "key": "no_spm",
-          "length": "50",
-          "leftpad": "0"
-        },
-        {
-          "key": "jenis_spm",
-          "length": "2",
-          "leftpad": "0"
-        },
-        {
-          "key": "nama_rekening",
-          "length": "50",
-          "leftpad": " "
-        },
-        {
-          "key": "nilai",
-          "length": "15",
           "leftpad": "0"
         }
       ]
@@ -104,23 +45,37 @@
       "bit": "120",
       "value": [
         {
+          "key": "kode_cabang",
+          "length": "5",
+          "leftpad": " "
+        },
+        {
+          "key": "kode_wilayah",
+          "length": "5",
+          "leftpad": " "
+        },
+        {
           "key": "kode_urusan",
-          "length": "1"
+          "length": "1",
+          "leftpad": " "
         },
         {
           "key": "kode_bidang",
-          "length": "1"
+          "length": "1",
+          "leftpad": " "
         },
         {
           "key": "kode_unit",
-          "length": "1"
+          "length": "1",
+          "leftpad": " "
         },
         {
           "key": "kode_sub",
-          "length": "1"
+          "length": "1",
+          "leftpad": " "
         },
         {
-          "key": "tahun_anggaran",
+          "key": "tahun",
           "length": "4"
         },
         {
@@ -150,7 +105,7 @@
         },
         {
           "key": "nama_penerima",
-          "length": "40",
+          "length": "50",
           "leftpad": " "
         },
         {
@@ -159,9 +114,9 @@
           "leftpad": " "
         },
         {
-          "key": "npwp",
+          "key": "npwm",
           "length": "20",
-          "leftpad": "0"
+          "leftpad": " "
         },
         {
           "key": "bank_penerima",
@@ -171,10 +126,10 @@
         {
           "key": "rekening_penerima",
           "length": "11",
-          "leftpad": "0"
+          "leftpad": "00"
         },
         {
-          "key": "tanggal_penguji",
+          "key": "tenggal_penguji",
           "length": "10",
           "leftpad": " "
         },
@@ -184,9 +139,9 @@
           "leftpad": " "
         },
         {
-          "key": "nomor_rekening",
-          "length": "11",
-          "leftpad": "0"
+          "key": "no_rekening",
+          "length": "5",
+          "leftpad": " "
         },
         {
           "key": "nilai",
@@ -194,7 +149,7 @@
           "leftpad": "0"
         },
         {
-          "key": "date_created",
+          "key": "date_create",
           "length": "20",
           "leftpad": " "
         },

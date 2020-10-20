@@ -1,0 +1,222 @@
+{
+  "pcode": "330055",
+  "request": [
+    {
+      "bit": "2",
+      "value": [
+        {
+          "key": "card_no",
+          "length": "16"
+        }
+      ]
+    },
+    {
+      "bit": "120",
+      "value": [
+        {
+          "key": "kode_cabang",
+          "length": "5"
+        },
+        {
+          "key": "kode_wilayah",
+          "length": "5",
+          "leftpad": "0"
+        },
+        {
+          "key": "no_bukit",
+          "length": "50",
+          "leftpad": "0"
+        }
+      ]
+    }
+  ],
+  "response": [
+    {
+      "bit": "2",
+      "value": [
+        {
+          "key": "card_no",
+          "length": "16"
+        }
+      ]
+    },
+    {
+      "bit": "120",
+      "value": [
+        {
+          "key": "kode_cabang",
+          "length": "5",
+          "leftpad": " "
+        },
+        {
+          "key": "kode_wilayah",
+          "length": "5",
+          "leftpad": " "
+        },
+        {
+          "key": "tahun",
+          "length": "4",
+          "leftpad": " "
+        },
+        {
+          "key": "no_bukti",
+          "length": "4",
+          "leftpad": " "
+        },{
+          "key": "jenis_dokument",
+          "length": "4",
+          "leftpad": " "
+        },
+        {
+          "key": "kode_urusan",
+          "length": "1",
+          "leftpad": " "
+        },
+        {
+          "key": "kode_bidang",
+          "length": "1",
+          "leftpad": " "
+        },
+        {
+          "key": "kode_unit",
+          "length": "1",
+          "leftpad": " "
+        },
+        {
+          "key": "kode_sub",
+          "length": "1",
+          "leftpad": " "
+        },
+        {
+          "key": "tanggal_bukti",
+          "length": "20",
+          "leftpad": " "
+        },
+        {
+          "key": "nama_penerima",
+          "length": "40",
+          "leftpad": " "
+        },
+        {
+          "key": "bank_penerima",
+          "length": "50",
+          "leftpad": " "
+        },
+        {
+          "key": "rekening_penerima",
+          "length": "11",
+          "leftpad": "00"
+        },
+        {
+          "key": "npwp",
+          "length": "20",
+          "leftpad": " "
+        },
+        {
+          "key": "keterangan",
+          "length": "255",
+          "leftpad": " "
+        },
+        {
+          "key": "nama_bank",
+          "length": "50",
+          "leftpad": " "
+        },
+        {
+          "key": "no_rekening",
+          "length": "50",
+          "leftpad": " "
+        },
+        {
+          "key": "nilai",
+          "length": "15",
+          "leftpad": "0"
+        },
+        {
+          "key": "date_create",
+          "length": "20",
+          "leftpad": " "
+        },
+        {
+          "key": "tanggal_cair",
+          "length": "20",
+          "leftpad": " "
+        }
+      ]
+    },
+    {
+      "bit": "121",
+      "value": [
+        {
+          "key": "nama_unit",
+          "length": "255",
+          "leftpad": " "
+        },
+        {
+          "key": "nama_sub_unit",
+          "length": "255",
+          "leftpad": " "
+        },
+        {
+          "key": "uraian",
+          "length": "255",
+          "leftpad": " "
+        }
+      ]
+    },
+    {
+      "bit": "122",
+      "value": [
+        {
+          "key": "thn_angaran",
+          "length": "4"
+        },
+        {
+          "key": "no_bukti",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_rek_1",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_rek_2",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_rek_3",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_rek_4",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "kode_rek_5",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "jenis_dokumen",
+          "length": "2",
+          "leftpad": "0"
+        },
+        {
+          "key": "nama_rekening",
+          "length": "50",
+          "leftpad": " "
+        },
+        {
+          "key": "nilai",
+          "length": "15",
+          "leftpad": "0"
+        }
+      ]
+    }
+  ]
+}

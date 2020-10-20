@@ -70,7 +70,7 @@
       "bit": "2",
       "value": [
         {
-          "key": "cardNo",
+          "key": "card_no",
           "length": "16"
         }
       ]
