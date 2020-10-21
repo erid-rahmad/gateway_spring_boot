@@ -1,6 +1,7 @@
 package com.multipolar.sumsel.kasda.kasdagateway.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -11,10 +12,17 @@ public class NumberGeneratorDao {
     private NamedParameterJdbcTemplate template;
 
     public Long getNextValueSystemTraceNumber() {
-        return 0l;
+        //language=PostgreSQL
+        String query = "select nextval('stan_number_seq') as row_number";
+        return this.template.queryForObject(query,
+                new MapSqlParameterSource(),
+                (resultSet, i) -> resultSet.getLong(1));
     }
 
     public Long getNextValueRefNumber() {
-        return 0l;
+        String query = "select nextval('ref_number_seq') as row_number";
+        return this.template.queryForObject(query,
+                new MapSqlParameterSource(),
+                (resultSet, i) -> resultSet.getLong(1));
     }
 }
