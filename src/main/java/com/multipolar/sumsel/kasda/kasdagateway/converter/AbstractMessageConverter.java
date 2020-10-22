@@ -51,8 +51,8 @@ public abstract class AbstractMessageConverter implements MessageConverterHandle
         try {
             ISOMsg msg = new ISOMsg();
             setMti(msg, Constants.TRANSACTION_MTI);
-            // setPan(msg, defaultBIN);
             setTransmissionDateTime(msg, date);
+            setPan(msg, Constants.BIT2_DEFAULT_VALUE + msg.getString(7));
             setTraceAuditNumber(msg);
             setTransmissionTime(msg, date);
             setTransmissionDate(msg, date);

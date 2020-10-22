@@ -2,15 +2,6 @@
   "pcode": "010055",
   "request": [
     {
-      "bit": "2",
-      "value": [
-        {
-          "key": "card_no",
-          "length": "16"
-        }
-      ]
-    },
-    {
       "bit": "120",
       "value": [
         {

@@ -1,15 +1,7 @@
 {
   "pcode": "330003",
   "request": [
-    {
-      "bit": "2",
-      "value": [
-        {
-          "key": "card_no",
-          "length": "16"
-        }
-      ]
-    },
+
     {
       "bit": "122",
       "value": [
@@ -120,7 +112,7 @@
           "length": "1"
         },
         {
-          "key": "tahun_anggaran",
+          "key": "thn_angaran",
           "length": "4"
         },
         {

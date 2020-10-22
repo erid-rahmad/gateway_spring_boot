@@ -1,0 +1,129 @@
+POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=validationAccountSource&terminalId=123456
+Content-Type: application/json
+
+{
+  "card_no": "9999999999999999",
+  "thn_angaran": "2020",
+  "no_spm": "111111111111",
+  "nama_penerima": "Dimas Maryanto",
+  "bank_penerima": "BNI",
+  "rekening_penerima": "22222222220",
+  "date_create": "15/10/2020 16:16:00",
+  "nama_unit": "Developer",
+  "nama_sub_unit": "Programmer",
+  "uraian": "IT"
+}
+
+### Validasi nomor rekening ###
+
+POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=loggingSP2D&terminalId=123456
+Content-Type: application/json
+
+{
+  "card_no": "9999999999999999",
+  "thn_angaran": "2020",
+  "kode_urusan": "1",
+  "kode_bindang": "1",
+  "kode_unit": "1",
+  "kode_sub": "1",
+  "no_sp2d": "123456789",
+  "kode_rek_1": "1",
+  "kode_rek_2": "2",
+  "kode_rek_3": "3",
+  "kode_rek_4": "4",
+  "kode_rek_5": "5",
+  "no_spm": "2222222",
+  "jenis_spm": "02",
+  "nama_rekening": "123456",
+  "nilai": "1000000"
+}
+
+### logging sp2d ###
+
+POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=inquirySP2D&terminalId=123456
+Content-Type: application/json
+
+{
+  "card_no": "9999999999999999",
+  "kode_cabang": "11111",
+  "kode_wilayah": "22222",
+  "no_sp2d": "00000001234"
+}
+
+### inquiry sp2d ###
+
+POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=transactionSP2D&terminalId=123456
+Content-Type: application/json
+
+{
+  "card_no": "9999999999999999",
+  "kode_cabang": "11111",
+  "kode_wilayah": "22222",
+  "no_sp2d": "00000001234",
+  "kode_urusan": "1",
+  "kode_bidang": "2",
+  "kode_unit": "3",
+  "kode_sub": "2",
+  "tahun": "2020",
+  "tanggal_sp2d": "2020/10/22",
+  "no_spm": "1234091234",
+  "tanggal_spm": "2020/10/22",
+  "jenis_spm": "02",
+  "nama_penerima": "Dimas Maryanto",
+  "keterangan": "-",
+  "npwp": "1234231432",
+  "bank_penerima": "testing",
+  "rekening_penerima": "091234",
+  "tanggal_penguji": "2020/10/20",
+  "nama_bank": "BNI",
+  "no_rekening": "000001010",
+  "nilai": "100000",
+  "date_create": "2020/10/22 17:20:00",
+  "gaji": "1",
+  "nama_unit": "asdlfkj",
+  "nama_sub_unit": "testing",
+  "uraian": "testing",
+  "thn_angaran": "2020",
+  "kode_rek_1": "1",
+  "kode_rek_2": "2",
+  "kode_rek_3": "3",
+  "kode_rek_4": "3",
+  "kode_rek_5": "3",
+  "nama_rekening": "03"
+}
+
+### transaction sp2d ###
+
+POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=notificationSP2D&terminalId=123456
+Content-Type: application/json
+
+{
+  "card_no": "9999999999999999",
+  "kode_cabang": "11111",
+  "kode_wilayah": "22222",
+  "no_bukti": "00000001234",
+  "tanggal_transaksi": "20/10/22",
+  "tanggal_bukti": "20/10/22",
+  "id_bil_1": "1",
+  "id_bil_2": "1",
+  "id_bil_3": "1",
+  "id_bil_4": "1",
+  "id_bil_5": "1",
+  "id_bil_6": "1",
+  "id_bil_7": "1",
+  "id_bil_8": "1",
+  "id_bil_9": "1",
+  "id_bil_10": "1",
+  "ntpn_1": "1",
+  "ntpn_2": "1",
+  "ntpn_3": "1",
+  "ntpn_4": "1",
+  "ntpn_5": "1",
+  "ntpn_6": "1",
+  "ntpn_7": "1",
+  "ntpn_8": "1",
+  "ntpn_9": "1",
+  "ntpn_10": "1"
+}
+
+### notif sp2d ###

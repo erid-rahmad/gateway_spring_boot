@@ -12,4 +12,5 @@ public interface Constants {
     String SIGN = "001";
     String DEFAULT_FORWARD_ID = "100800";
     String TRANSACTION_MTI = "0200";
+    String BIT2_DEFAULT_VALUE = "627452";
 }
