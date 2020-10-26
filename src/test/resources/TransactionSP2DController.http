@@ -2,7 +2,6 @@ POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?trans
 Content-Type: application/json
 
 {
-  "card_no": "9999999999999999",
   "thn_angaran": "2020",
   "no_spm": "111111111111",
   "nama_penerima": "Dimas Maryanto",
@@ -20,7 +19,6 @@ POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?trans
 Content-Type: application/json
 
 {
-  "card_no": "9999999999999999",
   "thn_angaran": "2020",
   "kode_urusan": "1",
   "kode_bindang": "1",
@@ -44,7 +42,6 @@ POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?trans
 Content-Type: application/json
 
 {
-  "card_no": "9999999999999999",
   "kode_cabang": "11111",
   "kode_wilayah": "22222",
   "no_sp2d": "00000001234"
@@ -56,7 +53,6 @@ POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?trans
 Content-Type: application/json
 
 {
-  "card_no": "9999999999999999",
   "kode_cabang": "11111",
   "kode_wilayah": "22222",
   "no_sp2d": "00000001234",
@@ -98,7 +94,6 @@ POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?trans
 Content-Type: application/json
 
 {
-  "card_no": "9999999999999999",
   "kode_cabang": "11111",
   "kode_wilayah": "22222",
   "no_bukti": "00000001234",
