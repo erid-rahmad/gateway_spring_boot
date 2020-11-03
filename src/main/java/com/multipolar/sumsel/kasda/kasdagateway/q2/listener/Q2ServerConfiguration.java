@@ -38,13 +38,13 @@ public class Q2ServerConfiguration implements ISORequestListener {
 
     @Override
     public boolean process(ISOSource isoSource, ISOMsg isoMsg) {
+        MessageConverterHandler converter = null;
+        String messageFactoryProcessing = null;
         try {
             log.info("request mti: {}, field3: {}", isoMsg.getMTI(), isoMsg.getString(3));
-            String pCode = isoMsg.getString(3);
-            MessageConverterHandler converter = null;
-            String messageFactoryProcessing = null;
-//            after received set value bit 39 = '00'
             ISOMsg requestMsg = (ISOMsg) isoMsg.clone();
+            String pCode = requestMsg.getString(3);
+            // DEVELOPER Notes: after received set value bit 39 = '00'
             requestMsg.set(39, "00");
 
             switch (pCode) {
