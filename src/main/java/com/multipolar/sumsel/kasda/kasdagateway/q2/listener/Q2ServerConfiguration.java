@@ -80,7 +80,7 @@ public class Q2ServerConfiguration implements ISORequestListener {
             FeatureContextHolder.getContext().setFeatureName(messageFactoryProcessing);
             converter = converterFactory.get(messageFactoryProcessing);
             Map<String, Object> jsonRequest = converter.doConvertToJSon(requestMsg, true);
-            System.out.println(jsonRequest);
+            log.info("q2 server request -> {}", jsonRequest);
             return true;
         } catch (ISOException e) {
             e.printStackTrace();
