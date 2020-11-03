@@ -18,6 +18,7 @@ q2:
   basepath: ${Q2_BASEPATH:./q2}
   default-timeout: ${Q2_DEFAULT_TIMEOUT:60}
   mux-name: ${Q2_MUX_NAME:mux.vlink-mux}
+  server-port: ${Q2_SERVER_PORT:7894}
 spring:
   devtools:
     add-properties: false

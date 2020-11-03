@@ -6,9 +6,6 @@
         <property name="host" value="localhost"/>
         <property name="port" value="8000"/>
     </channel>
-    <request-listener class="com.multipolar.sumsel.kasda.kasdagateway.q2.listener.IncomingMessageListener" logger="Q2"
-                      realm="incoming-listener">
-    </request-listener>
     <in>vlink-send</in>
     <out>vlink-receive</out>
     <reconnect-delay>10000</reconnect-delay>
