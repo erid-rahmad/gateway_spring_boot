@@ -1,4 +1,4 @@
-package com.multipolar.sumsel.kasda.kasdagateway.config;
+package com.multipolar.sumsel.kasda.kasdagateway.q2.listener;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jpos.q2.Q2;
@@ -11,12 +11,12 @@ import java.io.File;
 
 @Slf4j
 @Component("Q2SERVICE")
-public class Q2Configuration {
+public class Q2ClientConfiguration {
 
     private Q2 q2;
     private final String baseDir;
 
-    public Q2Configuration(@Value("${q2.basepath}") String baseDir) {
+    public Q2ClientConfiguration(@Value("${q2.basepath}") String baseDir) {
         this.baseDir = baseDir;
     }
 

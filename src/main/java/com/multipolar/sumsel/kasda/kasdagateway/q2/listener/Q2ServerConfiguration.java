@@ -2,13 +2,11 @@ package com.multipolar.sumsel.kasda.kasdagateway.q2.listener;
 
 import com.multipolar.sumsel.kasda.kasdagateway.converter.MessageConverterFactory;
 import com.multipolar.sumsel.kasda.kasdagateway.converter.MessageConverterHandler;
+import com.multipolar.sumsel.kasda.kasdagateway.servlet.filter.FeatureContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.jpos.iso.*;
-import org.jpos.iso.channel.XMLChannel;
+import org.jpos.iso.channel.ASCIIChannel;
 import org.jpos.iso.packager.ISO87APackager;
-import org.jpos.util.LogSource;
-import org.jpos.util.Logger;
-import org.jpos.util.SimpleLogListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -19,26 +17,21 @@ import java.util.Map;
 
 @Slf4j
 @Component
-public class IncomingMessageListener implements ISORequestListener {
+public class Q2ServerConfiguration implements ISORequestListener {
 
     @Autowired
     private MessageConverterFactory converterFactory;
 
     @Autowired
-    IncomingMessageListener isoServer;
+    Q2ServerConfiguration isoServer;
 
     @Value("${q2.server-port}")
     private Integer q2Port;
 
     @EventListener(ContextRefreshedEvent.class)
     public void contextRefreshedEvent() throws Exception {
-        Logger logger = new Logger();
-        logger.addListener(new SimpleLogListener(System.out));
-//        ServerChannel channel = new ASCIIChannel(new ISO87APackager());
-        ServerChannel channel = new XMLChannel(new ISO87APackager());
-        ((LogSource) channel).setLogger(logger, "channel");
+        ServerChannel channel = new ASCIIChannel(new ISO87APackager());
         ISOServer isoServer = new ISOServer(q2Port, channel, null);
-        isoServer.setLogger(logger, "vlink-incoming-value");
         isoServer.addISORequestListener(this::process);
         new Thread(isoServer).start();
     }
@@ -50,6 +43,9 @@ public class IncomingMessageListener implements ISORequestListener {
             String pCode = isoMsg.getString(3);
             MessageConverterHandler converter = null;
             String messageFactoryProcessing = null;
+//            after received set value bit 39 = '00'
+            ISOMsg requestMsg = (ISOMsg) isoMsg.clone();
+            requestMsg.set(39, "00");
 
             switch (pCode) {
                 case "330054":
@@ -80,9 +76,11 @@ public class IncomingMessageListener implements ISORequestListener {
                     messageFactoryProcessing = "validationAccountSource";
                     break;
             }
+
+            FeatureContextHolder.getContext().setFeatureName(messageFactoryProcessing);
             converter = converterFactory.get(messageFactoryProcessing);
-            Map<String, Object> jsonRequest = converter.doConvertToJSon(isoMsg, true);
-            log.info("json properties: {}", jsonRequest);
+            Map<String, Object> jsonRequest = converter.doConvertToJSon(requestMsg, true);
+            System.out.println(jsonRequest);
             return true;
         } catch (ISOException e) {
             e.printStackTrace();

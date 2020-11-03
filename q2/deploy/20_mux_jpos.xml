@@ -5,7 +5,7 @@
     <in>vlink-receive</in>
     <ready>vlink-channel.ready</ready>
 
-    <request-listener class="com.multipolar.sumsel.kasda.kasdagateway.q2.listener.IncomingMessageListener" logger="Q2"
+    <request-listener class="com.multipolar.sumsel.kasda.kasdagateway.q2.listener.Q2ServerConfiguration" logger="Q2"
                       realm="incoming-listener">
         <property name="queue"   value="JPTS.TXN" />
         <property name="ctx.STATION" value="SS_XYZ" />

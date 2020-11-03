@@ -105,10 +105,10 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 
         if (fl) {
             // we need put source account number in map also
-            String sourceName = FeatureContextHolder.getContext().getSourceName();
+//            String sourceName = FeatureContextHolder.getContext().getSourceName();
 //            UserDetailImpl userDetail = (UserDetailImpl) SecurityContextHolder.getContext().getAuthentication().getDetails();
-            map.put("sourceName", sourceName);
-            map.put("transactionDate", DATE.format(FeatureContextHolder.getContext().getFeatureTransactionDate()));
+//            map.put("sourceName", sourceName);
+//            map.put("transactionDate", DATE.format(FeatureContextHolder.getContext().getFeatureTransactionDate()));
 
             String destName = FeatureContextHolder.getContext().getDestinationName();
             if (!StringUtils.isEmpty(destName))
