@@ -6,7 +6,9 @@ create table hostnames
     port         character varying(10)  not null,                           -- required port
     context_path character varying(100) not null             default '',    -- required context path if not have context path given empty string
     env          character varying(50)  not null             default 'dev', -- required environment, choose [dev | test | prod] only
-    message      text
+    message      text,
+    kode_wilayah character varying(50),
+    kode_cabang  character varying(50)
 );
 
 alter table hostnames

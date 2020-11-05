@@ -1,10 +1,10 @@
 package com.multipolar.sumsel.kasda.kasdagateway.service;
 
 import com.multipolar.sumsel.kasda.kasdagateway.converter.Chronometer;
+import com.multipolar.sumsel.kasda.kasdagateway.converter.TraceNumberGenerator;
 import com.multipolar.sumsel.kasda.kasdagateway.model.ISOMsgLogEntry;
 import com.multipolar.sumsel.kasda.kasdagateway.utils.Constants;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.jpos.core.ConfigurationException;
 import org.jpos.iso.ISOException;
 import org.jpos.iso.ISOMsg;
@@ -12,6 +12,7 @@ import org.jpos.iso.ISOUtil;
 import org.jpos.iso.MUX;
 import org.jpos.iso.packager.ISO87APackager;
 import org.jpos.util.NameRegistrar;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -32,15 +33,16 @@ public class NetworkMessageGateway {
     private String muxName;
 
     private static final long DEFAULT_TIMEOUT = 62000L;
-    //    private static final long DEFAULT_REVERSAL_TIMEOUT = 62000L;
     private static final long DEFAULT_WAIT_TIMEOUT = 12000L;
 //    private static final String defaultAcquirer = "117";
 
     private static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMddHHmmss");
+    private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HHmmss");
+    private static final SimpleDateFormat LOCAL_DATE_FORMAT = new SimpleDateFormat("MMdd");
 
-    //    @Autowired
-    //    private TraceNumberGenerator stan;
+    @Autowired
+    private TraceNumberGenerator stan;
 
     public ISOMsg checkConnectivity() throws ConnectException, ISOException {
         Date date = new Date();
@@ -50,8 +52,11 @@ public class NetworkMessageGateway {
         isoMsg.setMTI(Constants.MTI_NETWORK);
         DATE_FORMAT.setTimeZone(TimeZone.getTimeZone(Constants.TIME_ZONE_GMT));
         isoMsg.set(7, DATE_FORMAT.format(date));
-//        isoMsg.set(11, StringUtils.leftPad(stan.getTraceNumber(), 6, "0"));
-        isoMsg.set(11, StringUtils.leftPad("1", 6, "0"));
+        isoMsg.set(11, stan.getTraceNumber());
+        isoMsg.set(12, TIME_FORMAT.format(date));
+        isoMsg.set(13, LOCAL_DATE_FORMAT.format(date));
+        isoMsg.set(18, Constants.CHANNEL_ID);
+        isoMsg.set(32, Constants.AQUIERER_ID);
         isoMsg.set(70, Constants.ECHO);
         return sendToHost(isoMsg, DEFAULT_TIMEOUT);
     }
@@ -66,8 +71,11 @@ public class NetworkMessageGateway {
 //        String acq = StringUtils.leftPad(defaultAcquirer, 11, Constants.SPACE);
         DATE_FORMAT.setTimeZone(TimeZone.getTimeZone(Constants.TIME_ZONE_GMT));
         isoMsg.set(7, DATE_FORMAT.format(date));
-//        isoMsg.set(11, StringUtils.leftPad(stan.getTraceNumber(), 6, "0"));
-        isoMsg.set(11, StringUtils.leftPad("1", 6, "0"));
+        isoMsg.set(11, stan.getTraceNumber());
+        isoMsg.set(12, TIME_FORMAT.format(date));
+        isoMsg.set(13, LOCAL_DATE_FORMAT.format(date));
+        isoMsg.set(18, Constants.CHANNEL_ID);
+        isoMsg.set(32, Constants.AQUIERER_ID);
 //        s1 = isoMsg.getString(11);
         isoMsg.set(70, Constants.SIGN);
         return sendToHost(isoMsg, DEFAULT_TIMEOUT);
