@@ -86,7 +86,19 @@
       "bit": "120",
       "value": [
         {
+          "key": "Kd_Cabang",
+          "length": "1"
+        },
+        {
+          "key": "Kd_Wilayah",
+          "length": "1"
+        },
+        {
           "key": "Kd_Bidang",
+          "length": "1"
+        },
+        {
+          "key": "Kd_Urusah",
           "length": "1"
         },
         {

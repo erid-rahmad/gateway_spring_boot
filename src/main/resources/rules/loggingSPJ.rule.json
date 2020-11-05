@@ -6,11 +6,11 @@
       "bit": "120",
       "value": [
         {
-          "key": "Kd_Bidang",
+          "key": "Kd_Cabang",
           "length": "1"
         },
         {
-          "key": "Kd_Bidang",
+          "key": "Kd_Wilayah",
           "length": "1"
         },
         {
@@ -176,6 +176,14 @@
     {
       "bit": "120",
       "value": [
+        {
+          "key": "Kd_Cabang",
+          "length": "5"
+        },
+        {
+          "key": "Kd_Wilayah",
+          "length": "5"
+        },
         {
           "key": "Kd_Urusan",
           "length": "1"
