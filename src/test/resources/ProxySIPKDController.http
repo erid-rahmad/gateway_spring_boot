@@ -1,0 +1,5 @@
+POST {{host}}:{{port}}{{context-path}}/api/v1.0/proxy/
+Content-Type: application/json
+
+{
+}

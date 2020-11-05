@@ -64,3 +64,6 @@ logging:
     com.multipolar.sumsel.kasda.kasdagateway: ${LOG_LEVEL:DEBUG}
   file:
     name: ${LOG_LOCATION:./.logs/${spring.application.name}.log}
+proxy:
+  sipkd:
+    name: sipkd

@@ -118,7 +118,7 @@ public class HttpRequestHandlerService {
         return exchange;
     }
 
-    public ResponseEntity<String> callFallbackResponse(String username, HttpRequestBuilder request) {
+    public ResponseEntity<?> callFallbackResponse(String serviceId, HttpRequestBuilder request) {
         return new ResponseEntity<>(HttpStatus.GATEWAY_TIMEOUT);
     }
 
