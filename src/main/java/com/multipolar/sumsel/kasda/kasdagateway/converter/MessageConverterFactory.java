@@ -32,4 +32,26 @@ public class MessageConverterFactory {
         // here, no hander support for the requested feature, return default implementation
         return defaultHandler;
     }
+
+    public MessageConverterHandler get(String featureName, boolean isReverse) {
+        MessageConverterHandler defaultHandler = null;
+        for (MessageConverterHandler handler : converterHandlerServices) {
+//            if (handler.supports(featureName))
+//                return handler;
+
+            if (isReverse && handler.getClass().equals(ReverseDefaultConverterHandler.class))
+                defaultHandler = handler;
+
+            if (handler.getClass().equals(DefaultConverterHandler.class))
+                defaultHandler = handler;
+        }
+
+        log.info("default converter handler: {}", defaultHandler.getClass().toString());
+
+        if (defaultHandler == null)
+            log.error("No handler found for this type feature, application will not run properly. Feature: {}", featureName);
+
+        // here, no hander support for the requested feature, return default implementation
+        return defaultHandler;
+    }
 }

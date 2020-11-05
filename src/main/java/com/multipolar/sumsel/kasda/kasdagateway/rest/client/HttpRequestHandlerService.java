@@ -39,11 +39,13 @@ public class HttpRequestHandlerService {
 
     public Optional<HostnameRoutes> findByServiceId(String serviceId) {
         String activeProfile = Arrays.stream(env.getActiveProfiles()).findFirst().orElse("default");
+        log.debug("serviceId: {}, env: {}", serviceId, activeProfile);
         return repository.findByServiceIdAndEnvironment(serviceId, activeProfile);
     }
 
     public Optional<HostnameRoutes> findByKodeCabangAndKodeWilayah(String serviceId, String kodeCabang, String kodeWilayah) {
         String activeProfile = Arrays.stream(env.getActiveProfiles()).findFirst().orElse("default");
+        log.debug("serviceId: {}, kodeCabang: {}, kodeWilayah: {}, activeProfile: {}", serviceId, kodeCabang, kodeWilayah);
         return repository.findByServiceIdAndKodeCabangAndKodeWilayahAndEnvironment(serviceId, kodeCabang, kodeWilayah, activeProfile);
     }
 

@@ -60,8 +60,6 @@ public class Q2ServerConfiguration implements ISORequestListener {
             ISOMsg requestMsg = (ISOMsg) isoMsg.clone();
             String pCode = requestMsg.getString(3);
 
-            // DEVELOPER Notes: after received set value bit 39 = '00' when success or if failed = '01'
-            requestMsg.set(39, "00");
             switch (pCode) {
                 case "330054":
                     // FIXME: please check again service not available for now
@@ -120,7 +118,7 @@ public class Q2ServerConfiguration implements ISORequestListener {
             }
 
             FeatureContextHolder.getContext().setFeatureName(pCode);
-            converter = converterFactory.get(pCode);
+            converter = converterFactory.get(pCode, true);
             Map<String, Object> jsonRequest = converter.doConvertToJSon(requestMsg, true);
             assert dataRequest != null;
             log.info("q2 server request -> {}", jsonRequest);

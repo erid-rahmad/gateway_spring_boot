@@ -6,6 +6,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class AtomicNumberGenerator implements TraceNumberGenerator {
 
@@ -13,6 +15,7 @@ public class AtomicNumberGenerator implements TraceNumberGenerator {
     private NumberGeneratorDao dao;
 
     @Override
+    @Transactional
     public String getTraceNumber() {
         String value = dao.getNextValueSystemTraceNumber().toString();
         if (StringUtils.length(value) > 6)
@@ -22,6 +25,7 @@ public class AtomicNumberGenerator implements TraceNumberGenerator {
     }
 
     @Override
+    @Transactional
     public String getReferenceNumber() {
         String value = dao.getNextValueRefNumber().toString();
         if (StringUtils.length(value) > 12)

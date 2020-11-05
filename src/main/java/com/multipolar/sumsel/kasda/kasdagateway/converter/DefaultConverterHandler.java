@@ -11,8 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.jpos.iso.ISOException;
 import org.jpos.iso.ISOMsg;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -25,8 +23,6 @@ import java.util.Map;
 @Slf4j
 @Service
 public class DefaultConverterHandler extends AbstractMessageConverter {
-
-    private static Logger logger = LoggerFactory.getLogger(DefaultConverterHandler.class);
 
     public DefaultConverterHandler() {
     }
@@ -67,7 +63,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             Rule rule = getRule();
 
             String errorKey = rule.getErrorKey();
-            if (exception(msg, map, errorKey))
+            if (msg.isResponse() && exception(msg, map, errorKey))
                 return map;
 
             RequestRule[] responseRules = rule.getResponse();
@@ -75,7 +71,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                 int bit = responseRule.getBit();
                 String valueFromBit = msg.getString(bit);
                 if (valueFromBit == null) {
-                    logger.error("Value get from bit is null, bit = " + bit);
+                    log.error("Value get from bit is null, bit = {}", bit);
                     throw new ISOException("The rule said get value from bit but empty bit is found. bit " + bit);
                 }
 
@@ -83,15 +79,13 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                 setValueForMap(map, valueFromBit, values);
             }
         } catch (FileNotFoundException fnfe) {
-            fnfe.printStackTrace();
+            log.error("file not found exception ==> ", fnfe);
             return generalFail();
         } catch (JsonMappingException jme) {
-            logger.error("Can't parsing rule file, please validate the json format");
-            jme.printStackTrace();
+            log.error("Can't parsing rule file, please validate the json format", jme);
             return generalFail();
         } catch (IOException iox) {
-            logger.error(iox.getMessage());
-            iox.printStackTrace();
+            log.error("io exception", iox);
             return generalFail();
         }
 
@@ -211,7 +205,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
         String feature = FeatureContextHolder.getContext().getFeatureName();
         String filename = feature + Constants.RULE_EXTENSION;
 
-        logger.info("rule name is: " + filename);
+        log.info("rule name is: {}", filename);
 
         ObjectMapper objectMapper = new ObjectMapper();
 

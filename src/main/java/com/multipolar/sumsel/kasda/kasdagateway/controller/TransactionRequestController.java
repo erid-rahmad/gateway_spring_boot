@@ -41,7 +41,7 @@ public class TransactionRequestController extends ResponseEntityExceptionHandler
 
         msg.set(41, StringUtils.leftPad(terminalId, 8, "0"));
         ISOMsg response = gateway.sendToHost(msg, defaultTimeout);
-        MessageConverterHandler converter = converterFactory.get(context);
+        MessageConverterHandler converter = converterFactory.get(context, false);
 
         if (response != null) {
             Map<String, Object> responseMap = converter.doConvertToJSon(response, true);

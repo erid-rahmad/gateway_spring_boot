@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.multipolar.sumsel.kasda.kasdagateway.servlet.filter.FeatureContextHolder;
+import lombok.extern.slf4j.Slf4j;
 import org.jpos.iso.ISOMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jackson.JsonComponent;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @JsonComponent
 @Component
 public class CustomISOMsgSerializer extends JsonSerializer<ISOMsg> {
@@ -28,7 +30,7 @@ public class CustomISOMsgSerializer extends JsonSerializer<ISOMsg> {
         MessageConverterHandler converter = converterFactory.get(feature);
         Map<String, Object> map = converter.doConvertToJSon(msg, true);
         for (Map.Entry<String, Object> entry : map.entrySet()) {
-            System.out.println("key: " + entry.getKey() + ", value: " + entry.getValue());
+            log.info("key: {}, value: {}", entry.getKey(), entry.getValue());
         }
 
         //Map<String, Object> stringObjectMap = FeatureContextHolder.getContext().getParameters();
