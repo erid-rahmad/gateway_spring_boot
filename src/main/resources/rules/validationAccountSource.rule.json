@@ -108,6 +108,10 @@
           "key": "Uraian",
           "length": "255",
           "leftpad": " "
+        },
+        {
+          "key": "Status_Validasi",
+          "length": "1"
         }
       ]
     }
