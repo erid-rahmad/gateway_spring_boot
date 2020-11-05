@@ -66,7 +66,7 @@ public class HttpRequestHandlerService {
             request.getHeaders().forEach(headers::set);
 
         if (!hostnameOptional.isPresent()) {
-            log.info("hostname notFound");
+            log.warn("hostname notFound in table!");
             return ResponseEntity.notFound().build();
         }
 
