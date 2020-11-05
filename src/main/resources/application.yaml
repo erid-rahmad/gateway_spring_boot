@@ -68,3 +68,5 @@ logging:
 proxy:
   sipkd:
     name: sipkd
+  kasda-api:
+    name: kasdaApi

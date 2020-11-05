@@ -15,6 +15,7 @@ public interface Constants {
     String DEFAULT_FORWARD_ID = "100800";
     String TRANSACTION_MTI = "0200";
     String BIT2_DEFAULT_VALUE = "627452";
+    String RULE_EXTENSION = ".rule.json";
     SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
     SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMddHHmmss");
     SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HHmmss");
@@ -22,5 +23,7 @@ public interface Constants {
     SimpleDateFormat LOCAL_DATE = new SimpleDateFormat("MMdd");
     SimpleDateFormat LOCAL_TIME = new SimpleDateFormat("HHmmss");
     SimpleDateFormat YEAR_FORMAT = new SimpleDateFormat("yyyy");
-
+    SimpleDateFormat DATE = new SimpleDateFormat("dd/MM/yyyy kk:mm:ss");
+    SimpleDateFormat TIME = new SimpleDateFormat("kk:mm:ss");
+    SimpleDateFormat TIME_SPACE = new SimpleDateFormat("kkmmss");
 }

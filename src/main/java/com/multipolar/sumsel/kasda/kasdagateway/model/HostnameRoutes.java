@@ -19,6 +19,8 @@ public class HostnameRoutes {
     private String serviceId;
     @Column(name = "host")
     private String host;
+    @Column(name = "protocol")
+    private String protocol;
     @Column(name = "port")
     private String port;
     @Column(name = "context_path")
@@ -27,5 +29,9 @@ public class HostnameRoutes {
     private String environment;
     @Column(name = "message")
     private String message;
+    @Column(name = "kode_cabang")
+    private String kodeCabang;
+    @Column(name = "kode_wilayah")
+    private String kodeWilayah;
 
 }

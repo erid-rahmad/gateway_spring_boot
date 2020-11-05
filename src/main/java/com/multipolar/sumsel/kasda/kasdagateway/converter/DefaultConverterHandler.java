@@ -6,6 +6,7 @@ import com.multipolar.sumsel.kasda.kasdagateway.model.ConverterRule;
 import com.multipolar.sumsel.kasda.kasdagateway.model.RequestRule;
 import com.multipolar.sumsel.kasda.kasdagateway.model.Rule;
 import com.multipolar.sumsel.kasda.kasdagateway.servlet.filter.FeatureContextHolder;
+import com.multipolar.sumsel.kasda.kasdagateway.utils.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.jpos.iso.ISOException;
@@ -18,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,14 +26,7 @@ import java.util.Map;
 @Service
 public class DefaultConverterHandler extends AbstractMessageConverter {
 
-    private static final String RULE_EXTENSION = ".rule.json";
-
-    private static final SimpleDateFormat DATE = new SimpleDateFormat("dd/MM/yyyy kk:mm:ss");
-    private static final SimpleDateFormat TIME = new SimpleDateFormat("kk:mm:ss");
-    private static final SimpleDateFormat TIME_SPACE = new SimpleDateFormat("kkmmss");
-
     private static Logger logger = LoggerFactory.getLogger(DefaultConverterHandler.class);
-
 
     public DefaultConverterHandler() {
     }
@@ -117,7 +110,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             map.put("cardIdAtm", msg.getString(2));
             map.put("transactionDateAtm", msg.getString(13));
             try {
-                map.put("transactionTimeAtm", TIME.format(TIME_SPACE.parse(msg.getString(12))));
+                map.put("transactionTimeAtm", Constants.TIME.format(Constants.TIME_SPACE.parse(msg.getString(12))));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -216,7 +209,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
         // default implementasion is read the rule file base on feature -->
         // feature.rule.json
         String feature = FeatureContextHolder.getContext().getFeatureName();
-        String filename = feature + RULE_EXTENSION;
+        String filename = feature + Constants.RULE_EXTENSION;
 
         logger.info("rule name is: " + filename);
 

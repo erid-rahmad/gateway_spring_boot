@@ -37,6 +37,16 @@ public class HttpRequestHandlerService {
     @Autowired
     private ConfigurableEnvironment env;
 
+    public Optional<HostnameRoutes> findByServiceId(String serviceId) {
+        String activeProfile = Arrays.stream(env.getActiveProfiles()).findFirst().orElse("default");
+        return repository.findByServiceIdAndEnvironment(serviceId, activeProfile);
+    }
+
+    public Optional<HostnameRoutes> findByKodeCabangAndKodeWilayah(String serviceId, String kodeCabang, String kodeWilayah) {
+        String activeProfile = Arrays.stream(env.getActiveProfiles()).findFirst().orElse("default");
+        return repository.findByServiceIdAndKodeCabangAndKodeWilayahAndEnvironment(serviceId, kodeCabang, kodeWilayah, activeProfile);
+    }
+
     @HystrixCommand(
             fallbackMethod = "callFallbackResponse",
             commandProperties = {
@@ -50,17 +60,13 @@ public class HttpRequestHandlerService {
                     JsonProcessingException.class
             }
     )
-    public ResponseEntity<?> call(String serviceId, HttpRequestBuilder request) {
+    public ResponseEntity<?> call(Optional<HostnameRoutes> hostnameOptional, HttpRequestBuilder request) {
         HttpHeaders headers = new HttpHeaders();
         if (!request.getHeaders().isEmpty())
             request.getHeaders().forEach(headers::set);
 
-        String activeProfile = Arrays.stream(env.getActiveProfiles()).findFirst().orElse("default");
-
-        Optional<HostnameRoutes> hostnameOptional = repository.findByServiceIdAndEnvironment(serviceId, activeProfile);
-
         if (!hostnameOptional.isPresent()) {
-            log.info("serviceId {} notFound in env: {}", serviceId, activeProfile);
+            log.info("hostname notFound");
             return ResponseEntity.notFound().build();
         }
 
@@ -73,8 +79,8 @@ public class HttpRequestHandlerService {
             entity = new HttpEntity<>(headers);
 
         UriComponentsBuilder uriComponent = UriComponentsBuilder.fromHttpUrl(
-                String.format("http://%s:%s%s%s",
-                        hostname.getHost(), hostname.getPort(), hostname.getContextPath(), request.getPath())
+                String.format("%s://%s:%s%s%s",
+                        hostname.getProtocol(), hostname.getHost(), hostname.getPort(), hostname.getContextPath(), request.getPath())
         );
 
         if (request.getParams() != null && !request.getParams().isEmpty()) {
@@ -118,7 +124,7 @@ public class HttpRequestHandlerService {
         return exchange;
     }
 
-    public ResponseEntity<?> callFallbackResponse(String serviceId, HttpRequestBuilder request) {
+    public ResponseEntity<?> callFallbackResponse(Optional<HostnameRoutes> hostnameOptional, HttpRequestBuilder request) {
         return new ResponseEntity<>(HttpStatus.GATEWAY_TIMEOUT);
     }
 

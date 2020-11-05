@@ -1,4 +1,4 @@
-POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=validationAccountSource&terminalId=123456
+POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=330002&terminalId=123456
 Content-Type: application/json
 
 {
@@ -15,7 +15,7 @@ Content-Type: application/json
 
 ### Validasi nomor rekening ###
 
-POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=loggingSP2D&terminalId=123456
+POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=330003&terminalId=123456
 Content-Type: application/json
 
 {
@@ -38,7 +38,7 @@ Content-Type: application/json
 
 ### logging sp2d ###
 
-POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=inquirySP2D&terminalId=123456
+POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=330054&terminalId=123456
 Content-Type: application/json
 
 {
@@ -49,7 +49,7 @@ Content-Type: application/json
 
 ### inquiry sp2d ###
 
-POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=transactionSP2D&terminalId=123456
+POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=010054&terminalId=123456
 Content-Type: application/json
 
 {
@@ -89,7 +89,7 @@ Content-Type: application/json
 
 ### transaction sp2d ###
 
-POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=notificationSP2D&terminalId=123456
+POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?transactionType=330005&terminalId=123456
 Content-Type: application/json
 
 {

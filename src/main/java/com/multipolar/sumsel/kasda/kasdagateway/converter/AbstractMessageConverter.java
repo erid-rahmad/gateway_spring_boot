@@ -22,8 +22,6 @@ import java.util.TimeZone;
 @Slf4j
 public abstract class AbstractMessageConverter implements MessageConverterHandler {
 
-    private static final String RULE_EXTENSION = ".rule.json";
-
     @Autowired
     private TraceNumberGenerator stan;
 
@@ -151,7 +149,7 @@ public abstract class AbstractMessageConverter implements MessageConverterHandle
         // default implementasion is read the rule file base on feature -->
         // feature.rule.json
         String feature = FeatureContextHolder.getContext().getFeatureName();
-        String filename = feature + RULE_EXTENSION;
+        String filename = feature + Constants.RULE_EXTENSION;
 
         log.info("rule name is: {}", filename);
 

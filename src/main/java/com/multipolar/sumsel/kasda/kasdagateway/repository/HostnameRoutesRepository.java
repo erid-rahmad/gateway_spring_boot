@@ -8,4 +8,7 @@ import java.util.Optional;
 public interface HostnameRoutesRepository extends CrudRepository<HostnameRoutes, String> {
 
     Optional<HostnameRoutes> findByServiceIdAndEnvironment(String serviceId, String env);
+
+    Optional<HostnameRoutes> findByServiceIdAndKodeCabangAndKodeWilayahAndEnvironment(
+            String serviceId, String kodeCabang, String kodeWilayah, String env);
 }
