@@ -20,6 +20,7 @@ public class NumberGeneratorDao {
     }
 
     public Long getNextValueRefNumber() {
+        //language=PostgreSQL
         String query = "select nextval('ref_number_seq') as row_number";
         return this.template.queryForObject(query,
                 new MapSqlParameterSource(),

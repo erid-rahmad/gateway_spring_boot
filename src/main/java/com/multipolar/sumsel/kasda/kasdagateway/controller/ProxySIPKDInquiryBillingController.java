@@ -16,11 +16,9 @@ public class ProxySIPKDInquiryBillingController {
 
     @Value("${proxy.sipkd.name}")
     private String serviceName;
-
-    private static final String url = "/api/inquiry";
-
     @Autowired
     private HttpRequestHandlerService service;
+    private static final String url = "/api/inquiry";
 
     @GetMapping(url)
     public ResponseEntity<?> getRequest(
