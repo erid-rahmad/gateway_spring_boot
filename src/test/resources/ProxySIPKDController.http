@@ -1,5 +1,20 @@
 POST {{host}}:{{port}}{{context-path}}/api/v1.0/proxy/sipkd/api/npwp
 Content-Type: application/json
+password: {{api_sipkd_password}}
 
 {
+  "header": {
+    "idchannel": "10",
+    "bulkidrequest": "1234342"
+  },
+  "data": {
+    "idrequest": "",
+    "taxid": "",
+    "typeoftax": "",
+    "subtypeoftax": "",
+    "idapp": "",
+    "kodeapp": ""
+  }
 }
+
+### API npwp

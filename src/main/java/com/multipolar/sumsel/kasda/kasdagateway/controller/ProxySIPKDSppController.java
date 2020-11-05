@@ -17,7 +17,7 @@ public class ProxySIPKDSppController {
     @Autowired
     private HttpRequestHandlerService service;
     @Value("${proxy.sipkd.name}")
-    private static String serviceName;
+    private String serviceName;
     private static final String url = "/api/spp";
 
     @GetMapping(url)

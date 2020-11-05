@@ -15,7 +15,7 @@ import java.util.Map;
 public class ProxySIPKDNpwpController {
 
     @Value("${proxy.sipkd.name}")
-    private static String serviceName;
+    private String serviceName;
     @Autowired
     private HttpRequestHandlerService service;
     private static final String url = "/api/npwp";

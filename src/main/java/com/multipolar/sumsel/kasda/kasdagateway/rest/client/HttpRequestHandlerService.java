@@ -60,7 +60,7 @@ public class HttpRequestHandlerService {
         Optional<HostnameRoutes> hostnameOptional = repository.findByServiceIdAndEnvironment(serviceId, activeProfile);
 
         if (!hostnameOptional.isPresent()) {
-            log.info("serviceId notFound in env: {}", activeProfile);
+            log.info("serviceId {} notFound in env: {}", serviceId, activeProfile);
             return ResponseEntity.notFound().build();
         }
 

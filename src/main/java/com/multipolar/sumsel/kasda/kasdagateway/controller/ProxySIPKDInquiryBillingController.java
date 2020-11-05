@@ -15,7 +15,7 @@ import java.util.Map;
 public class ProxySIPKDInquiryBillingController {
 
     @Value("${proxy.sipkd.name}")
-    private static String serviceName;
+    private String serviceName;
 
     private static final String url = "/api/inquiry";
 
