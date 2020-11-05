@@ -21,7 +21,6 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.net.ConnectException;
 import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -31,15 +30,10 @@ public class NetworkMessageGateway {
 
     @Value("${q2.mux-name}")
     private String muxName;
-
-    private static final long DEFAULT_TIMEOUT = 62000L;
-    private static final long DEFAULT_WAIT_TIMEOUT = 12000L;
-//    private static final String defaultAcquirer = "117";
-
-    private static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMddHHmmss");
-    private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HHmmss");
-    private static final SimpleDateFormat LOCAL_DATE_FORMAT = new SimpleDateFormat("MMdd");
+    @Value("${q2.default-timeout}")
+    private Long defaultTimeout;
+    @Value("${q2.default-wait-timeout}")
+    private Long defaultWaitTimeout;
 
     @Autowired
     private TraceNumberGenerator stan;
@@ -50,15 +44,15 @@ public class NetworkMessageGateway {
         ISOMsg isoMsg = new ISOMsg();
         isoMsg.setPackager(new ISO87APackager());
         isoMsg.setMTI(Constants.MTI_NETWORK);
-        DATE_FORMAT.setTimeZone(TimeZone.getTimeZone(Constants.TIME_ZONE_GMT));
-        isoMsg.set(7, DATE_FORMAT.format(date));
+        Constants.DATE_FORMAT.setTimeZone(TimeZone.getTimeZone(Constants.TIME_ZONE_GMT));
+        isoMsg.set(7, Constants.DATE_FORMAT.format(date));
         isoMsg.set(11, stan.getTraceNumber());
-        isoMsg.set(12, TIME_FORMAT.format(date));
-        isoMsg.set(13, LOCAL_DATE_FORMAT.format(date));
+        isoMsg.set(12, Constants.TIME_FORMAT.format(date));
+        isoMsg.set(13, Constants.LOCAL_DATE_FORMAT.format(date));
         isoMsg.set(18, Constants.CHANNEL_ID);
         isoMsg.set(32, Constants.AQUIERER_ID);
         isoMsg.set(70, Constants.ECHO);
-        return sendToHost(isoMsg, DEFAULT_TIMEOUT);
+        return sendToHost(isoMsg, defaultTimeout);
     }
 
     public ISOMsg signOn() throws ConnectException, ISOException {
@@ -69,16 +63,16 @@ public class NetworkMessageGateway {
         isoMsg.setPackager(new ISO87APackager());
         isoMsg.setMTI(Constants.MTI_NETWORK);
 //        String acq = StringUtils.leftPad(defaultAcquirer, 11, Constants.SPACE);
-        DATE_FORMAT.setTimeZone(TimeZone.getTimeZone(Constants.TIME_ZONE_GMT));
-        isoMsg.set(7, DATE_FORMAT.format(date));
+        Constants.DATE_FORMAT.setTimeZone(TimeZone.getTimeZone(Constants.TIME_ZONE_GMT));
+        isoMsg.set(7, Constants.DATE_FORMAT.format(date));
         isoMsg.set(11, stan.getTraceNumber());
-        isoMsg.set(12, TIME_FORMAT.format(date));
-        isoMsg.set(13, LOCAL_DATE_FORMAT.format(date));
+        isoMsg.set(12, Constants.TIME_FORMAT.format(date));
+        isoMsg.set(13, Constants.LOCAL_DATE_FORMAT.format(date));
         isoMsg.set(18, Constants.CHANNEL_ID);
         isoMsg.set(32, Constants.AQUIERER_ID);
 //        s1 = isoMsg.getString(11);
         isoMsg.set(70, Constants.SIGN);
-        return sendToHost(isoMsg, DEFAULT_TIMEOUT);
+        return sendToHost(isoMsg, defaultTimeout);
     }
 
     public ISOMsg sendToHost(final ISOMsg m, long timeout) throws ConnectException, ISOException {
@@ -115,7 +109,7 @@ public class NetworkMessageGateway {
     protected boolean isConnected(MUX mux) {
         if (mux.isConnected())
             return true;
-        long timeout = System.currentTimeMillis() + DEFAULT_WAIT_TIMEOUT;
+        long timeout = System.currentTimeMillis() + defaultWaitTimeout;
         while (System.currentTimeMillis() < timeout) {
             if (mux.isConnected())
                 return true;
@@ -149,11 +143,11 @@ public class NetworkMessageGateway {
         builder.append("ISO Message MTI is " + msg.getMTI() + "\n");
         if (msg.isIncoming()) {
             builder.append("Incoming Message\n");
-            builder.append("Message coming at " + format.format(date) + "\n");
+            builder.append("Message coming at " + Constants.FORMAT.format(date) + "\n");
         }
         if (msg.isOutgoing()) {
             builder.append("Outgoing Message\n");
-            builder.append("Message going at " + format.format(date) + "\n");
+            builder.append("Message going at " + Constants.FORMAT.format(date) + "\n");
         }
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

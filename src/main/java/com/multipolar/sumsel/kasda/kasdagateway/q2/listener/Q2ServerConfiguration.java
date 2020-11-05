@@ -44,7 +44,7 @@ public class Q2ServerConfiguration implements ISORequestListener {
             log.info("request mti: {}, field3: {}", isoMsg.getMTI(), isoMsg.getString(3));
             ISOMsg requestMsg = (ISOMsg) isoMsg.clone();
             String pCode = requestMsg.getString(3);
-            // DEVELOPER Notes: after received set value bit 39 = '00'
+            // DEVELOPER Notes: after received set value bit 39 = '00' when success or if failed = '01'
             requestMsg.set(39, "00");
 
             switch (pCode) {
@@ -53,12 +53,6 @@ public class Q2ServerConfiguration implements ISORequestListener {
                     break;
                 case "330055":
                     messageFactoryProcessing = "inquirySPJ";
-                    break;
-                case "330003":
-                    messageFactoryProcessing = "loggingSP2D";
-                    break;
-                case "330004":
-                    messageFactoryProcessing = "loggingSPJ";
                     break;
                 case "330005":
                     messageFactoryProcessing = "notificationSP2D";
@@ -72,21 +66,18 @@ public class Q2ServerConfiguration implements ISORequestListener {
                 case "010055":
                     messageFactoryProcessing = "transactionSPJ";
                     break;
-                case "330002":
-                    messageFactoryProcessing = "validationAccountSource";
-                    break;
             }
 
             FeatureContextHolder.getContext().setFeatureName(messageFactoryProcessing);
             converter = converterFactory.get(messageFactoryProcessing);
             Map<String, Object> jsonRequest = converter.doConvertToJSon(requestMsg, true);
+            log.info("q2 server request -> {}", jsonRequest);
             String kodeCabang = (String) jsonRequest.getOrDefault("Kd_Cabang", null);
             String kodeWilayah = (String) jsonRequest.getOrDefault("Kd_Wilayah", null);
 
-            log.info("q2 server request -> {}", jsonRequest);
             return true;
         } catch (ISOException e) {
-            e.printStackTrace();
+            log.error("iso exception ==>", e);
             return false;
         }
     }

@@ -15,18 +15,12 @@ import org.springframework.core.io.Resource;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.TimeZone;
 
 @Slf4j
 public abstract class AbstractMessageConverter implements MessageConverterHandler {
-
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMddHHmmss");
-    private static final SimpleDateFormat LOCAL_DATE = new SimpleDateFormat("MMdd");
-    private static final SimpleDateFormat LOCAL_TIME = new SimpleDateFormat("HHmmss");
-    private static final SimpleDateFormat YEAR_FORMAT = new SimpleDateFormat("yyyy");
 
     private static final String RULE_EXTENSION = ".rule.json";
 
@@ -89,8 +83,8 @@ public abstract class AbstractMessageConverter implements MessageConverterHandle
     }
 
     protected void setTransmissionDateTime(ISOMsg msg, Date date) throws ISOException {
-        DATE_FORMAT.setTimeZone(TimeZone.getTimeZone(Constants.TIME_ZONE_GMT));
-        msg.set(7, DATE_FORMAT.format(FeatureContextHolder.getContext().getFeatureTransactionDate()));
+        Constants.DATE_FORMAT.setTimeZone(TimeZone.getTimeZone(Constants.TIME_ZONE_GMT));
+        msg.set(7, Constants.DATE_FORMAT.format(FeatureContextHolder.getContext().getFeatureTransactionDate()));
     }
 
     protected void setTraceAuditNumber(ISOMsg msg) throws ISOException {
@@ -100,16 +94,16 @@ public abstract class AbstractMessageConverter implements MessageConverterHandle
     }
 
     protected void setTransmissionTime(ISOMsg msg, Date date) throws ISOException {
-        msg.set(12, LOCAL_TIME.format(date));
+        msg.set(12, Constants.LOCAL_TIME.format(date));
     }
 
     protected void setTransmissionDate(ISOMsg msg, Date date) throws ISOException {
-        msg.set(13, LOCAL_DATE.format(date));
+        msg.set(13, Constants.LOCAL_DATE.format(date));
     }
 
     @Deprecated
     protected void setSettlementDate(ISOMsg msg, Date date) throws ISOException {
-        msg.set(15, LOCAL_DATE.format(date));
+        msg.set(15, Constants.LOCAL_DATE.format(date));
     }
 
     protected void setChannelID(ISOMsg msg, String merchant) throws ISOException {

@@ -2,7 +2,6 @@ package com.multipolar.sumsel.kasda.kasdagateway.rest.client;
 
 import com.google.common.io.ByteStreams;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
