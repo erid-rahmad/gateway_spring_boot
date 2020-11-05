@@ -5,102 +5,102 @@
       "bit": "120",
       "value": [
         {
-          "key": "kode_cabang",
+          "key": "Kd_Cabang",
           "length": "5",
           "leftpad": " "
         },
         {
-          "key": "kode_wilayah",
+          "key": "Kd_Wilayah",
           "length": "5",
           "leftpad": " "
         },
         {
-          "key": "tahun",
+          "key": "Tahun",
           "length": "4",
           "leftpad": " "
         },
         {
-          "key": "no_bukti",
+          "key": "No_Bukti",
           "length": "4",
           "leftpad": " "
         },
         {
-          "key": "jenis_dokument",
+          "key": "Jns_Dok",
           "length": "4",
           "leftpad": " "
         },
         {
-          "key": "kode_urusan",
+          "key": "Kd_Urusan",
           "length": "1",
           "leftpad": " "
         },
         {
-          "key": "kode_bidang",
+          "key": "Kd_Bidang",
           "length": "1",
           "leftpad": " "
         },
         {
-          "key": "kode_unit",
+          "key": "Kd_Unit",
           "length": "1",
           "leftpad": " "
         },
         {
-          "key": "kode_sub",
+          "key": "Kd_Sub",
           "length": "1",
           "leftpad": " "
         },
         {
-          "key": "tanggal_bukti",
+          "key": "Tgl_Bukti",
           "length": "20",
           "leftpad": " "
         },
         {
-          "key": "nama_penerima",
+          "key": "Nm_Penerima",
           "length": "40",
           "leftpad": " "
         },
         {
-          "key": "bank_penerima",
+          "key": "Bank_Penerima",
           "length": "50",
           "leftpad": " "
         },
         {
-          "key": "rekening_penerima",
+          "key": "Rek_Penerima",
           "length": "11",
           "leftpad": "00"
         },
         {
-          "key": "npwp",
+          "key": "NPWP",
           "length": "20",
           "leftpad": " "
         },
         {
-          "key": "keterangan",
+          "key": "Keterangan",
           "length": "255",
           "leftpad": " "
         },
         {
-          "key": "nama_bank",
+          "key": "Nm_Bank",
           "length": "50",
           "leftpad": " "
         },
         {
-          "key": "no_rekening",
+          "key": "No_Rekening",
           "length": "50",
           "leftpad": " "
         },
         {
-          "key": "nilai",
+          "key": "Nilai",
           "length": "15",
           "leftpad": "0"
         },
         {
-          "key": "date_create",
+          "key": "DateCreate",
           "length": "20",
           "leftpad": " "
         },
         {
-          "key": "tanggal_cair",
+          "key": "TglCair",
           "length": "20",
           "leftpad": " "
         }
@@ -110,17 +110,17 @@
       "bit": "121",
       "value": [
         {
-          "key": "nama_unit",
+          "key": "Nm_Unit",
           "length": "255",
           "leftpad": " "
         },
         {
-          "key": "nama_sub_unit",
+          "key": "Nm_Sub_Unit",
           "length": "255",
           "leftpad": " "
         },
         {
-          "key": "uraian",
+          "key": "Uraian",
           "length": "255",
           "leftpad": " "
         }
@@ -130,51 +130,51 @@
       "bit": "122",
       "value": [
         {
-          "key": "thn_angaran",
+          "key": "Tahun",
           "length": "4"
         },
         {
-          "key": "no_bukti",
+          "key": "No_Bukti",
           "length": "1",
           "leftpad": "0"
         },
         {
-          "key": "kode_rek_1",
+          "key": "Kd_Rek_1",
           "length": "1",
           "leftpad": "0"
         },
         {
-          "key": "kode_rek_2",
+          "key": "Kd_Rek_2",
           "length": "1",
           "leftpad": "0"
         },
         {
-          "key": "kode_rek_3",
+          "key": "Kd_Rek_3",
           "length": "1",
           "leftpad": "0"
         },
         {
-          "key": "kode_rek_4",
+          "key": "Kd_Rek_4",
           "length": "1",
           "leftpad": "0"
         },
         {
-          "key": "kode_rek_5",
+          "key": "Kd_Rek_5",
           "length": "1",
           "leftpad": "0"
         },
         {
-          "key": "jenis_dokumen",
+          "key": "Jns_Dok",
           "length": "2",
           "leftpad": "0"
         },
         {
-          "key": "nama_rekening",
+          "key": "Nm_Rekening",
           "length": "50",
           "leftpad": " "
         },
         {
-          "key": "nilai",
+          "key": "Nilai",
           "length": "15",
           "leftpad": "0"
         }
@@ -183,114 +183,105 @@
   ],
   "response": [
     {
-      "bit": "2",
-      "value": [
-        {
-          "key": "card_no",
-          "length": "16"
-        }
-      ]
-    },
-    {
       "bit": "120",
       "value": [
         {
-          "key": "kode_cabang",
+          "key": "Kd_Cabang",
           "length": "5",
           "leftpad": " "
         },
         {
-          "key": "kode_wilayah",
+          "key": "Kd_Wilayah",
           "length": "5",
           "leftpad": " "
         },
         {
-          "key": "tahun",
+          "key": "Tahun",
           "length": "4",
           "leftpad": " "
         },
         {
-          "key": "no_bukti",
+          "key": "No_Bukti",
           "length": "4",
           "leftpad": " "
         },
         {
-          "key": "jenis_dokument",
+          "key": "Jns_Dok",
           "length": "4",
           "leftpad": " "
         },
         {
-          "key": "kode_urusan",
+          "key": "Kd_Urusan",
           "length": "1",
           "leftpad": " "
         },
         {
-          "key": "kode_bidang",
+          "key": "Kd_Bidang",
           "length": "1",
           "leftpad": " "
         },
         {
-          "key": "kode_unit",
+          "key": "Kd_Unit",
           "length": "1",
           "leftpad": " "
         },
         {
-          "key": "kode_sub",
+          "key": "Kd_Sub",
           "length": "1",
           "leftpad": " "
         },
         {
-          "key": "tanggal_bukti",
+          "key": "Tgl_Bukti",
           "length": "20",
           "leftpad": " "
         },
         {
-          "key": "nama_penerima",
+          "key": "Nm_Penerima",
           "length": "40",
           "leftpad": " "
         },
         {
-          "key": "bank_penerima",
+          "key": "Bank_Penerima",
           "length": "50",
           "leftpad": " "
         },
         {
-          "key": "rekening_penerima",
+          "key": "Rek_Penerima",
           "length": "11",
           "leftpad": "00"
         },
         {
-          "key": "npwp",
+          "key": "NPWP",
           "length": "20",
           "leftpad": " "
         },
         {
-          "key": "keterangan",
+          "key": "Keterangan",
           "length": "255",
           "leftpad": " "
         },
         {
-          "key": "nama_bank",
+          "key": "Nm_Bank",
           "length": "50",
           "leftpad": " "
         },
         {
-          "key": "no_rekening",
+          "key": "No_Rekening",
           "length": "50",
           "leftpad": " "
         },
         {
-          "key": "nilai",
+          "key": "Nilai",
           "length": "15",
           "leftpad": "0"
         },
         {
-          "key": "date_create",
+          "key": "DateCreate",
           "length": "20",
           "leftpad": " "
         },
         {
-          "key": "tanggal_cair",
+          "key": "TglCair",
           "length": "20",
           "leftpad": " "
         }
@@ -300,17 +291,17 @@
       "bit": "121",
       "value": [
         {
-          "key": "nama_unit",
+          "key": "Nm_Unit",
           "length": "255",
           "leftpad": " "
         },
         {
-          "key": "nama_sub_unit",
+          "key": "Nm_Sub_Unit",
           "length": "255",
           "leftpad": " "
         },
         {
-          "key": "uraian",
+          "key": "Uraian",
           "length": "255",
           "leftpad": " "
         }
@@ -320,51 +311,51 @@
       "bit": "122",
       "value": [
         {
-          "key": "thn_angaran",
+          "key": "Tahun",
           "length": "4"
         },
         {
-          "key": "no_bukti",
+          "key": "No_Bukti",
           "length": "1",
           "leftpad": "0"
         },
         {
-          "key": "kode_rek_1",
+          "key": "Kd_Rek_1",
           "length": "1",
           "leftpad": "0"
         },
         {
-          "key": "kode_rek_2",
+          "key": "Kd_Rek_2",
           "length": "1",
           "leftpad": "0"
         },
         {
-          "key": "kode_rek_3",
+          "key": "Kd_Rek_3",
           "length": "1",
           "leftpad": "0"
         },
         {
-          "key": "kode_rek_4",
+          "key": "Kd_Rek_4",
           "length": "1",
           "leftpad": "0"
         },
         {
-          "key": "kode_rek_5",
+          "key": "Kd_Rek_5",
           "length": "1",
           "leftpad": "0"
         },
         {
-          "key": "jenis_dokumen",
+          "key": "Jns_Dok",
           "length": "2",
           "leftpad": "0"
         },
         {
-          "key": "nama_rekening",
+          "key": "Nm_Rekening",
           "length": "50",
           "leftpad": " "
         },
         {
-          "key": "nilai",
+          "key": "Nilai",
           "length": "15",
           "leftpad": "0"
         }

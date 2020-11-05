@@ -1,32 +1,31 @@
 {
   "pcode": "330005",
   "request": [
-
     {
       "bit": "120",
       "value": [
         {
-          "key": "kode_cabang",
+          "key": "Kd_Cabang",
           "length": "5",
           "leftpad": "0"
         },
         {
-          "key": "kode_wilayah",
+          "key": "Kd_Wilayah",
           "length": "5",
           "leftpad": "0"
         },
         {
-          "key": "no_bukti",
+          "key": "No_Bukti",
           "length": "50",
           "leftpad": "0"
         },
         {
-          "key": "tanggal_transaksi",
+          "key": "Tgl_Transaksi",
           "length": "8",
           "leftpad": " "
         },
         {
-          "key": "tanggal_bukti",
+          "key": "Tgl_Bukti",
           "length": "8",
           "leftpad": " "
         },
@@ -135,39 +134,30 @@
   ],
   "response": [
     {
-      "bit": "2",
-      "value": [
-        {
-          "key": "card_no",
-          "length": "16"
-        }
-      ]
-    },
-    {
       "bit": "120",
       "value": [
         {
-          "key": "kode_cabang",
+          "key": "Kd_Cabang",
           "length": "5",
           "leftpad": "0"
         },
         {
-          "key": "kode_wilayah",
+          "key": "Kd_Wilayah",
           "length": "5",
           "leftpad": "0"
         },
         {
-          "key": "no_bukti",
+          "key": "No_Bukti",
           "length": "50",
           "leftpad": "0"
         },
         {
-          "key": "tanggal_transaksi",
+          "key": "Tgl_Transaksi",
           "length": "8",
           "leftpad": " "
         },
         {
-          "key": "tanggal_bukti",
+          "key": "Tgl_Bukti",
           "length": "8",
           "leftpad": " "
         },

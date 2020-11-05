@@ -5,31 +5,31 @@
       "bit": "120",
       "value": [
         {
-          "key": "thn_angaran",
+          "key": "Tahun",
           "length": "4"
         },
         {
-          "key": "no_spm",
+          "key": "No_SPM",
           "length": "50",
           "leftpad": "0"
         },
         {
-          "key": "nama_penerima",
+          "key": "Nm_Penerima",
           "length": "100",
           "leftpad": " "
         },
         {
-          "key": "bank_penerima",
+          "key": "Bank_Penerima",
           "length": "50",
           "leftpad": " "
         },
         {
-          "key": "rekening_penerima",
+          "key": "Rek_Penerima",
           "length": "11",
           "leftpad": "0"
         },
         {
-          "key": "date_create",
+          "key": "DateCreate",
           "length": "20",
           "leftpad": " "
         }
@@ -39,17 +39,17 @@
       "bit": "121",
       "value": [
         {
-          "key": "nama_unit",
+          "key": "Nm_Unit",
           "length": "255",
           "leftpad": " "
         },
         {
-          "key": "nama_sub_unit",
+          "key": "Nm_Sub_Unit",
           "length": "255",
           "leftpad": " "
         },
         {
-          "key": "uraian",
+          "key": "Uraian",
           "length": "255",
           "leftpad": " "
         }
@@ -58,43 +58,34 @@
   ],
   "response": [
     {
-      "bit": "2",
-      "value": [
-        {
-          "key": "card_no",
-          "length": "16"
-        }
-      ]
-    },
-    {
       "bit": "120",
       "value": [
         {
-          "key": "thn_angaran",
+          "key": "Tahun",
           "length": "4"
         },
         {
-          "key": "no_spm",
+          "key": "No_SPM",
           "length": "50",
           "leftpad": "0"
         },
         {
-          "key": "nama_penerima",
+          "key": "Nm_Penerima",
           "length": "100",
           "leftpad": " "
         },
         {
-          "key": "bank_penerima",
+          "key": "Bank_Penerima",
           "length": "50",
           "leftpad": " "
         },
         {
-          "key": "rekening_penerima",
+          "key": "Rek_Penerima",
           "length": "11",
           "leftpad": "0"
         },
         {
-          "key": "date_create",
+          "key": "DateCreate",
           "length": "20",
           "leftpad": " "
         }
@@ -104,17 +95,17 @@
       "bit": "121",
       "value": [
         {
-          "key": "nama_unit",
+          "key": "Nm_Unit",
           "length": "255",
           "leftpad": " "
         },
         {
-          "key": "nama_sub_unit",
+          "key": "Nm_Sub_Unit",
           "length": "255",
           "leftpad": " "
         },
         {
-          "key": "uraian",
+          "key": "Uraian",
           "length": "255",
           "leftpad": " "
         }

@@ -1,4 +1,4 @@
-POST {{host}}:{{port}}{{context-path}}/api/v1.0/proxy/
+POST {{host}}:{{port}}{{context-path}}/api/v1.0/proxy/sipkd/api/npwp
 Content-Type: application/json
 
 {

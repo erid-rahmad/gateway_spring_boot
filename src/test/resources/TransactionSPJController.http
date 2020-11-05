@@ -2,15 +2,15 @@ POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?trans
 Content-Type: application/json
 
 {
-  "thn_angaran": "2020",
-  "no_spm": "111111111111",
-  "nama_penerima": "Dimas Maryanto",
-  "bank_penerima": "BNI",
-  "rekening_penerima": "22222222220",
-  "date_create": "15/10/2020 16:16:00",
-  "nama_unit": "Developer",
-  "nama_sub_unit": "Programmer",
-  "uraian": "IT"
+  "Tahun": "2020",
+  "No_SPM": "111111111111",
+  "Nm_Penerima": "Dimas Maryanto",
+  "Bank_Penerima": "BNI",
+  "Rek_Penerima": "22222222220",
+  "DateCreate": "15/10/2020 16:16:00",
+  "Nm_Unit": "Developer",
+  "Nm_Sub_Unit": "Programmer",
+  "Uraian": "IT"
 }
 
 ### Validasi nomor rekening ###
@@ -19,34 +19,34 @@ POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?trans
 Content-Type: application/json
 
 {
-  "kode_urusan": "1",
-  "kode_bidang": "1",
-  "kode_unit": "1",
-  "kode_sub": "1",
-  "thn_angaran": "2020",
-  "no_bukti": "123456789",
-  "tanngal_bukti": "2020/10/22 17:36:00",
-  "jenis_dokument": "1",
-  "nama_penerima": "Dimas Maryanto",
-  "keterangan": "3",
-  "npwp": "10010101010",
-  "bank_penerima": "BNI",
-  "rekening_penerima": "2222222",
-  "nama_bank": "BANK SUMSEL BABEL",
-  "no_rekening": "123456",
-  "nilai": "1000000",
-  "date_created": "2020/10/22 17:37:00",
-  "cair": "0",
-  "tanggal_cair": "2020/10/22 17:37:00",
-  "nama_unit": "BNI",
-  "nama_sub_unit": "BANKING",
-  "uraian": "PEMBAYARAN",
-  "kode_rek_1": "1",
-  "kode_rek_2": "1",
-  "kode_rek_3": "1",
-  "kode_rek_4": "1",
-  "kode_rek_5": "1",
-  "nama_rekening": "1"
+  "Kd_Urusan": "1",
+  "Kd_Bidang": "1",
+  "Kd_Unit": "1",
+  "Kd_Sub": "1",
+  "Tahun": "2020",
+  "No_Bukti": "123456789",
+  "Tgl_Bukti": "2020/10/22 17:36:00",
+  "Jns_Dok": "1",
+  "Nm_Penerima": "Dimas Maryanto",
+  "Keterangan": "3",
+  "NPWP": "10010101010",
+  "Bank_Penerima": "BNI",
+  "Rek_Penerima": "2222222",
+  "Nm_Bank": "BANK SUMSEL BABEL",
+  "No_Rekening": "123456",
+  "Nilai": "1000000",
+  "DateCreate": "2020/10/22 17:37:00",
+  "Cair": "0",
+  "TglCair": "2020/10/22 17:37:00",
+  "Nm_Unit": "BNI",
+  "Nm_Sub_Unit": "BANKING",
+  "Uraian": "PEMBAYARAN",
+  "Kd_Rek_1": "1",
+  "Kd_Rek_2": "1",
+  "Kd_Rek_3": "1",
+  "Kd_Rek_4": "1",
+  "Kd_Rek_5": "1",
+  "Nm_Rekening": "1"
 }
 
 ### logging sp2d ###
@@ -55,9 +55,9 @@ POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?trans
 Content-Type: application/json
 
 {
-  "kode_cabang": "11111",
-  "kode_wilayah": "22222",
-  "no_bukti": "00000001234"
+  "Kd_Cabang": "11111",
+  "Kd_Wilayah": "22222",
+  "No_Bukti": "00000001234"
 }
 
 ### inquiry spj ###
@@ -66,37 +66,37 @@ POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?trans
 Content-Type: application/json
 
 {
-  "kode_cabang": "11111",
-  "kode_wilayah": "22222",
-  "tahun": "2020",
-  "no_bukti": "00000001234",
-  "jenis_dokument": "0000",
-  "kode_urusan": "1",
-  "kode_bidang": "2",
-  "kode_unit": "3",
-  "kode_sub": "2",
-  "tanggal_bukti": "2020/10/22 17:51:00",
-  "nama_penerima": "Dimas Maryanto",
-  "bank_penerima": "testing",
-  "rekening_penerima": "091234",
-  "npwp": "1234231432",
-  "nama_bank": "BNI",
-  "no_rekening": "000001010",
-  "nilai": "100000",
-  "date_create": "2020/10/22 17:20:00",
-  "tanggal_cair": "2020/10/22 17:20:00",
-  "nama_unit": "asdlfkj",
-  "nama_sub_unit": "testing",
-  "uraian": "testing",
-  "thn_angaran": "2020",
-  "kode_rek_1": "1",
-  "kode_rek_2": "2",
-  "kode_rek_3": "3",
-  "kode_rek_4": "3",
-  "kode_rek_5": "3",
-  "no_spm": "1234091234",
-  "keterangan": "-",
-  "nama_rekening": "03"
+  "Kd_Cabang": "11111",
+  "Kd_Wilayah": "22222",
+  "Tahun": "2020",
+  "No_Bukti": "00000001234",
+  "Jns_Dok": "0000",
+  "Kd_Urusan": "1",
+  "Kd_Bidang": "2",
+  "Kd_Unit": "3",
+  "Kd_Sub": "2",
+  "Tgl_Bukti": "2020/10/22 17:51:00",
+  "Nm_Penerima": "Dimas Maryanto",
+  "Bank_Penerima": "testing",
+  "Rek_Penerima": "091234",
+  "NPWP": "1234231432",
+  "Nm_Bank": "BNI",
+  "No_Rekening": "000001010",
+  "Nilai": "100000",
+  "DateCreate": "2020/10/22 17:20:00",
+  "TglCair": "2020/10/22 17:20:00",
+  "Nm_Unit": "asdlfkj",
+  "Nm_Sub_Unit": "testing",
+  "Uraian": "testing",
+  "Tahun": "2020",
+  "Kd_Rek_1": "1",
+  "Kd_Rek_2": "2",
+  "Kd_Rek_3": "3",
+  "Kd_Rek_4": "3",
+  "Kd_Rek_5": "3",
+  "No_SPM": "1234091234",
+  "Keterangan": "-",
+  "Nm_Rekening": "03"
 }
 
 ### transaction spj ###
@@ -105,11 +105,11 @@ POST http://{{host}}:{{port}}{{context-path}}/api/v1.0/request/transaction?trans
 Content-Type: application/json
 
 {
-  "kode_cabang": "11111",
-  "kode_wilayah": "22222",
-  "no_bukti": "00000001234",
-  "tanggal_transaksi": "20/10/22",
-  "tanggal_bukti": "20/10/22",
+  "Kd_Cabang": "11111",
+  "Kd_Wilayah": "22222",
+  "No_Bukti": "00000001234",
+  "Tgl_Transaksi": "20/10/22",
+  "Tgl_Bukti": "20/10/22",
   "id_bil_1": "1",
   "id_bil_2": "1",
   "id_bil_3": "1",
