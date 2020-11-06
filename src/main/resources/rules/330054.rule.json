@@ -122,7 +122,7 @@
         },
         {
           "key": "No_Rekening",
-          "length": "5",
+          "length": "11",
           "leftpad": " "
         },
         {
@@ -200,22 +200,22 @@
           "leftpad": "0"
         },
         {
-          "key": "Kd_Rek_1",
+          "key": "Kd_Rek_2",
           "length": "1",
           "leftpad": "0"
         },
         {
-          "key": "Kd_Rek_1",
+          "key": "Kd_Rek_3",
           "length": "1",
           "leftpad": "0"
         },
         {
-          "key": "Kd_Rek_1",
+          "key": "Kd_Rek_4",
           "length": "1",
           "leftpad": "0"
         },
         {
-          "key": "Kd_Rek_1",
+          "key": "Kd_Rek_5",
           "length": "1",
           "leftpad": "0"
         },

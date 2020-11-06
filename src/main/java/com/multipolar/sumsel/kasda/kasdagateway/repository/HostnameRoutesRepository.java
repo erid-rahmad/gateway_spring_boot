@@ -1,6 +1,6 @@
 package com.multipolar.sumsel.kasda.kasdagateway.repository;
 
-import com.multipolar.sumsel.kasda.kasdagateway.model.HostnameRoutes;
+import com.multipolar.sumsel.kasda.kasdagateway.entity.HostnameRoutes;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

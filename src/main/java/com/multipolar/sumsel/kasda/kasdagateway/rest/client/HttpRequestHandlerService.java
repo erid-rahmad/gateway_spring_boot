@@ -2,7 +2,7 @@ package com.multipolar.sumsel.kasda.kasdagateway.rest.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.multipolar.sumsel.kasda.kasdagateway.model.HostnameRoutes;
+import com.multipolar.sumsel.kasda.kasdagateway.entity.HostnameRoutes;
 import com.multipolar.sumsel.kasda.kasdagateway.model.HttpRequestBuilder;
 import com.multipolar.sumsel.kasda.kasdagateway.repository.HostnameRoutesRepository;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -45,7 +45,8 @@ public class HttpRequestHandlerService {
 
     public Optional<HostnameRoutes> findByKodeCabangAndKodeWilayah(String serviceId, String kodeCabang, String kodeWilayah) {
         String activeProfile = Arrays.stream(env.getActiveProfiles()).findFirst().orElse("default");
-        log.debug("serviceId: {}, kodeCabang: {}, kodeWilayah: {}, activeProfile: {}", serviceId, kodeCabang, kodeWilayah);
+        log.debug("serviceId: {}, kodeCabang: {}, kodeWilayah: {}, activeProfile: {}",
+                serviceId, kodeCabang, kodeWilayah, activeProfile);
         return repository.findByServiceIdAndKodeCabangAndKodeWilayahAndEnvironment(serviceId, kodeCabang, kodeWilayah, activeProfile);
     }
 

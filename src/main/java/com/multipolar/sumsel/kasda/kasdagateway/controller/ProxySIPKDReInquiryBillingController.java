@@ -1,6 +1,6 @@
 package com.multipolar.sumsel.kasda.kasdagateway.controller;
 
-import com.multipolar.sumsel.kasda.kasdagateway.model.HostnameRoutes;
+import com.multipolar.sumsel.kasda.kasdagateway.entity.HostnameRoutes;
 import com.multipolar.sumsel.kasda.kasdagateway.model.HttpRequestBuilder;
 import com.multipolar.sumsel.kasda.kasdagateway.rest.client.HttpRequestHandlerService;
 import lombok.extern.slf4j.Slf4j;

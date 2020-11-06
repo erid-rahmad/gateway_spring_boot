@@ -12,6 +12,8 @@ public interface MessageConverterHandler {
 
 	ISOMsg doConvertToISO(Map<String, Object> map) throws InvalidMessageException;
 
+    ISOMsg doConvertToISO(Map<String, Object> map, ISOMsg isoMsg) throws InvalidMessageException;
+
     boolean supports(String s);
     
     Rule getRule() throws IOException;

@@ -1,3 +1,5 @@
 insert into hostnames(service_id, host, port, context_path, env, message, id)
-values ('kasdaApi', 'localhost', '9796', '', 'dev', 'Development', 'kasdaApi'),
-       ('sipkd', '10.32.3.20', '8084', '', 'dev', 'Development', 'sipkd');
+values ('sipkd', 'localhost', '8084', '', 'dev', 'Development', 'sipkd');
+
+insert into hostnames(service_id, host, port, context_path, env, message, kode_cabang, kode_wilayah)
+values ('kasdaApi', 'localhost', '8888', '/kasda-simulator', 'dev', 'Development', '11111', '22222');

@@ -67,6 +67,20 @@ public abstract class AbstractMessageConverter implements MessageConverterHandle
         }
     }
 
+    @Override
+    public ISOMsg doConvertToISO(Map<String, Object> map, ISOMsg msg) throws InvalidMessageException {
+        Date date = new Date();
+        FeatureContextHolder.getContext().setFeatureTransactionDate(date);
+        try {
+//            TODO: set new stand for request
+//            setTraceAuditNumber(msg);
+            setPrivateMessage(msg, map);
+            return msg;
+        } catch (ISOException ex) {
+            throw new InvalidMessageException(ex.getMessage());
+        }
+    }
+
     protected void setMti(ISOMsg msg, String mti) throws ISOException {
         try {
             msg.setMTI(mti);

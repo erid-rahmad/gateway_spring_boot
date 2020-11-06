@@ -5,10 +5,13 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.multipolar.sumsel.kasda.kasdagateway.converter.MessageConverterFactory;
 import com.multipolar.sumsel.kasda.kasdagateway.converter.MessageConverterHandler;
-import com.multipolar.sumsel.kasda.kasdagateway.model.HostnameRoutes;
+import com.multipolar.sumsel.kasda.kasdagateway.entity.HostnameRoutes;
+import com.multipolar.sumsel.kasda.kasdagateway.entity.Iso858eTemplateRequest;
 import com.multipolar.sumsel.kasda.kasdagateway.model.HttpRequestBuilder;
 import com.multipolar.sumsel.kasda.kasdagateway.rest.client.HttpRequestHandlerService;
+import com.multipolar.sumsel.kasda.kasdagateway.service.Iso8583TemplateService;
 import com.multipolar.sumsel.kasda.kasdagateway.servlet.filter.FeatureContextHolder;
+import com.multipolar.sumsel.kasda.kasdagateway.utils.Iso8583Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.jpos.iso.*;
 import org.jpos.iso.channel.ASCIIChannel;
@@ -17,15 +20,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Slf4j
 @Component
@@ -42,6 +42,8 @@ public class Q2ServerConfiguration implements ISORequestListener {
     private String serviceName;
     @Autowired
     private HttpRequestHandlerService httpService;
+    @Autowired
+    private Iso8583TemplateService isoService;
 
     @EventListener(ContextRefreshedEvent.class)
     public void contextRefreshedEvent() throws Exception {
@@ -53,94 +55,79 @@ public class Q2ServerConfiguration implements ISORequestListener {
 
     @Override
     public boolean process(ISOSource isoSource, ISOMsg isoMsg) {
-        MessageConverterHandler converter = null;
+        MessageConverterHandler converterHandler = null;
         HttpRequestBuilder dataRequest = null;
         try {
-            log.info("request mti: {}, field3: {}", isoMsg.getMTI(), isoMsg.getString(3));
+            String mti = isoMsg.getMTI();
+            String pCode = isoMsg.getString(3);
+            log.info("request mti: {}, field3: {}", mti, pCode);
             ISOMsg requestMsg = (ISOMsg) isoMsg.clone();
-            String pCode = requestMsg.getString(3);
 
-            switch (pCode) {
-                case "330054":
-                    // FIXME: please check again service not available for now
-                    dataRequest = HttpRequestBuilder.builder()
-                            .params(new HashMap<>())
-                            .headers(new HashMap<>())
-                            .path("/api/SP2D")
-                            .method(HttpMethod.GET)
-                            .build();
-                    break;
-                case "330055":
-                    // FIXME: please check again service not available for now
-                    dataRequest = HttpRequestBuilder.builder()
-                            .params(new HashMap<>())
-                            .headers(new HashMap<>())
-                            .path("/api/SPJ")
-                            .method(HttpMethod.GET)
-                            .build();
-                    break;
-                case "330005":
-                    // FIXME: please check again service not available for now
-                    dataRequest = HttpRequestBuilder.builder()
-                            .params(new HashMap<>())
-                            .headers(new HashMap<>())
-                            .path("/api/SPJ")
-                            .method(HttpMethod.GET)
-                            .build();
-                    break;
-                case "330006":
-                    // FIXME: please check again service not available for now
-                    dataRequest = HttpRequestBuilder.builder()
-                            .params(new HashMap<>())
-                            .headers(new HashMap<>())
-                            .path("/api/SPJ")
-                            .method(HttpMethod.GET)
-                            .build();
-                    break;
-                case "010054":
-                    // FIXME: please check again service not available for now
-                    dataRequest = HttpRequestBuilder.builder()
-                            .params(new HashMap<>())
-                            .headers(new HashMap<>())
-                            .path("/api/SPJ")
-                            .method(HttpMethod.GET)
-                            .build();
-                    break;
-                case "010055":
-                    // FIXME: please check again service not available for now
-                    dataRequest = HttpRequestBuilder.builder()
-                            .params(new HashMap<>())
-                            .headers(new HashMap<>())
-                            .path("/api/SPJ")
-                            .method(HttpMethod.GET)
-                            .build();
-                    break;
-            }
-
+            log.debug("iso incoming message: {}", Iso8583Utils.decode(requestMsg).orElse(null));
             FeatureContextHolder.getContext().setFeatureName(pCode);
-            converter = converterFactory.get(pCode, true);
-            Map<String, Object> jsonRequest = converter.doConvertToJSon(requestMsg, true);
-            assert dataRequest != null;
+            converterHandler = converterFactory.get(pCode, true);
+            Map<String, Object> jsonRequest = converterHandler.doConvertToJSon(requestMsg, true);
+
             log.info("q2 server request -> {}", jsonRequest);
             String kodeCabang = (String) jsonRequest.getOrDefault("Kd_Cabang", null);
             String kodeWilayah = (String) jsonRequest.getOrDefault("Kd_Wilayah", null);
 
-            // set body after convert to json
-            dataRequest.setBody(jsonRequest);
             Optional<HostnameRoutes> hostname =
                     this.httpService.findByKodeCabangAndKodeWilayah(this.serviceName, kodeCabang, kodeWilayah);
             log.info("hostname is present {}", hostname.isPresent());
-            ResponseEntity<?> responseEntity = this.httpService.call(hostname, dataRequest);
-            if (responseEntity.getStatusCode() == HttpStatus.OK) {
-                Map<String, Object> jsonMap = new ObjectMapper().readValue(
-                        responseEntity.getBody().toString(),
-                        Map.class);
-                ISOMsg isoResponseData = converter.doConvertToISO(jsonMap);
-                isoSource.send(isoResponseData);
-                return true;
-            } else {
+
+            Optional<Iso858eTemplateRequest> isoTemplateOptional = this.isoService.findByServiceNameAndHttpMethodAndMtiAndPCode(this.serviceName, mti, pCode);
+
+            log.info("iso template for mti: {}, pCode: {}, present: {}", mti, pCode, isoTemplateOptional.isPresent());
+            if (!isoTemplateOptional.isPresent()) {
                 return false;
             }
+
+            Iso858eTemplateRequest isoTemplate = isoTemplateOptional.get();
+            dataRequest = HttpRequestBuilder.builder()
+                    .method(isoTemplate.getHttpMethod())
+                    .path(isoTemplate.getPath())
+                    .headers(new HashMap<>())
+                    .params(new HashMap<>())
+                    .body(jsonRequest)
+                    .build();
+            ResponseEntity<?> responseEntity = this.httpService.call(hostname, dataRequest);
+            if (!isoTemplate.getIsReturn() && responseEntity.getStatusCode() == HttpStatus.OK) {
+                return false;
+            }
+
+            if (responseEntity.getStatusCode() != HttpStatus.OK) {
+                return false;
+            }
+
+            List<Map<String, Object>> sendResponseList = new ArrayList<>();
+            switch (isoTemplate.getResponseType()) {
+                case LIST:
+                    sendResponseList = new ObjectMapper().readValue(
+                            responseEntity.getBody().toString(), List.class);
+                    break;
+                default:
+                    Map<String, Object> jsonMap = new ObjectMapper().readValue(
+                            responseEntity.getBody().toString(),
+                            Map.class);
+                    sendResponseList.add(jsonMap);
+            }
+
+            for (Map<String, Object> data : sendResponseList) {
+                data.put("Kd_Cabang", kodeCabang);
+                data.put("Kd_Wilayah", kodeWilayah);
+                ISOMsg responseIso = converterHandler.doConvertToISO(data, (ISOMsg) isoMsg.clone());
+//                ISOMsg responseIso = requestMsg;
+                responseIso.setResponseMTI();
+                responseIso.set(new ISOField(39, "00"));
+//                responseIso.set(new ISOField(7, requestMsg.getString(7)));
+                Optional<String> decode = Iso8583Utils.decode(responseIso);
+                log.debug("iso outgoing message: {}", decode.orElse(null));
+                if (isoSource.isConnected()) {
+                    isoSource.send(responseIso);
+                }
+            }
+            return true;
         } catch (ISOException e) {
             log.error("iso exception ==>", e);
             return false;

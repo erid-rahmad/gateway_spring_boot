@@ -1,4 +1,4 @@
-package com.multipolar.sumsel.kasda.kasdagateway.model;
+package com.multipolar.sumsel.kasda.kasdagateway.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
