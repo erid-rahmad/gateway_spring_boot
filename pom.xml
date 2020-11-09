@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.multipolar.sumsel.kasda</groupId>
     <artifactId>kasda-gateway</artifactId>
-    <version>2020.10.22.18.05-release</version>
+    <version>2020.11.09.09.55-release</version>
     <name>route-kasda-gateway</name>
     <description>Demo project for Spring Boot</description>
 

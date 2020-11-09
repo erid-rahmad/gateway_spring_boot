@@ -15,3 +15,13 @@
 
 - set default value for bit 2 = `627452` + bit 7
 - Fixing missing rule.json
+
+# `v2020.11.09.09.55-release`
+
+- Message Converter 
+    - iso (0200) -> json & json -> iso (0200) using `ReverseDefaultConverterHandler`
+    - iso (0210) -> json & json -> iso (0210) using `DefaultConverterHandler`
+- Enabled proxy to SIPKD
+- Enabled Q2 Server using listener integration spring-boot
+- Enabled stan / bit 7 using sequance generator
+
