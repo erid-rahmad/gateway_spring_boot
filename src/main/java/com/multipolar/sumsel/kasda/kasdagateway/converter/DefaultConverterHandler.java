@@ -6,12 +6,14 @@ import com.multipolar.sumsel.kasda.kasdagateway.model.ConverterRule;
 import com.multipolar.sumsel.kasda.kasdagateway.model.NestedRule;
 import com.multipolar.sumsel.kasda.kasdagateway.model.RequestRule;
 import com.multipolar.sumsel.kasda.kasdagateway.model.Rule;
+import com.multipolar.sumsel.kasda.kasdagateway.service.MessageService;
 import com.multipolar.sumsel.kasda.kasdagateway.servlet.filter.FeatureContextHolder;
 import com.multipolar.sumsel.kasda.kasdagateway.utils.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.jpos.iso.ISOException;
 import org.jpos.iso.ISOMsg;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,9 @@ import java.util.Map;
 @Slf4j
 @Service
 public class DefaultConverterHandler extends AbstractMessageConverter {
+
+    @Autowired
+    MessageService messageService;
 
     public DefaultConverterHandler() {
     }
@@ -145,62 +150,13 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                     String leftpad1 = rule.getLeftpad();
                     String rightpad1 = rule.getRightpad();
                     log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key1,length1,leftpad1,rightpad1,other1,nestedRule1);
-
-                    String requestValue1 = null;
-                    if (other1 != null)
-                        requestValue1 = other1;
-                    else if (key1 != null) {
-                        Object value1 = map.get(key1);
-                        log.debug("value {}",value1);
-                        if (value1 == null) {
-                            log.warn(
-                                    "key value is null, please check schema validation or rule for this request. Value is set to empty string. Key is {}", key);
-                            requestValue1 = "";
-                        } else {
-                            requestValue1 = value1.toString();
-                            log.debug("request value {}",requestValue1);
-                        }
-                    }
-
-                    values.put(key, requestValue1);
-
-                    if (requestValue1 == null)
-                        throw new IllegalArgumentException("One of other or key need to be defined in the rule");
-
-                    if (length1 != 0) {
-                        if (leftpad1 != null && rightpad1 == null)
-                            message.append(StringUtils.leftPad(requestValue1, length1, leftpad));
-                        else if (rightpad1 != null && leftpad1 == null)
-                            message.append(StringUtils.rightPad(requestValue1, length1, rightpad));
-                        else if (leftpad1 == null && rightpad1 == null && requestValue1.length() == length1)
-                            message.append(requestValue1);
-                        else {
-                            String exception = "Can't parse rule, please recheck the rule file for bit " + bit;
-                            log.error(exception);
-                            throw new IllegalArgumentException(exception);
-                        }
-                    } else {
-                        if (leftpad1 != null || rightpad1 != null) {
-                            String exception = "Cant have leftpad or rightpad when length is zero";
-                            log.error(exception);
-                            throw new IllegalArgumentException(exception);
-                        } else {
-                            message.append(requestValue1);
-                        }
-                    }
-
-
-
-
-
                 }
-
             }catch (Exception e){
-
             }
+            message = messageService.convert(other,key,leftpad,rightpad,length);
 
 
-
+            log.info("this first message {}",message);
             log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key,length,leftpad,rightpad,other,nestedRule);
 
             String requestValue = null;
@@ -221,16 +177,23 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 
             values.put(key, requestValue);
 
+
             if (requestValue == null)
                 throw new IllegalArgumentException("One of other or key need to be defined in the rule");
 
             if (length != 0) {
-                if (leftpad != null && rightpad == null)
+                if (leftpad != null && rightpad == null) {
                     message.append(StringUtils.leftPad(requestValue, length, leftpad));
-                else if (rightpad != null && leftpad == null)
+                    log.info("massage1 {}", message);
+                }
+                else if (rightpad != null && leftpad == null) {
                     message.append(StringUtils.rightPad(requestValue, length, rightpad));
-                else if (leftpad == null && rightpad == null && requestValue.length() == length)
+                    log.info("massage2 {}", message);
+                }
+                else if (leftpad == null && rightpad == null && requestValue.length() == length) {
                     message.append(requestValue);
+                    log.info("massage3 {}", message);
+                }
                 else {
                     String exception = "Can't parse rule, please recheck the rule file for bit " + bit;
                     log.error(exception);
@@ -243,6 +206,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                     throw new IllegalArgumentException(exception);
                 } else {
                     message.append(requestValue);
+                    log.info("massage4 {}",message);
                 }
             }
         }
