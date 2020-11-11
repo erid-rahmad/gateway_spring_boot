@@ -2,6 +2,8 @@ package com.multipolar.sumsel.kasda.kasdagateway.model;
 
 import lombok.Data;
 
+import java.util.Arrays;
+
 @Data
 public class ConverterRule {
 	private String other;
@@ -10,4 +12,5 @@ public class ConverterRule {
 	private String leftpad;
 	private String rightpad;
 	private NestedRule[] lain;
+
 }

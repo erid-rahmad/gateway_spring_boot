@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -130,9 +131,14 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 
     protected String getValueForBit(Map<String, Object> map, int bit, ConverterRule[] rules) throws IllegalArgumentException {
         Map<String, String> values = new HashMap<>();
+//        log.info("this rule: "+rules.toString());
+        log.info("this map "+map.get("account_number"));
+
 
         StringBuilder message = new StringBuilder();
+        StringBuilder message1 = null,message2,message3 = new StringBuilder();
         for (ConverterRule rule : rules) {
+            log.info("this rule: "+rule);
 
             String other = rule.getOther();
             String key = rule.getKey();
@@ -141,76 +147,53 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             String rightpad = rule.getRightpad();
             NestedRule[] nestedRule = rule.getLain();
 
-            try {
-                for(NestedRule nestedRule1 :nestedRule ){
 
-                    String other1 = rule.getOther();
-                    String key1 = rule.getKey();
-                    int length1 = rule.getLength();
-                    String leftpad1 = rule.getLeftpad();
-                    String rightpad1 = rule.getRightpad();
-                    log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key1,length1,leftpad1,rightpad1,other1,nestedRule1);
-                }
-            }catch (Exception e){
+            Object value1 =  map.get(key);
+            log.info("this value1 {}",value1);
+            int x = 0;
+
+
+
+
+            if(nestedRule != null) {
+                    x=1;
+                    for (NestedRule nestedRule1 : nestedRule) {
+                        log.info("this map 1 "+map.get("sender_info"));
+
+                        String other1 = nestedRule1.getOther();
+                        String key1 = nestedRule1.getKey();
+                        int length1 = nestedRule1.getLength();
+                        String leftpad1 = nestedRule1.getLeftpad();
+                        String rightpad1 = nestedRule1.getRightpad();
+                        log.info("this key1 {}",key1);
+                        Object value2 =  map.get(key1);
+
+                        try {
+                            List<?> sub = (List<?>) map.get(key);
+                            log.info("this sub "+sub);
+
+                        }catch (Exception e){}
+
+                        log.info("this value2 {}",value2);
+                        log.info("this value1 {}",value1);
+                        log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key1,length1,leftpad1,rightpad1,other1,nestedRule1);
+                        message2 = messageService.convert(other1,key1,leftpad1,rightpad1,length1,value1,bit,x);
+                        message3=message2.append(message2);
+
+                    }
             }
-            message = messageService.convert(other,key,leftpad,rightpad,length);
-
-
-            log.info("this first message {}",message);
-            log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key,length,leftpad,rightpad,other,nestedRule);
-
-            String requestValue = null;
-            if (other != null)
-                requestValue = other;
-            else if (key != null) {
-                Object value = map.get(key);
-                log.debug("value {}",value);
-                if (value == null) {
-                    log.warn(
-                            "key value is null, please check schema validation or rule for this request. Value is set to empty string. Key is {}", key);
-                    requestValue = "";
-                } else {
-                    requestValue = value.toString();
-                    log.debug("request value {}",requestValue);
-                }
+            if(nestedRule == null){
+                message = messageService.convert(other,key,leftpad,rightpad,length,value1,bit,x);
+            }else {
+                log.info("not with asd");
             }
 
-            values.put(key, requestValue);
-
-
-            if (requestValue == null)
-                throw new IllegalArgumentException("One of other or key need to be defined in the rule");
-
-            if (length != 0) {
-                if (leftpad != null && rightpad == null) {
-                    message.append(StringUtils.leftPad(requestValue, length, leftpad));
-                    log.info("massage1 {}", message);
-                }
-                else if (rightpad != null && leftpad == null) {
-                    message.append(StringUtils.rightPad(requestValue, length, rightpad));
-                    log.info("massage2 {}", message);
-                }
-                else if (leftpad == null && rightpad == null && requestValue.length() == length) {
-                    message.append(requestValue);
-                    log.info("massage3 {}", message);
-                }
-                else {
-                    String exception = "Can't parse rule, please recheck the rule file for bit " + bit;
-                    log.error(exception);
-                    throw new IllegalArgumentException(exception);
-                }
-            } else {
-                if (leftpad != null || rightpad != null) {
-                    String exception = "Cant have leftpad or rightpad when length is zero";
-                    log.error(exception);
-                    throw new IllegalArgumentException(exception);
-                } else {
-                    message.append(requestValue);
-                    log.info("massage4 {}",message);
-                }
-            }
+//            log.info("this first message {}",message);
+//            log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key,length,leftpad,rightpad,other,nestedRule);
+            message1=message.append(message1);
+            message1=message1.append(message3);
         }
-
+        log.info("final message {}",message1);
         return message.toString();
     }
 

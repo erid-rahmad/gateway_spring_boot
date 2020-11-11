@@ -27,11 +27,18 @@
           "key": "sender_info",
           "length": "11",
           "leftpad": "0",
-          "lain": [{
+          "lain": [
+            {
             "key": "account_number",
             "length": "50",
             "leftpad": " "
-          }]
+            },
+            {
+              "key": "Bank_Penerima",
+              "length": "3",
+              "leftpad": " "
+            }
+          ]
         },
         {
           "key": "DateCreate",
