@@ -76,16 +76,24 @@ public class NetworkMessageGateway {
     }
 
     public ISOMsg sendToHost(final ISOMsg m, long timeout) throws ConnectException, ISOException {
+        log.debug("its sendToHost");
         MUX mux = (MUX) NameRegistrar.getIfExists(muxName);
         if (mux == null)
             throw new ConfigurationException("mux is not configured");
         Chronometer chronometer = new Chronometer();
         if (isConnected(mux)) {
             long t = Math.max(timeout - chronometer.elapsed(), 1000L); // give at least a second to catch a response
+
             try {
                 final ISOMsgLogEntry requestEntry = new ISOMsgLogEntry(m, new Date());
                 ISOMsg resp = mux.request(m, t);
+                log.debug("its sendToHost t: {}",t);
+                log.debug("its sendToHost m: {}",m);
+                log.debug("its sendToHost resp: {}",resp);
                 final ISOMsgLogEntry responseEntry = new ISOMsgLogEntry(resp, new Date());
+                log.debug("its sendToHost reqentry: {}",requestEntry);
+                log.debug("its sendToHost responEntry: {}",responseEntry);
+
 
                 if (resp == null) {
                     log.info("No response for message with trace number: {}.Log request for trace number: {}",
@@ -95,6 +103,7 @@ public class NetworkMessageGateway {
                 }
 
                 Thread thread = new Thread(() -> log(requestEntry, responseEntry));
+                log.debug("its send to house  thread: {}",thread);
                 thread.start();
 
                 return resp;

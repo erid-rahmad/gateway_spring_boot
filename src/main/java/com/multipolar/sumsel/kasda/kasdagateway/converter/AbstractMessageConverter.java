@@ -30,7 +30,12 @@ public abstract class AbstractMessageConverter implements MessageConverterHandle
 
         // call spesific conversion
         try {
+            log.error("just try 7 msg : {} fl : {}",msg,fl);
+
+
             return translatePrivateMessage(msg, fl);
+
+
         } catch (ISOException e) {
             throw new InvalidMessageException(e.getMessage());
         }
@@ -57,9 +62,13 @@ public abstract class AbstractMessageConverter implements MessageConverterHandle
             setRefferenceNumber(msg, stan.getReferenceNumber());
             // setTerminal(msg);
             // setTerminalLocation(msg);
+            log.info("just try 5 msg :{}",msg);
             setPrivateMessage(msg, map);
+
             //setCheckNumber(msg);
             setTerminalID(msg);
+            log.info("just try 5 msg :{}",msg);
+
 
             return msg;
         } catch (ISOException ex) {
@@ -74,7 +83,9 @@ public abstract class AbstractMessageConverter implements MessageConverterHandle
         try {
 //            TODO: set new stand for request
 //            setTraceAuditNumber(msg);
+            log.error("just try 6");
             setPrivateMessage(msg, map);
+            log.error("just try 6");
             return msg;
         } catch (ISOException ex) {
             throw new InvalidMessageException(ex.getMessage());

@@ -3,6 +3,7 @@ package com.multipolar.sumsel.kasda.kasdagateway.converter;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.multipolar.sumsel.kasda.kasdagateway.model.ConverterRule;
+import com.multipolar.sumsel.kasda.kasdagateway.model.NestedRule;
 import com.multipolar.sumsel.kasda.kasdagateway.model.RequestRule;
 import com.multipolar.sumsel.kasda.kasdagateway.model.Rule;
 import com.multipolar.sumsel.kasda.kasdagateway.servlet.filter.FeatureContextHolder;
@@ -36,6 +37,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
     @Override
     protected void setPrivateMessage(ISOMsg msg, Map<String, Object> map) throws ISOException {
         try {
+            log.info("its setprivate message");
             Rule rule = getRule();
 
             msg.set(3, rule.getPcode());
@@ -60,6 +62,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
     protected Map<String, Object> translatePrivateMessage(ISOMsg msg, boolean fl) throws ISOException {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
+            log.info("ist traslete private message 1");
             Rule rule = getRule();
 
             String errorKey = rule.getErrorKey();
@@ -120,29 +123,99 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
         return map;
     }
 
-    protected String getValueForBit(Map<String, Object> map, int bit, ConverterRule[] rules)
-            throws IllegalArgumentException {
+    protected String getValueForBit(Map<String, Object> map, int bit, ConverterRule[] rules) throws IllegalArgumentException {
         Map<String, String> values = new HashMap<>();
 
         StringBuilder message = new StringBuilder();
         for (ConverterRule rule : rules) {
+
             String other = rule.getOther();
             String key = rule.getKey();
             int length = rule.getLength();
             String leftpad = rule.getLeftpad();
             String rightpad = rule.getRightpad();
+            NestedRule[] nestedRule = rule.getLain();
+
+            try {
+                for(NestedRule nestedRule1 :nestedRule ){
+
+                    String other1 = rule.getOther();
+                    String key1 = rule.getKey();
+                    int length1 = rule.getLength();
+                    String leftpad1 = rule.getLeftpad();
+                    String rightpad1 = rule.getRightpad();
+                    log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key1,length1,leftpad1,rightpad1,other1,nestedRule1);
+
+                    String requestValue1 = null;
+                    if (other1 != null)
+                        requestValue1 = other1;
+                    else if (key1 != null) {
+                        Object value1 = map.get(key1);
+                        log.debug("value {}",value1);
+                        if (value1 == null) {
+                            log.warn(
+                                    "key value is null, please check schema validation or rule for this request. Value is set to empty string. Key is {}", key);
+                            requestValue1 = "";
+                        } else {
+                            requestValue1 = value1.toString();
+                            log.debug("request value {}",requestValue1);
+                        }
+                    }
+
+                    values.put(key, requestValue1);
+
+                    if (requestValue1 == null)
+                        throw new IllegalArgumentException("One of other or key need to be defined in the rule");
+
+                    if (length1 != 0) {
+                        if (leftpad1 != null && rightpad1 == null)
+                            message.append(StringUtils.leftPad(requestValue1, length1, leftpad));
+                        else if (rightpad1 != null && leftpad1 == null)
+                            message.append(StringUtils.rightPad(requestValue1, length1, rightpad));
+                        else if (leftpad1 == null && rightpad1 == null && requestValue1.length() == length1)
+                            message.append(requestValue1);
+                        else {
+                            String exception = "Can't parse rule, please recheck the rule file for bit " + bit;
+                            log.error(exception);
+                            throw new IllegalArgumentException(exception);
+                        }
+                    } else {
+                        if (leftpad1 != null || rightpad1 != null) {
+                            String exception = "Cant have leftpad or rightpad when length is zero";
+                            log.error(exception);
+                            throw new IllegalArgumentException(exception);
+                        } else {
+                            message.append(requestValue1);
+                        }
+                    }
+
+
+
+
+
+                }
+
+            }catch (Exception e){
+
+            }
+
+
+
+            log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key,length,leftpad,rightpad,other,nestedRule);
 
             String requestValue = null;
             if (other != null)
                 requestValue = other;
             else if (key != null) {
                 Object value = map.get(key);
+                log.debug("value {}",value);
                 if (value == null) {
                     log.warn(
                             "key value is null, please check schema validation or rule for this request. Value is set to empty string. Key is {}", key);
                     requestValue = "";
                 } else {
                     requestValue = value.toString();
+                    log.debug("request value {}",requestValue);
                 }
             }
 
@@ -180,6 +253,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
     protected void setValueForMap(Map<String, Object> map, String bitValue, ConverterRule[] rules) {
         int index = 0;
         for (ConverterRule rule : rules) {
+            log.info("its set valur for map converterrule");
             String key = rule.getKey();
             int length = rule.getLength();
             String leftpad = rule.getLeftpad();
@@ -193,6 +267,10 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                 value = StringUtils.stripStart(value, leftpad);
             else if (rightpad != null)
                 value = StringUtils.stripEnd(value, rightpad);
+
+            log.debug("just trykey ---  {} ",key);
+            log.debug("just trykey value---  {} ",value);
+            log.debug("just trykey bitvalue---  {} ",bitValue);
 
             map.put(key, value);
             index = index + length;

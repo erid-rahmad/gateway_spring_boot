@@ -29,6 +29,7 @@ public class CustomISOMsgSerializer extends JsonSerializer<ISOMsg> {
         String feature = FeatureContextHolder.getContext().getFeatureName();
         MessageConverterHandler converter = converterFactory.get(feature);
         Map<String, Object> map = converter.doConvertToJSon(msg, true);
+        log.error("just try 8");
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             log.info("key: {}, value: {}", entry.getKey(), entry.getValue());
         }

@@ -37,14 +37,18 @@ public class TransactionRequestController extends ResponseEntityExceptionHandler
             @RequestBody ISOMsg msg,
             @RequestParam(value = "transactionType") String transactionType,
             @RequestParam(value = "terminalId") String terminalId) throws ISOException, ConnectException {
-        String context = FeatureContextHolder.getContext().getFeatureName();
 
+        String context = FeatureContextHolder.getContext().getFeatureName();
+        log.warn("its context {}",context);
         msg.set(41, StringUtils.leftPad(terminalId, 8, "0"));
         ISOMsg response = gateway.sendToHost(msg, defaultTimeout);
+        log.warn("its response {}",response);
         MessageConverterHandler converter = converterFactory.get(context, false);
+        log.warn("its converter {}",converter);
 
         if (response != null) {
             Map<String, Object> responseMap = converter.doConvertToJSon(response, true);
+            log.error("just try 9");
             return ok(responseMap);
         } else {
             return noContent().build();

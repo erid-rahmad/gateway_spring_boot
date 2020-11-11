@@ -33,6 +33,7 @@ public class CustomISOMsgDeserializer extends StdDeserializer<ISOMsg> {
     @Override
     @SuppressWarnings("unchecked")
     public ISOMsg deserialize(JsonParser parser, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+
         String feature = FeatureContextHolder.getContext().getFeatureName();
         MessageConverterHandler converter = converterFactory.get(feature);
 

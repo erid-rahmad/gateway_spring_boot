@@ -26,6 +26,7 @@ public class ReverseDefaultConverterHandler extends DefaultConverterHandler {
     protected void setPrivateMessage(ISOMsg msg, Map<String, Object> map) throws ISOException {
         try {
             Rule rule = getRule();
+            log.error("just try 1");
 
             msg.set(3, rule.getPcode());
 
@@ -50,6 +51,7 @@ public class ReverseDefaultConverterHandler extends DefaultConverterHandler {
         Map<String, Object> map = new HashMap<>();
         try {
             Rule rule = getRule();
+            log.debug("just try 2");
 
             String errorKey = rule.getErrorKey();
             if (msg.isResponse() && exception(msg, map, errorKey))
@@ -58,13 +60,16 @@ public class ReverseDefaultConverterHandler extends DefaultConverterHandler {
             RequestRule[] requestRules = rule.getRequest();
             for (RequestRule requestRule : requestRules) {
                 int bit = requestRule.getBit();
+                log.debug("just try 2 bit {}",bit);
                 String valueFromBit = msg.getString(bit);
+                log.debug("just try 2 vaue from bit {}",valueFromBit);
                 if (valueFromBit == null) {
                     log.error("Value get from bit is null, bit = {}", bit);
                     throw new ISOException("The rule said get value from bit but empty bit is found. bit " + bit);
                 }
 
                 ConverterRule[] values = requestRule.getValue();
+                log.debug("just try ini values  {}",values);
                 setValueForMap(map, valueFromBit, values);
             }
         } catch (FileNotFoundException fnfe) {
@@ -85,6 +90,7 @@ public class ReverseDefaultConverterHandler extends DefaultConverterHandler {
 //            UserDetailImpl userDetail = (UserDetailImpl) SecurityContextHolder.getContext().getAuthentication().getDetails();
 //            map.put("sourceName", sourceName);
 //            map.put("transactionDate", DATE.format(FeatureContextHolder.getContext().getFeatureTransactionDate()));
+            log.debug("just try ini fl  {}",fl);
 
         } else {
 //            map.put("cardIdAtm", msg.getString(2));

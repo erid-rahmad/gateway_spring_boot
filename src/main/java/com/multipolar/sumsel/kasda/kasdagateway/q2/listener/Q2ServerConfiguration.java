@@ -60,7 +60,12 @@ public class Q2ServerConfiguration implements ISORequestListener {
         try {
             String mti = isoMsg.getMTI();
             String pCode = isoMsg.getString(3);
-            log.info("request mti: {}, field3: {}", mti, pCode);
+
+            if(mti.contains("800")){
+                pCode="999999";
+            }
+
+            log.info("request mti: {}, pcode: {}", mti, pCode);
             ISOMsg requestMsg = (ISOMsg) isoMsg.clone();
 
             log.debug("iso incoming message: {}", Iso8583Utils.decode(requestMsg).orElse(null));
@@ -114,6 +119,7 @@ public class Q2ServerConfiguration implements ISORequestListener {
             }
 
             for (Map<String, Object> data : sendResponseList) {
+                log.debug("its severConfigursi");
                 data.put("Kd_Cabang", kodeCabang);
                 data.put("Kd_Wilayah", kodeWilayah);
                 ISOMsg responseIso = converterHandler.doConvertToISO(data, (ISOMsg) isoMsg.clone());

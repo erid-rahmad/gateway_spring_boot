@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:kasda_gateway}
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5433}/${DATABASE_NAME:kasda_gateway}
     username: ${DATABASE_USER:kasda_gateway}
     password: ${DATABASE_PASSWORD:kasda_gateway}
     driver-class-name: org.postgresql.Driver

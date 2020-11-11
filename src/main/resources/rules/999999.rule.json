@@ -1,0 +1,266 @@
+{
+  "pcode": "",
+  "request": [
+    {
+      "bit": "0",
+      "value": [
+        {
+          "key": "fild 0",
+          "length": "4",
+          "leftpad": " "
+        }
+      ]
+    },
+    {
+      "bit": "7",
+      "value": [
+        {
+          "key": "fild 7",
+          "length": "10",
+          "leftpad": " "
+        }
+      ]
+    },
+    {
+      "bit": "11",
+      "value": [
+        {
+          "key": "fild 11",
+          "length": "6",
+          "leftpad": " "
+        }
+      ]
+    },
+    {
+      "bit": "70",
+      "value": [
+        {
+          "key": "fild 70",
+          "length": "3",
+          "leftpad": " "
+        }
+      ]
+    }
+
+  ],
+  "response": [
+    {
+      "bit": "120",
+      "value": [
+        {
+          "key": "Kd_Cabang",
+          "length": "5",
+          "leftpad": " "
+        },
+        {
+          "key": "Kd_Wilayah",
+          "length": "5",
+          "leftpad": " "
+        },
+        {
+          "key": "Kd_Urusan",
+          "length": "1",
+          "leftpad": " "
+        },
+        {
+          "key": "Kd_Bidang",
+          "length": "1",
+          "leftpad": " "
+        },
+        {
+          "key": "Kd_Unit",
+          "length": "1",
+          "leftpad": " "
+        },
+        {
+          "key": "Kd_Sub",
+          "length": "1",
+          "leftpad": " "
+        },
+        {
+          "key": "Tahun",
+          "length": "4"
+        },
+        {
+          "key": "No_SP2D",
+          "length": "50",
+          "leftpad": "0"
+        },
+        {
+          "key": "Tgl_SP2D",
+          "length": "10",
+          "leftpad": " "
+        },
+        {
+          "key": "No_SPM",
+          "length": "50",
+          "leftpad": "0"
+        },
+        {
+          "key": "Tgl_SPM",
+          "length": "10",
+          "leftpad": " "
+        },
+        {
+          "key": "Jn_SPM",
+          "length": "2",
+          "leftpad": " "
+        },
+        {
+          "key": "Nm_Penerima",
+          "length": "50",
+          "leftpad": " "
+        },
+        {
+          "key": "Keterangan",
+          "length": "255",
+          "leftpad": " "
+        },
+        {
+          "key": "NPWP",
+          "length": "20",
+          "leftpad": " "
+        },
+        {
+          "key": "Bank_Penerima",
+          "length": "50",
+          "leftpad": " "
+        },
+        {
+          "key": "Rek_Penerima",
+          "length": "11",
+          "leftpad": "00"
+        },
+        {
+          "key": "Tgl_Penguji",
+          "length": "10",
+          "leftpad": " "
+        },
+        {
+          "key": "Nm_Bank",
+          "length": "50",
+          "leftpad": " "
+        },
+        {
+          "key": "No_Rekening",
+          "length": "5",
+          "leftpad": " "
+        },
+        {
+          "key": "Nilai",
+          "length": "15",
+          "leftpad": "0"
+        },
+        {
+          "key": "DateCreate",
+          "length": "20",
+          "leftpad": " "
+        },
+        {
+          "key": "Kd_Wilayah",
+          "length": "5",
+          "leftpad": " "
+        }
+      ]
+    },
+    {
+      "bit": "121",
+      "value": [
+        {
+          "key": "Nm_Unit",
+          "length": "255",
+          "leftpad": " "
+        },
+        {
+          "key": "Nm_Sub_Unit",
+          "length": "255",
+          "leftpad": " "
+        },
+        {
+          "key": "Uraian",
+          "length": "255",
+          "leftpad": " "
+        }
+      ]
+    },
+    {
+      "bit": "122",
+      "value": [
+        {
+          "key": "Tahun",
+          "length": "4"
+        },
+        {
+          "key": "Kd_Urusan",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "Kd_Bidang",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "Kd_Unit",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "Kd_Sub",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "No_SP2D",
+          "length": "50",
+          "leftpad": "0"
+        },
+        {
+          "key": "Kd_Rek_1",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "Kd_Rek_2",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "Kd_Rek_3",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "Kd_Rek_4",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "Kd_Rek_5",
+          "length": "1",
+          "leftpad": "0"
+        },
+        {
+          "key": "No_SPM",
+          "length": "50",
+          "leftpad": "0"
+        },
+        {
+          "key": "Jn_SPM",
+          "length": "2",
+          "leftpad": "0"
+        },
+        {
+          "key": "Nm_Rekening",
+          "length": "50",
+          "leftpad": " "
+        },
+        {
+          "key": "Nilai",
+          "length": "15",
+          "leftpad": "0"
+        }
+      ]
+    }
+  ]
+}
