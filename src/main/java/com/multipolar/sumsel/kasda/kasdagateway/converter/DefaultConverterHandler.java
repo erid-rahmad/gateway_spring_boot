@@ -137,6 +137,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 
         StringBuilder message = new StringBuilder();
         StringBuilder message1 = null,message2,message3 = new StringBuilder();
+
         for (ConverterRule rule : rules) {
             log.info("this rule: "+rule);
 
@@ -166,15 +167,17 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                         String leftpad1 = nestedRule1.getLeftpad();
                         String rightpad1 = nestedRule1.getRightpad();
                         log.info("this key1 {}",key1);
-                        Object value2 =  map.get(key1);
+
 
                         try {
-                            List<?> sub = (List<?>) map.get(key);
-                            log.info("this sub "+sub);
+                            Object value2 =  map.get(key);
+                            Map<String,String> bebas = (Map<String, String>) map.get("sender_info");
+                            String asd = bebas.get("account_number");
+                            log.info("this sub "+asd);
 
                         }catch (Exception e){}
 
-                        log.info("this value2 {}",value2);
+
                         log.info("this value1 {}",value1);
                         log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key1,length1,leftpad1,rightpad1,other1,nestedRule1);
                         message2 = messageService.convert(other1,key1,leftpad1,rightpad1,length1,value1,bit,x);
