@@ -135,6 +135,8 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 
         StringBuilder message = new StringBuilder();
         StringBuilder message1 = null,message2,message3 = new StringBuilder();
+        StringBuilder message4,message5 = new StringBuilder();
+
 
         for (ConverterRule rule : rules) {
 //            log.info("this rule: "+rule);
@@ -176,14 +178,35 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                                 int length2 = nestedRuleSec1.getLength();
                                 String leftpad2 = nestedRuleSec1.getLeftpad();
                                 String rightpad2 = nestedRuleSec1.getRightpad();
+
+                                Map<String,String> bebas1 = (Map<String, String>) map.get(key);
+                                String asd1 = bebas1.get(key2);
+                                value1 = asd1;
+
+                                message4 = messageService.convert(other2,key2,leftpad2,rightpad2,length2,value1,bit,x);
+                                message5=message5.append(message4);
+                                log.info("this message 5 {}",message5);
+                                
                             }
                         }
 
+                        if (nestedRuleSecs == null){
+                            message2 = messageService.convert(other1,key1,leftpad1,rightpad1,length1,value1,bit,x);
+
+                            if(message3 == null){
+                                message3 = message2;
+                            }else {
+                                message3=message3.append(message2);
+                            }
+                        }
+                        else {
+                            message3=message5.append(message3);
+                        }
 
                         log.info("this value11 {}",value1);
 //                        log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key1,length1,leftpad1,rightpad1,other1,nestedRule1);
-                        message2 = messageService.convert(other1,key1,leftpad1,rightpad1,length1,value1,bit,x);
-                        message3=message3.append(message2);
+
+
                         log.info("this message 3 {}",message3);
 
                     }

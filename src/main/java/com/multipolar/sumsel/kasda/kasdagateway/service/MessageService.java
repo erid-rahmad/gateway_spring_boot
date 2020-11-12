@@ -33,6 +33,23 @@ public class MessageService {
                 }
             }
         }
+        else if (x==2){
+            log.info("on this");
+            if (other != null)
+                requestValue = other;
+            else if (key != null) {
+                Object value = value1;
+//                log.debug("value {}", value);
+                if (value == null) {
+                    log.warn(
+                            "key value is null, please check schema validation or rule for this request. Value is set to empty string. Key is {}", key);
+                    requestValue = "";
+                } else {
+                    requestValue = value.toString();
+                    log.debug("request value {}", requestValue);
+                }
+            }
+        }
         else {
             log.info("off this");
             if (other != null)
