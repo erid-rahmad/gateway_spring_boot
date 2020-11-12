@@ -1,0 +1,64 @@
+{
+  "pcode": "330008",
+  "request": [
+    {
+      "bit": "120",
+      "value": [
+        {
+          "key": "bank_account",
+          "length": "20",
+          "leftpad": " "
+        },
+        {
+          "key": "bank_code",
+          "length": "3",
+          "leftpad": " "
+        },
+        {
+          "key": "inquiry_partner_id",
+          "length": "32",
+          "leftpad": "0"
+        }
+      ]
+    }
+  ],
+  "response": [
+    {
+      "bit": "120",
+      "value": [
+        {
+          "key": "bank_account_name",
+          "length": "3",
+          "leftpad": " "
+        },
+        {
+          "key": "status",
+          "length": "11",
+          "leftpad": "0",
+          "lain": [
+            {
+              "key": "code",
+              "length": "3",
+              "leftpad": " "
+            },
+            {
+              "key": "message",
+              "length": "255",
+              "leftpad": " "
+            }
+          ]
+        },
+        {
+          "key": "inquiry_id",
+          "length": "32",
+          "leftpad": " "
+        },
+        {
+          "key": "inquiry_partner_id",
+          "length": "32",
+          "leftpad": "0"
+        }
+      ]
+    }
+  ]
+}

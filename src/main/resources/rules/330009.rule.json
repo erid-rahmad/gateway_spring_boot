@@ -1,0 +1,74 @@
+{
+  "pcode": "330009",
+  "request": [
+    {
+      "bit": "120",
+      "value": [
+        {
+          "key": "sort",
+          "length": "3",
+          "leftpad": "3"
+        },
+        {
+          "key": "offset",
+          "length": "3",
+          "leftpad": "0"
+        },
+        {
+          "key": "limit",
+          "length": "3",
+          "leftpad": "0"
+        },
+        {
+          "key": "created_tx_end",
+          "length": "20",
+          "leftpad": "0"
+        },
+        {
+          "key": "created_tx_start",
+          "length": "20",
+          "leftpad": "0"
+        }
+      ]
+    }
+  ],
+  "response": [
+    {
+      "bit": "120",
+      "value": [
+        {
+          "key": "bank_account_name",
+          "length": "3",
+          "leftpad": " "
+        },
+        {
+          "key": "status",
+          "length": "11",
+          "leftpad": "0",
+          "lain": [
+            {
+              "key": "code",
+              "length": "3",
+              "leftpad": " "
+            },
+            {
+              "key": "message",
+              "length": "255",
+              "leftpad": " "
+            }
+          ]
+        },
+        {
+          "key": "inquiry_id",
+          "length": "32",
+          "leftpad": " "
+        },
+        {
+          "key": "inquiry_partner_id",
+          "length": "32",
+          "leftpad": "0"
+        }
+      ]
+    }
+  ]
+}
