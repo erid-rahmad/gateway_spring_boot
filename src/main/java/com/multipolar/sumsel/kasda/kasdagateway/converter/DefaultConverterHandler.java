@@ -2,10 +2,7 @@ package com.multipolar.sumsel.kasda.kasdagateway.converter;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.multipolar.sumsel.kasda.kasdagateway.model.ConverterRule;
-import com.multipolar.sumsel.kasda.kasdagateway.model.NestedRule;
-import com.multipolar.sumsel.kasda.kasdagateway.model.RequestRule;
-import com.multipolar.sumsel.kasda.kasdagateway.model.Rule;
+import com.multipolar.sumsel.kasda.kasdagateway.model.*;
 import com.multipolar.sumsel.kasda.kasdagateway.service.MessageService;
 import com.multipolar.sumsel.kasda.kasdagateway.servlet.filter.FeatureContextHolder;
 import com.multipolar.sumsel.kasda.kasdagateway.utils.Constants;
@@ -164,6 +161,8 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                         String leftpad1 = nestedRule1.getLeftpad();
                         String rightpad1 = nestedRule1.getRightpad();
 //                        log.info("this key1 {}",key1);
+                        NestedRuleSec[] nestedRuleSecs = nestedRule1.getLainsec();
+                        log.info("this nestedsec {}",nestedRuleSecs);
 
                         Map<String,String> bebas = (Map<String, String>) map.get(key);
                         String asd = bebas.get(key1);

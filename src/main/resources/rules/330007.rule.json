@@ -24,9 +24,21 @@
           "leftpad": "0",
           "lain": [
             {
-            "key": "account_number",
-            "length": "50",
-            "leftpad": " "
+              "key": "account_number",
+              "length": "50",
+              "leftpad": " ",
+              "lainsec": [
+              {
+                  "key": "account_number",
+                  "length": "50",
+                  "leftpad": " "
+              },
+              {
+                  "key": "Bank_Penerima",
+                  "length": "3",
+                  "leftpad": " "
+              }
+            ]
             },
             {
               "key": "Bank_Penerima",
