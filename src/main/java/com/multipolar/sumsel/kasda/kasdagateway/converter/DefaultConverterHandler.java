@@ -167,7 +167,18 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                         Map<String,String> bebas = (Map<String, String>) map.get(key);
                         String asd = bebas.get(key1);
                         value1 = asd;
-//                        log.info("this sub "+asd);
+
+                        if (nestedRuleSecs !=null){
+                            x=2;
+                            for (NestedRuleSec nestedRuleSec1 : nestedRuleSecs){
+                                String other2 = nestedRuleSec1.getOther();
+                                String key2 = nestedRuleSec1.getKey();
+                                int length2 = nestedRuleSec1.getLength();
+                                String leftpad2 = nestedRuleSec1.getLeftpad();
+                                String rightpad2 = nestedRuleSec1.getRightpad();
+                            }
+                        }
+
 
                         log.info("this value11 {}",value1);
 //                        log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key1,length1,leftpad1,rightpad1,other1,nestedRule1);
