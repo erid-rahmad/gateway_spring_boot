@@ -1,3 +1,5 @@
+//benar
+
 package com.multipolar.sumsel.kasda.kasdagateway.converter;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -148,88 +150,72 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             String rightpad = rule.getRightpad();
             NestedRule[] nestedRule = rule.getLain();
 
-            log.info("Cliak key: " + key);
-            Object value1 = map.get(key);
-            log.info("this value1: "+value1);
-
-            if (key.equals("sender_info")){
-                Map<String, Object> senderInfo = (Map<String, Object>) map.get(key);
-                log.info("additional_data: " + senderInfo.get("additional_data"));
-
-                Map<String, Object> additional_data = (Map<String, Object>) senderInfo.get("additional_data");
-                log.info("nominal_pajak: "+ additional_data.get("nominal_pajak"));
-            }
-
+            Object value1 =  map.get(key);
+            log.info("this value1 {}",value1);
             int x = 0;
 
             if(nestedRule != null) {
-                    x=1;
-                    for (NestedRule nestedRule1 : nestedRule) {
+                x=1;
+                for (NestedRule nestedRule1 : nestedRule) {
 //                        log.info("this map 1 "+map.get("sender_info"));
 
-                        String other1 = nestedRule1.getOther();
-                        String key1 = nestedRule1.getKey();
-                        int length1 = nestedRule1.getLength();
-                        String leftpad1 = nestedRule1.getLeftpad();
-                        String rightpad1 = nestedRule1.getRightpad();
+                    String other1 = nestedRule1.getOther();
+                    String key1 = nestedRule1.getKey();
+                    int length1 = nestedRule1.getLength();
+                    String leftpad1 = nestedRule1.getLeftpad();
+                    String rightpad1 = nestedRule1.getRightpad();
 //                        log.info("this key1 {}",key1);
-                        NestedRuleSec[] nestedRuleSecs = nestedRule1.getLainsec();
-                        log.info("this nestedsec {}",nestedRuleSecs);
+                    NestedRuleSec[] nestedRuleSecs = nestedRule1.getLainsec();
+                    log.info("this nestedsec {}",nestedRuleSecs);
 
-                        Map<String,String> bebas = (Map<String, String>) map.get(key);
+                    Map<String,Object> bebas = (Map<String, Object>) map.get(key);
+                    if (nestedRuleSecs == null){
+                        Object asd = bebas.get(key1);
+                        value1 = asd;
+                    }
 
-                        if(nestedRuleSecs == null) {
-//                            Map<String, Object> asd = bebas.get(key1);
-//                            value1 = asd;
-//                            log.info("this value aaa {}", value1);
+
+                    if (nestedRuleSecs !=null){
+                        x=2;
+                        for (NestedRuleSec nestedRuleSec1 : nestedRuleSecs){
+                            String other2 = nestedRuleSec1.getOther();
+                            String key2 = nestedRuleSec1.getKey();
+                            int length2 = nestedRuleSec1.getLength();
+                            String leftpad2 = nestedRuleSec1.getLeftpad();
+                            String rightpad2 = nestedRuleSec1.getRightpad();
+
+                            Map<String,Object> bebas1 = (Map<String, Object>) bebas.get(key1);
+                            Object asd1 = bebas1.get(key2);
+                            value1 = asd1;
+                            log.info("this key {} key1 {} key2 {}",key,key1,key2);
+
+                            message4 = messageService.convert(other2,key2,leftpad2,rightpad2,length2,value1,bit,x);
+                            message5=message5.append(message4);
+                            log.info("this message 5 {}",message5);
+
+                        }
+                    }
+
+                    if (nestedRuleSecs == null){
+                        message2 = messageService.convert(other1,key1,leftpad1,rightpad1,length1,value1,bit,x);
+
+                        if(message3 == null){
+                            message3 = message2;
                         }else {
-
-
+                            message3=message3.append(message2);
                         }
+                    }
+                    else {
+                        message3=message5.append(message3);
+                    }
 
-                        if (nestedRuleSecs !=null){
-                            x=2;
-                            for (NestedRuleSec nestedRuleSec1 : nestedRuleSecs){
-                                String other2 = nestedRuleSec1.getOther();
-                                String key2 = nestedRuleSec1.getKey();
-                                int length2 = nestedRuleSec1.getLength();
-                                String leftpad2 = nestedRuleSec1.getLeftpad();
-                                String rightpad2 = nestedRuleSec1.getRightpad();
-                                log.info("hire");
-
-//                                Map<String,String> bebas1 = (Map<String, String>) bebas.get(key1);
-//                                String asd1 = bebas1.get(key2);
-//                                value1 = asd1;
-                                log.info("this value asd1 {}", value1);
-
-
-                                message4 = messageService.convert(other2,key2,leftpad2,rightpad2,length2,value1,bit,x);
-                                message5=message5.append(message4);
-                                log.info("this message 5 {}",message5);
-                                
-                            }
-                        }
-
-                        if (nestedRuleSecs == null){
-                            message2 = messageService.convert(other1,key1,leftpad1,rightpad1,length1,value1,bit,x);
-
-                            if(message3 == null){
-                                message3 = message2;
-                            }else {
-                                message3=message3.append(message2);
-                            }
-                        }
-                        else {
-                            message3=message5.append(message3);
-                        }
-
-                        log.info("this value11 {}",value1);
+                    log.info("this value11 {}",value1);
 //                        log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key1,length1,leftpad1,rightpad1,other1,nestedRule1);
 
 
-                        log.info("this message 3 {}",message3);
+                    log.info("this message 3 {}",message3);
 
-                    }
+                }
             }
             if(nestedRule == null){
                 message = messageService.convert(other,key,leftpad,rightpad,length,value1,bit,x);

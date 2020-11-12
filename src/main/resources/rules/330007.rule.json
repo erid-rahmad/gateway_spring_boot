@@ -29,8 +29,8 @@
             "leftpad": " ",
               "lainsec": [
               {
-                "key": "account_number",
-                "length": "50",
+                "key": "nominal_pajak",
+                "length": "10",
                 "leftpad": " "
               },
               {
