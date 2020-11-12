@@ -132,14 +132,14 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
     protected String getValueForBit(Map<String, Object> map, int bit, ConverterRule[] rules) throws IllegalArgumentException {
         Map<String, String> values = new HashMap<>();
 //        log.info("this rule: "+rules.toString());
-        log.info("this map "+map.get("account_number"));
+//        log.info("this map "+map.get("account_number"));
 
 
         StringBuilder message = new StringBuilder();
         StringBuilder message1 = null,message2,message3 = new StringBuilder();
 
         for (ConverterRule rule : rules) {
-            log.info("this rule: "+rule);
+//            log.info("this rule: "+rule);
 
             String other = rule.getOther();
             String key = rule.getKey();
@@ -159,45 +159,54 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             if(nestedRule != null) {
                     x=1;
                     for (NestedRule nestedRule1 : nestedRule) {
-                        log.info("this map 1 "+map.get("sender_info"));
+//                        log.info("this map 1 "+map.get("sender_info"));
 
                         String other1 = nestedRule1.getOther();
                         String key1 = nestedRule1.getKey();
                         int length1 = nestedRule1.getLength();
                         String leftpad1 = nestedRule1.getLeftpad();
                         String rightpad1 = nestedRule1.getRightpad();
-                        log.info("this key1 {}",key1);
+//                        log.info("this key1 {}",key1);
 
+                        Map<String,String> bebas = (Map<String, String>) map.get(key);
+                        String asd = bebas.get(key1);
+                        value1 = asd;
+//                        log.info("this sub "+asd);
 
-                        try {
-                            Object value2 =  map.get(key);
-                            Map<String,String> bebas = (Map<String, String>) map.get("sender_info");
-                            String asd = bebas.get("account_number");
-                            log.info("this sub "+asd);
-
-                        }catch (Exception e){}
-
-
-                        log.info("this value1 {}",value1);
-                        log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key1,length1,leftpad1,rightpad1,other1,nestedRule1);
+                        log.info("this value11 {}",value1);
+//                        log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key1,length1,leftpad1,rightpad1,other1,nestedRule1);
                         message2 = messageService.convert(other1,key1,leftpad1,rightpad1,length1,value1,bit,x);
-                        message3=message2.append(message2);
+                        message3=message3.append(message2);
+                        log.info("this message 3 {}",message3);
 
                     }
             }
             if(nestedRule == null){
                 message = messageService.convert(other,key,leftpad,rightpad,length,value1,bit,x);
+                if(message1==null){
+                    message1=message;
+                }
+                else {
+                    message1=message.append(message1);
+                }
+
+                log.info("this message1 {}",message1);
             }else {
                 log.info("not with asd");
+                message1=message3.append(message1);
+                log.info("this message1.1 {}",message1);
             }
 
 //            log.info("this first message {}",message);
 //            log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key,length,leftpad,rightpad,other,nestedRule);
-            message1=message.append(message1);
-            message1=message1.append(message3);
+
+
+
+
         }
         log.info("final message {}",message1);
-        return message.toString();
+
+        return message1.toString();
     }
 
     protected void setValueForMap(Map<String, Object> map, String bitValue, ConverterRule[] rules) {

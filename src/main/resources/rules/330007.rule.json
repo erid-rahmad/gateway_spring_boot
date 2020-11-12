@@ -15,12 +15,7 @@
         },
         {
           "key": "note",
-          "length": "256",
-          "leftpad": " "
-        },
-        {
-          "key": "account_number",
-          "length": "50",
+          "length": "20",
           "leftpad": " "
         },
         {
