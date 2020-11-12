@@ -148,8 +148,18 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             String rightpad = rule.getRightpad();
             NestedRule[] nestedRule = rule.getLain();
 
-            Object value1 =  map.get(key);
-            log.info("this value1 {}",value1);
+            log.info("Cliak key: " + key);
+            Object value1 = map.get(key);
+            log.info("this value1: "+value1);
+
+            if (key.equals("sender_info")){
+                Map<String, Object> senderInfo = (Map<String, Object>) map.get(key);
+                log.info("additional_data: " + senderInfo.get("additional_data"));
+
+                Map<String, Object> additional_data = (Map<String, Object>) senderInfo.get("additional_data");
+                log.info("nominal_pajak: "+ additional_data.get("nominal_pajak"));
+            }
+
             int x = 0;
 
             if(nestedRule != null) {
@@ -167,8 +177,15 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                         log.info("this nestedsec {}",nestedRuleSecs);
 
                         Map<String,String> bebas = (Map<String, String>) map.get(key);
-                        String asd = bebas.get(key1);
-                        value1 = asd;
+
+                        if(nestedRuleSecs == null) {
+//                            Map<String, Object> asd = bebas.get(key1);
+//                            value1 = asd;
+//                            log.info("this value aaa {}", value1);
+                        }else {
+
+
+                        }
 
                         if (nestedRuleSecs !=null){
                             x=2;
@@ -178,10 +195,13 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                                 int length2 = nestedRuleSec1.getLength();
                                 String leftpad2 = nestedRuleSec1.getLeftpad();
                                 String rightpad2 = nestedRuleSec1.getRightpad();
+                                log.info("hire");
 
-                                Map<String,String> bebas1 = (Map<String, String>) map.get(key);
-                                String asd1 = bebas1.get(key2);
-                                value1 = asd1;
+//                                Map<String,String> bebas1 = (Map<String, String>) bebas.get(key1);
+//                                String asd1 = bebas1.get(key2);
+//                                value1 = asd1;
+                                log.info("this value asd1 {}", value1);
+
 
                                 message4 = messageService.convert(other2,key2,leftpad2,rightpad2,length2,value1,bit,x);
                                 message5=message5.append(message4);
