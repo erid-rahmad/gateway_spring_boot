@@ -77,25 +77,33 @@
           "leftpad": "0"
         },
         {
+          "key": "sender_info",
+          "length": "11",
+          "leftpad": "0",
+          "lain": [
+            {
+              "key": "account_number",
+              "length": "50",
+              "leftpad": " "
+            },
+            {
+              "key": "Bank_Penerima",
+              "length": "3",
+              "leftpad": " "
+            }
+          ]
+        },
+        {
           "key": "Nm_Penerima",
-          "length": "100",
+          "length": "5",
           "leftpad": " "
         },
         {
           "key": "Bank_Penerima",
-          "length": "50",
-          "leftpad": " "
-        },
-        {
-          "key": "Rek_Penerima",
-          "length": "11",
-          "leftpad": "0"
-        },
-        {
-          "key": "DateCreate",
-          "length": "20",
+          "length": "5",
           "leftpad": " "
         }
+
       ]
     },
     {

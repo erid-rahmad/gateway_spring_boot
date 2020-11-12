@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -126,6 +127,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
         statusMap.put("code", "00");
         statusMap.put("message", "Request Success");
         map.put("status", statusMap);
+        map.remove("status");
         return map;
     }
 
@@ -133,7 +135,6 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
         Map<String, String> values = new HashMap<>();
 //        log.info("this rule: "+rules.toString());
 //        log.info("this map "+map.get("account_number"));
-
 
         StringBuilder message = new StringBuilder();
         StringBuilder message1 = null,message2,message3 = new StringBuilder();
@@ -148,13 +149,9 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             String rightpad = rule.getRightpad();
             NestedRule[] nestedRule = rule.getLain();
 
-
             Object value1 =  map.get(key);
             log.info("this value1 {}",value1);
             int x = 0;
-
-
-
 
             if(nestedRule != null) {
                     x=1;
@@ -196,12 +193,8 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                 message1=message3.append(message1);
                 log.info("this message1.1 {}",message1);
             }
-
 //            log.info("this first message {}",message);
 //            log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key,length,leftpad,rightpad,other,nestedRule);
-
-
-
 
         }
         log.info("final message {}",message1);
@@ -217,7 +210,38 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             int length = rule.getLength();
             String leftpad = rule.getLeftpad();
             String rightpad = rule.getRightpad();
+            NestedRule[] nestedRule = rule.getLain();
 
+            if(nestedRule != null){
+                Map<String, Object> netstedData = new HashMap<>();
+                for (NestedRule nestedRule1 : nestedRule) {
+                    String other1 = nestedRule1.getOther();
+                    String key1 = nestedRule1.getKey();
+                    int length1 = nestedRule1.getLength();
+                    String leftpad1 = nestedRule1.getLeftpad();
+                    String rightpad1 = nestedRule1.getRightpad();
+                    log.info("this key1 {}",key1);
+
+                    if (length == 0)
+                        length = bitValue.length();
+
+                    String value1 = StringUtils.substring(bitValue, index, index + length);
+                    if (leftpad1 != null)
+                        value1 = StringUtils.stripStart(value1, leftpad1);
+                    else if (rightpad1 != null)
+                        value1 = StringUtils.stripEnd(value1, rightpad1);
+
+                    log.debug("just trykey ---  {} ",key);
+                    log.debug("just trykey value---  {} ",value1);
+                    log.debug("just trykey bitvalue---  {} ",bitValue);
+
+                    netstedData.put(key1, value1);
+                    index = index + length;
+                    log.info("this index1 {}",index);
+
+                }
+                map.put(key, netstedData);
+            }
             if (length == 0)
                 length = bitValue.length();
 
@@ -231,9 +255,13 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             log.debug("just trykey value---  {} ",value);
             log.debug("just trykey bitvalue---  {} ",bitValue);
 
-            map.put(key, value);
+            if(nestedRule==null)
+                map.put(key, value);
             index = index + length;
+
+            log.info("this index2 {}",index);
         }
+
     }
 
     public Rule getRule() throws IOException {
@@ -262,6 +290,8 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
         statusMap.put("code", resultCode);
         statusMap.put("message", "Unmapping error code " + resultCode);
         map.put("status", statusMap);
+
+
 
         return true;
     }
