@@ -141,6 +141,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
         message1= message;
 
 
+
         for (ConverterRule rule : rules) {
 //            log.info("this rule: "+rule);
 
