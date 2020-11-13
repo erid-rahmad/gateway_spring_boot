@@ -1,5 +1,5 @@
 {
-  "pcode": "330007",
+  "pcode": "330007 new",
   "request": [
     {
       "bit": "120",
@@ -21,25 +21,28 @@
           "leftpad": "0",
           "lain": [
             {
-            "key": "additional_data",
-            "length": "50",
-            "leftpad": " ",
+              "key": "additional_data",
+              "length": "3",
+              "leftpad": " ",
               "lainsec": [
-              {
-                "key": "nominal_pajak",
-                "length": "10",
-                "leftpad": " "
-              },
-              {
-                "key": "Bank_Penerima",
-                "length": "3",
-                "leftpad": " "
-              }
-            ]
+
+                {
+                  "key": "include_pajak",
+                  "length": "10",
+                  "leftpad": " "
+                }
+
+              ]
+            },
+
+            {
+              "key": "account_bank",
+              "length": "3",
+              "leftpad": " "
             },
             {
-              "key": "Bank_Penerima",
-              "length": "3",
+              "key": "account_number",
+              "length": "50",
               "leftpad": " "
             }
           ]
@@ -55,7 +58,7 @@
           "length": "15",
           "leftpad": "0"
         }
-        ,
+      ,
         {
           "key": "tx_partner_id",
           "length": "32",
