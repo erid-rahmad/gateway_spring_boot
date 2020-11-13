@@ -37,38 +37,75 @@
       "bit": "120",
       "value": [
         {
-          "key": "bank_account_name",
-          "length": "3",
-          "leftpad": " "
-        },
-        {
-          "key": "status",
+          "key": "data",
           "length": "11",
           "leftpad": "0",
           "lain": [
             {
-              "key": "code",
+              "key": "additional_data",
               "length": "3",
+              "leftpad": " ",
+              "lainsec": [
+                {
+                  "key": "tgl_ntpn",
+                  "length": "10",
+                  "leftpad": " "
+                },
+                {
+                  "key": "ntpn",
+                  "length": "16",
+                  "leftpad": " "
+                },
+                {
+                  "key": "id_billing",
+                  "length": "15",
+                  "leftpad": " "
+                }
+              ]
+            },
+            {
+              "key": "status",
+              "length": "3",
+              "leftpad": " ",
+              "lainsec": [
+                {
+                  "key": "message",
+                  "length": "8",
+                  "leftpad": " "
+                },
+                {
+                  "key": "code",
+                  "length": "3",
+                  "leftpad": " "
+                }
+              ]
+            },
+            {
+              "key": "created",
+              "length": "20",
               "leftpad": " "
             },
             {
-              "key": "message",
-              "length": "255",
+              "key": "tx_id",
+              "length": "32",
+              "leftpad": " "
+            },
+            {
+              "key": "tx_partner_id",
+              "length": "32",
               "leftpad": " "
             }
+
           ]
         },
         {
-          "key": "inquiry_id",
-          "length": "32",
+          "key": "totalCount",
+          "length": "3",
           "leftpad": " "
-        },
-        {
-          "key": "inquiry_partner_id",
-          "length": "32",
-          "leftpad": "0"
         }
+
       ]
     }
+
   ]
 }

@@ -8,6 +8,7 @@ import com.multipolar.sumsel.kasda.kasdagateway.model.*;
 import com.multipolar.sumsel.kasda.kasdagateway.service.MessageService;
 import com.multipolar.sumsel.kasda.kasdagateway.servlet.filter.FeatureContextHolder;
 import com.multipolar.sumsel.kasda.kasdagateway.utils.Constants;
+import com.multipolar.sumsel.kasda.kasdagateway.utils.MapperJSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.jpos.iso.ISOException;
@@ -19,7 +20,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -280,14 +280,58 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             NestedRule[] nestedRule = rule.getLain();
 
             if(nestedRule != null){
+
                 Map<String, Object> netstedData = new HashMap<>();
+                Map<String, Map<String, Object>> netstedDatakey = new HashMap<>();
+
                 for (NestedRule nestedRule1 : nestedRule) {
                     String other1 = nestedRule1.getOther();
                     String key1 = nestedRule1.getKey();
                     int length1 = nestedRule1.getLength();
                     String leftpad1 = nestedRule1.getLeftpad();
                     String rightpad1 = nestedRule1.getRightpad();
+                    NestedRuleSec[] nestedRuleSec =nestedRule1.getLainsec();
                     log.info("this key1 {}",key1);
+
+                    if (nestedRuleSec != null){
+                        Map<String, Object> netstedData1 = new HashMap<>();
+
+
+                        for (NestedRuleSec nestedRuleSec1 : nestedRuleSec){
+                            String other2 = nestedRuleSec1.getOther();
+                            String key2 = nestedRuleSec1.getKey();
+                            int length2 = nestedRuleSec1.getLength();
+                            String leftpad2 = nestedRuleSec1.getLeftpad();
+                            String rightpad2 = nestedRuleSec1.getRightpad();
+
+
+                            if (length == 0)
+                                length = bitValue.length();
+
+                            String value2 = StringUtils.substring(bitValue, index, index + length);
+                            if (leftpad1 != null)
+                                value2 = StringUtils.stripStart(value2, leftpad2);
+                            else if (rightpad1 != null)
+                                value2 = StringUtils.stripEnd(value2, rightpad2);
+
+                            log.debug("just trykey ---  {} ",key);
+                            log.debug("just trykey value---  {} ",value2);
+                            log.debug("just trykey bitvalue---  {} ",bitValue);
+
+                            netstedData1.put(key2, value2);
+                            log.info("this nesteddata1 "+netstedData1);
+                            index = index + length;
+                            log.info("this index1 {}",index);
+                        }
+
+
+                        netstedDatakey.put(key, netstedData1);
+
+
+                        log.info("NesteddataKey "+ MapperJSONUtil.prettyLog(netstedDatakey));
+
+
+                    }
 
                     if (length == 0)
                         length = bitValue.length();
@@ -303,11 +347,16 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                     log.debug("just trykey bitvalue---  {} ",bitValue);
 
                     netstedData.put(key1, value1);
+                    log.info("this nesteddata "+netstedData);
+
+
+
                     index = index + length;
                     log.info("this index1 {}",index);
 
                 }
                 map.put(key, netstedData);
+
             }
             if (length == 0)
                 length = bitValue.length();
