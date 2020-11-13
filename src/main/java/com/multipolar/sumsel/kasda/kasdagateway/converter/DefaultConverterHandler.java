@@ -136,8 +136,9 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 //        log.info("this map "+map.get("account_number"));
 
         StringBuilder message = new StringBuilder();
-        StringBuilder message1 = null,message2,message3 = new StringBuilder();
+        StringBuilder message1,message2,message3 = new StringBuilder();
         StringBuilder message4,message5 = new StringBuilder();
+        message1= message;
 
 
         for (ConverterRule rule : rules) {
@@ -190,9 +191,14 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 //                            log.info("this key {} key1 {} key2 {}",key,key1,key2);
 
                             message4 = messageService.convert(other2,key2,leftpad2,rightpad2,length2,value1,bit,x);
-                            message5=message5.append(message4);
-                            log.info("this message 5 {}",message5);
+                            if(message5==null){
+                                message5=message4;
+                            }
+                            else {
+                                message5=message5.append(message4);
+                            }
 
+                            log.info("this message 5 {}",message5);
                         }
                     }
 
@@ -201,15 +207,22 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 
                         if(message3 == null){
                             message3 = message2;
-                            log.info("this message 3.1 {}",message1);
+                            log.info("this message 3.1 {}",message3);
                         }else {
                             message3=message2.append(message3);
-                            log.info("this message 3.2 {}",message1);
+                            log.info("this message 3.2 {}",message3);
                         }
                     }
                     else {
-                        message3=message5.append(message3);
-                        log.info("this message 3.3 {}",message1);
+                        if (message5==null){
+
+                            log.info("this message 3.3 {}",message3);
+                        }
+                        else {
+                            message3=message5.append(message3);
+                            log.info("this message 3.3 {}",message3);
+                        }
+
                     }
 
 //                    log.info("this value11 {}",value1);
@@ -220,6 +233,9 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 
                 }
             }
+
+            log.info("this message final 3 {}",message3);
+            log.info("this message final 1 {}",message1);
             if(nestedRule == null){
                 message = messageService.convert(other,key,leftpad,rightpad,length,value1,bit,x);
                 if(message1==null){
@@ -233,6 +249,10 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 
 
             }else {
+                if (message1==null){
+                    log.info("nul");
+                }
+                else {log.info("nulnot");}
                 log.info("not with asd");
                 message1=message3.append(message1);
                 log.info("this message1.3 {}",message1);
@@ -242,7 +262,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 
         }
 
-        log.info("final message {}",message1);
+
 
 
         return message1.toString();

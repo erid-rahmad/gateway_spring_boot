@@ -4,17 +4,6 @@
     {
       "bit": "120",
       "value": [
-
-        {
-          "key": "amount",
-          "length": "12",
-          "leftpad": "0"
-        },
-        {
-          "key": "note",
-          "length": "20",
-          "leftpad": " "
-        },
         {
           "key": "sender_info",
           "length": "11",
