@@ -4,6 +4,55 @@
     {
       "bit": "120",
       "value": [
+
+        {
+          "key": "tx_additional_data",
+          "length": "11",
+          "leftpad": "0",
+          "lain": [
+
+
+            {
+
+              "key": "kode_wilayah",
+              "length": "5",
+              "leftpad": " "
+            },
+            {
+              "key": "desc_sp2d",
+              "length": "50",
+              "leftpad": " "
+            },
+            {
+              "key": "no_sp2d",
+              "length": "50",
+              "leftpad": " "
+
+            }
+
+          ]
+        },
+        {
+          "key": "recipient_info",
+          "length": "11",
+          "leftpad": "0",
+          "lain": [
+
+
+            {
+              "key": "account_number",
+              "length": "20",
+              "leftpad": " "
+            },
+
+            {
+              "key": "account_bank",
+              "length": "3",
+              "leftpad": " "
+            }
+
+          ]
+        },
         {
           "key": "sender_info",
           "length": "11",
@@ -14,6 +63,57 @@
               "length": "3",
               "leftpad": " ",
               "lainsec": [
+                {
+                  "key": "tahun_pajak",
+                  "length": "4",
+                  "leftpad": " "
+                }
+              ,
+
+                {
+                  "key": "masa_pajak",
+                  "length": "8",
+                  "leftpad": " "
+                }
+              ,
+                {
+                  "key": "jenis_setoran",
+                  "length": "3",
+                  "leftpad": " "
+                }
+              ,
+                {
+                  "key": "nomor_object_pajak",
+                  "length": "18",
+                  "leftpad": " "
+                }
+              ,
+                {
+                  "key": "alamat_wajib_pajak",
+                  "length": "50",
+                  "leftpad": " "
+                }
+              ,
+
+                {
+                  "key": "nama_wajib_pajak",
+                  "length": "50",
+                  "leftpad": " "
+                }
+              ,
+
+                {
+                  "key": "npwp",
+                  "length": "30",
+                  "leftpad": " "
+                }
+              ,
+                {
+                  "key": "nominal_pajak",
+                  "length": "10",
+                  "leftpad": " "
+                }
+                ,
 
                 {
                   "key": "include_pajak",
@@ -31,14 +131,14 @@
             },
             {
               "key": "account_number",
-              "length": "50",
+              "length": "20",
               "leftpad": " "
             }
           ]
         },
         {
           "key": "note",
-          "length": "10",
+          "length": "256",
           "leftpad": " "
         }
       ,
@@ -57,44 +157,60 @@
     }
 
   ],
+
   "response": [
     {
       "bit": "120",
       "value": [
         {
-          "key": "Tahun",
-          "length": "4"
-        },
-        {
-          "key": "No_SPM",
-          "length": "50",
-          "leftpad": "0"
-        },
-        {
-          "key": "sender_info",
+          "key": "additional_data",
           "length": "11",
           "leftpad": "0",
           "lain": [
             {
-              "key": "account_number",
-              "length": "50",
+              "key": "tgl_ntpn",
+              "length": "10",
               "leftpad": " "
             },
+              {
+                "key": "ntpn",
+                "length": "16",
+                "leftpad": " "
+              },
             {
-              "key": "Bank_Penerima",
-              "length": "3",
+              "key": "id_billing",
+              "length": "15",
               "leftpad": " "
             }
+
           ]
         },
         {
-          "key": "Nm_Penerima",
-          "length": "5",
-          "leftpad": " "
+          "key": "status",
+          "length": "11",
+          "leftpad": "0",
+          "lain": [
+            {
+              "key": "message",
+              "length": "30",
+              "leftpad": " "
+            },
+            {
+              "key": "code",
+              "length": "3",
+              "leftpad": " "
+            }
+
+          ]
         },
         {
-          "key": "Bank_Penerima",
-          "length": "5",
+          "key": "tx_id",
+          "length": "32",
+          "leftpad": "0"
+        },
+        {
+          "key": "tx_partner_id",
+          "length": "32",
           "leftpad": " "
         }
 

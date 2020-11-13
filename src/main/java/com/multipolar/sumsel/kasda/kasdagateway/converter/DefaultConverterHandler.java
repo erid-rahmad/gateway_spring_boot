@@ -196,7 +196,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                                 message5=message4;
                             }
                             else {
-                                message5=message5.append(message4);
+                                message5=message4.append(message5);
                             }
 
                             log.info("this message 5 {}",message5);
