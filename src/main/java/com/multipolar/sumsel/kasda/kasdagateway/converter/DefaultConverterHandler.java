@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -271,18 +272,34 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 
     protected void setValueForMap(Map<String, Object> map, String bitValue, ConverterRule[] rules) {
         int index = 0;
+        String pcodetrx ="";
+        List<Object> dataArray = new ArrayList<>();
+        log.info("rules: "+ MapperJSONUtil.prettyLog(rules));
+
+
         for (ConverterRule rule : rules) {
             log.info("its set valur for map converterrule");
+//            Map<String, Object> ruleEx = (Map<String, Object>) rule;
+
+//            log.info("rules: "+ MapperJSONUtil.prettyLog(ruleEx));
+
             String key = rule.getKey();
             int length = rule.getLength();
             String leftpad = rule.getLeftpad();
             String rightpad = rule.getRightpad();
+            String pcodee =rule.getPcodee();
+            log.info("this pcodee {}",pcodee);
+            if(pcodee != null){
+                 pcodetrx =pcodee;
+            }
             NestedRule[] nestedRule = rule.getLain();
 
             if(nestedRule != null){
 
                 Map<String, Object> netstedData = new HashMap<>();
-                Map<String, Map<String, Object>> netstedDatakey = new HashMap<>();
+                Map<String, Object> netstedDatakey = new HashMap<>();
+                Map<String, Object> data = new HashMap<>();
+
 
                 for (NestedRule nestedRule1 : nestedRule) {
                     String other1 = nestedRule1.getOther();
@@ -293,45 +310,70 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                     NestedRuleSec[] nestedRuleSec =nestedRule1.getLainsec();
                     log.info("this key1 {}",key1);
 
-                    if (nestedRuleSec != null){
-                        Map<String, Object> netstedData1 = new HashMap<>();
+//                    if (nestedRule1.getKey().equals("status")){
+//                        Map<String, Object> isi = new HashMap<>();
+//
+//                        for (NestedRuleSec nestedRuleSec1: nestedRuleSec){
+//                            isi.put(nestedRuleSec1.getKey(), "");
+//                        }
+//                        data.put("status", isi);
+//                    }
+
+//                    if (nestedRule1.getKey().equals("additional_data")){
+//                        data.put("additional_data", nestedRule1.getLainsec());
+//                    }
+
+//                    if (nestedRule1.getKey().equals("status")){
+                        Map<String, Object> isi = new HashMap<>();
+
+                        if (nestedRuleSec != null){
+                            Map<String, Object> netstedData1 = new HashMap<>();
 
 
-                        for (NestedRuleSec nestedRuleSec1 : nestedRuleSec){
-                            String other2 = nestedRuleSec1.getOther();
-                            String key2 = nestedRuleSec1.getKey();
-                            int length2 = nestedRuleSec1.getLength();
-                            String leftpad2 = nestedRuleSec1.getLeftpad();
-                            String rightpad2 = nestedRuleSec1.getRightpad();
+                            for (NestedRuleSec nestedRuleSec1 : nestedRuleSec){
+                                String other2 = nestedRuleSec1.getOther();
+                                String key2 = nestedRuleSec1.getKey();
+                                int length2 = nestedRuleSec1.getLength();
+                                String leftpad2 = nestedRuleSec1.getLeftpad();
+                                String rightpad2 = nestedRuleSec1.getRightpad();
 
 
-                            if (length == 0)
-                                length = bitValue.length();
+                                if (length == 0)
+                                    length = bitValue.length();
 
-                            String value2 = StringUtils.substring(bitValue, index, index + length);
-                            if (leftpad1 != null)
-                                value2 = StringUtils.stripStart(value2, leftpad2);
-                            else if (rightpad1 != null)
-                                value2 = StringUtils.stripEnd(value2, rightpad2);
+                                String value2 = StringUtils.substring(bitValue, index, index + length);
+                                if (leftpad1 != null)
+                                    value2 = StringUtils.stripStart(value2, leftpad2);
+                                else if (rightpad1 != null)
+                                    value2 = StringUtils.stripEnd(value2, rightpad2);
 
-                            log.debug("just trykey ---  {} ",key);
-                            log.debug("just trykey value---  {} ",value2);
-                            log.debug("just trykey bitvalue---  {} ",bitValue);
+                                log.debug("just trykey ---  {} ",key);
+                                log.debug("just trykey value---  {} ",value2);
+                                log.debug("just trykey bitvalue---  {} ",bitValue);
 
-                            netstedData1.put(key2, value2);
-                            log.info("this nesteddata1 "+netstedData1);
-                            index = index + length;
-                            log.info("this index1 {}",index);
+                                netstedData1.put(key2, value2);
+                                log.info("this nesteddata1 "+netstedData1);
+                                index = index + length;
+                                log.info("this index1 {}",index);
+                                isi.put(nestedRuleSec1.getKey(), value2);
+                            }
+                            data.put(key1, isi);
+
+
+    //                        if (pcodetrx.equals("330009")){
+    //                            List<Object> sumbarang = new ArrayList<>();
+    //                            sumbarang.add(netstedData1);
+    //                            netstedDatakey.put(key, sumbarang);
+    //                        }
+
+
+                            log.info("NesteddataKey "+ MapperJSONUtil.prettyLog(netstedDatakey));
+
+
                         }
+//                    }
 
 
-                        netstedDatakey.put(key, netstedData1);
-
-
-                        log.info("NesteddataKey "+ MapperJSONUtil.prettyLog(netstedDatakey));
-
-
-                    }
 
                     if (length == 0)
                         length = bitValue.length();
@@ -355,8 +397,8 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                     log.info("this index1 {}",index);
 
                 }
+                dataArray.add(data);
                 map.put(key, netstedData);
-
             }
             if (length == 0)
                 length = bitValue.length();
@@ -377,6 +419,10 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 
             log.info("this index2 {}",index);
         }
+
+        map.put("data", dataArray);
+
+        log.info(MapperJSONUtil.prettyLog(map));
 
     }
 
