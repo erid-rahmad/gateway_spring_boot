@@ -49,7 +49,7 @@
         },
         {
           "key": "note",
-          "length": "256",
+          "length": "10",
           "leftpad": " "
         }
       ,
@@ -65,27 +65,8 @@
           "leftpad": " "
         }
       ]
-    },
-    {
-      "bit": "121",
-      "value": [
-        {
-          "key": "Nm_Unit",
-          "length": "255",
-          "leftpad": " "
-        },
-        {
-          "key": "Nm_Sub_Unit",
-          "length": "255",
-          "leftpad": " "
-        },
-        {
-          "key": "Uraian",
-          "length": "255",
-          "leftpad": " "
-        }
-      ]
     }
+
   ],
   "response": [
     {
@@ -129,30 +110,7 @@
         }
 
       ]
-    },
-    {
-      "bit": "121",
-      "value": [
-        {
-          "key": "Nm_Unit",
-          "length": "255",
-          "leftpad": " "
-        },
-        {
-          "key": "Nm_Sub_Unit",
-          "length": "255",
-          "leftpad": " "
-        },
-        {
-          "key": "Uraian",
-          "length": "255",
-          "leftpad": " "
-        },
-        {
-          "key": "Status_Validasi",
-          "length": "1"
-        }
-      ]
     }
+
   ]
 }

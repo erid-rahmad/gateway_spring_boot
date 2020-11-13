@@ -151,7 +151,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             NestedRule[] nestedRule = rule.getLain();
 
             Object value1 =  map.get(key);
-            log.info("this value1 {}",value1);
+//            log.info("this value1 {}",value1);
             int x = 0;
 
             if(nestedRule != null) {
@@ -166,7 +166,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                     String rightpad1 = nestedRule1.getRightpad();
 //                        log.info("this key1 {}",key1);
                     NestedRuleSec[] nestedRuleSecs = nestedRule1.getLainsec();
-                    log.info("this nestedsec {}",nestedRuleSecs);
+//                    log.info("this nestedsec {}",nestedRuleSecs);
 
                     Map<String,Object> bebas = (Map<String, Object>) map.get(key);
                     if (nestedRuleSecs == null){
@@ -187,7 +187,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                             Map<String,Object> bebas1 = (Map<String, Object>) bebas.get(key1);
                             Object asd1 = bebas1.get(key2);
                             value1 = asd1;
-                            log.info("this key {} key1 {} key2 {}",key,key1,key2);
+//                            log.info("this key {} key1 {} key2 {}",key,key1,key2);
 
                             message4 = messageService.convert(other2,key2,leftpad2,rightpad2,length2,value1,bit,x);
                             message5=message5.append(message4);
@@ -201,19 +201,22 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 
                         if(message3 == null){
                             message3 = message2;
+                            log.info("this message 3.1 {}",message1);
                         }else {
-                            message3=message3.append(message2);
+                            message3=message2.append(message3);
+                            log.info("this message 3.2 {}",message1);
                         }
                     }
                     else {
                         message3=message5.append(message3);
+                        log.info("this message 3.3 {}",message1);
                     }
 
-                    log.info("this value11 {}",value1);
+//                    log.info("this value11 {}",value1);
 //                        log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key1,length1,leftpad1,rightpad1,other1,nestedRule1);
 
 
-                    log.info("this message 3 {}",message3);
+
 
                 }
             }
@@ -221,22 +224,26 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                 message = messageService.convert(other,key,leftpad,rightpad,length,value1,bit,x);
                 if(message1==null){
                     message1=message;
+                    log.info("this message1.1 {}",message1);
                 }
                 else {
                     message1=message.append(message1);
+                    log.info("this message1.2 {}",message1);
                 }
 
-                log.info("this message1 {}",message1);
+
             }else {
                 log.info("not with asd");
                 message1=message3.append(message1);
-                log.info("this message1.1 {}",message1);
+                log.info("this message1.3 {}",message1);
             }
 //            log.info("this first message {}",message);
 //            log.debug("for in converterrule key: {} lenght: {} leftpad: {} rightpad: {} other:{} nestedrule{}",key,length,leftpad,rightpad,other,nestedRule);
 
         }
+
         log.info("final message {}",message1);
+
 
         return message1.toString();
     }
