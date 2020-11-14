@@ -44,11 +44,13 @@
             {
               "key": "additional_data",
               "length": "3",
+              "pcodee":"330009",
               "leftpad": " ",
               "lainsec": [
                 {
                   "key": "tgl_ntpn",
                   "length": "10",
+                  "pcodee":"330009",
                   "leftpad": " "
                 },
                 {
@@ -59,6 +61,7 @@
                 {
                   "key": "id_billing",
                   "length": "15",
+                  "pcodee":"330009",
                   "leftpad": " "
                 }
               ]

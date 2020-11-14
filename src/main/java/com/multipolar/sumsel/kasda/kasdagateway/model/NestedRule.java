@@ -9,5 +9,6 @@ public class NestedRule {
     private int length = 0;
     private String leftpad;
     private String rightpad;
+    private String pcodee;
     private NestedRuleSec[] lainsec;
 }

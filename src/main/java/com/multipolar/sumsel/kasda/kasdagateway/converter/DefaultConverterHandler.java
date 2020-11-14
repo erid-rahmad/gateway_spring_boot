@@ -287,11 +287,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             int length = rule.getLength();
             String leftpad = rule.getLeftpad();
             String rightpad = rule.getRightpad();
-            String pcodee =rule.getPcodee();
-            log.info("this pcodee {}",pcodee);
-            if(pcodee != null){
-                 pcodetrx =pcodee;
-            }
+
             NestedRule[] nestedRule = rule.getLain();
 
             if(nestedRule != null){
@@ -336,6 +332,13 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                                 int length2 = nestedRuleSec1.getLength();
                                 String leftpad2 = nestedRuleSec1.getLeftpad();
                                 String rightpad2 = nestedRuleSec1.getRightpad();
+                                String pcodee =nestedRuleSec1.getPcodee();
+                                log.info("this pcodee "+pcodee);
+                                if(pcodee != null){
+                                    pcodetrx ="330009";
+                                    log.info("this pcodee berisu");
+
+                                }
 
 
                                 if (length == 0)
@@ -355,21 +358,9 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                                 log.info("this nesteddata1 "+netstedData1);
                                 index = index + length;
                                 log.info("this index1 {}",index);
-                                isi.put(nestedRuleSec1.getKey(), value2);
+                                isi.put(key2, value2);
                             }
-                            data.put(key1, isi);
-
-
-    //                        if (pcodetrx.equals("330009")){
-    //                            List<Object> sumbarang = new ArrayList<>();
-    //                            sumbarang.add(netstedData1);
-    //                            netstedDatakey.put(key, sumbarang);
-    //                        }
-
-
                             log.info("NesteddataKey "+ MapperJSONUtil.prettyLog(netstedDatakey));
-
-
                         }
 //                    }
 
@@ -388,18 +379,40 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                     log.debug("just trykey value---  {} ",value1);
                     log.debug("just trykey bitvalue---  {} ",bitValue);
 
-                    netstedData.put(key1, value1);
+                    if(nestedRuleSec != null)
+                        data.put(key1, isi);
+                    if (nestedRuleSec == null)
+                        data.put(key1,value1);
+
                     log.info("this nesteddata "+netstedData);
-
-
 
                     index = index + length;
                     log.info("this index1 {}",index);
 
                 }
-                dataArray.add(data);
-                map.put(key, netstedData);
+                log.info("this pcodetrx {}",pcodetrx);
+                if (pcodetrx.equals("330009")){
+                    log.info("this pcode 33009");
+                    dataArray.add(data);
+
+                    if(nestedRule != null)
+                        map.put(key, dataArray);
+
+
+                }else {
+                    if(nestedRule != null)
+                        map.put(key, data);
+
+                }
+
+
+                log.info("this data {}",MapperJSONUtil.prettyLog(data));
+
+
+
+
             }
+
             if (length == 0)
                 length = bitValue.length();
 
@@ -418,9 +431,10 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             index = index + length;
 
             log.info("this index2 {}",index);
+
         }
 
-        map.put("data", dataArray);
+
 
         log.info(MapperJSONUtil.prettyLog(map));
 

@@ -8,5 +8,6 @@ public class NestedRuleSec {
     private String key;
     private int length = 0;
     private String leftpad;
+    private String pcodee;
     private String rightpad;
 }
