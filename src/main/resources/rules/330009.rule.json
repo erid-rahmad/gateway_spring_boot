@@ -5,7 +5,7 @@
       "bit": "120",
       "value": [
         {
-          "key": "sort",
+          "key": "order",
           "length": "3",
           "leftpad": "3"
         },
@@ -39,6 +39,7 @@
         {
           "key": "data",
           "length": "11",
+          "pcodee":"330009",
           "leftpad": "0",
           "lain": [
             {
@@ -98,6 +99,7 @@
               "length": "32",
               "leftpad": " "
             }
+
 
           ]
         },
