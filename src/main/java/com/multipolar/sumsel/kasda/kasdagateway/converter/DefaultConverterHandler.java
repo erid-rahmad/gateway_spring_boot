@@ -127,20 +127,21 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             map.put("atmCodeAtm", msg.getString(41));
             map.put("atmNameAtm", msg.getString(43));
         }
+
+        //costum Json end
         Map<String, String> statusMap = new HashMap<String, String>();
-        statusMap.put("status", "00");
-        statusMap.put("code", "00");
-        statusMap.put("message", "Request Success");
-        map.put("statusa", statusMap);
-        map.remove("statusa");
+//        statusMap.put("status", "00");
+//        statusMap.put("code", "00");
+//        statusMap.put("message", "Request Success");
+//        map.put("status1", statusMap);
+//        map.remove("statusa");
         return map;
     }
 
     protected String getValueForBit(Map<String, Object> map, int bit, ConverterRule[] rules,ISOMsg msg) throws IllegalArgumentException {
+        log.info("incoming {}",MapperJSONUtil.prettyLog(map));
 
         StringBuilder message = new StringBuilder();
-
-
         StringBuilder message1,message2,message3 = new StringBuilder();
         StringBuilder message4,message5 = new StringBuilder();
         message1= message;
@@ -148,10 +149,8 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
         StringBuilder trace = new StringBuilder();
         trace.append(msg);
         trace.delete(0,10);
-        log.info("this trace {} length {}",trace,trace.length());
 
         String pcodetrx ="";
-
 
         for (ConverterRule rule : rules) {
 
@@ -411,17 +410,17 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                                 int length2 = nestedRuleSec1.getLength();
                                 String leftpad2 = nestedRuleSec1.getLeftpad();
                                 String rightpad2 = nestedRuleSec1.getRightpad();
-                                if (length == 0)
-                                    length = bitValue.length();
+                                if (length2 == 0)
+                                    length2 = bitValue.length();
 
-                                String value2 = StringUtils.substring(bitValue, index, index + length);
+                                String value2 = StringUtils.substring(bitValue, index, index + length2);
                                 if (leftpad1 != null)
                                     value2 = StringUtils.stripStart(value2, leftpad2);
                                 else if (rightpad1 != null)
                                     value2 = StringUtils.stripEnd(value2, rightpad2);
 
                                 netstedData1.put(key2, value2);
-                                index = index + length;
+                                index = index + length2;
                                 isi.put(key2, value2);
                             }
                         }
@@ -480,17 +479,15 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                                     value2 = StringUtils.stripEnd(value2, rightpad2);
 
                                 netstedData1.put(key2, value2);
-
                                 index = index + length;
-
                                 isi.put(key2, value2);
                             }
                         }
 
-                        if (length == 0)
-                            length = bitValue.length();
+                        if (length1 == 0)
+                            length1 = bitValue.length();
 
-                        String value1 = StringUtils.substring(bitValue, index, index + length);
+                        String value1 = StringUtils.substring(bitValue, index, index + length1);
                         if (leftpad1 != null)
                             value1 = StringUtils.stripStart(value1, leftpad1);
                         else if (rightpad1 != null)
@@ -501,7 +498,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                         if (nestedRuleSec == null)
                             data.put(key1,value1);
 
-                        index = index + length;
+                        index = index + length1;
                     }
                     map.put(key, data);
                 }
@@ -517,9 +514,11 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 
             if(nestedRule==null)
                 map.put(key, value);
-
             index = index + length;
+
         }
+        log.info("Send"+MapperJSONUtil.prettyLog(map));
+
     }
 
     public Rule getRule() throws IOException {
@@ -544,10 +543,11 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             return false;
 
         Map<String, String> statusMap = new HashMap<String, String>();
-        statusMap.put("status", "01");
+//        statusMap.put("status", "01");
         statusMap.put("code", resultCode);
-        statusMap.put("message", "Unmapping error code " + resultCode);
+        statusMap.put("message", "unknow code " + resultCode);
         map.put("status", statusMap);
+        log.info("outgoing"+MapperJSONUtil.prettyLog(map));
 
 
 

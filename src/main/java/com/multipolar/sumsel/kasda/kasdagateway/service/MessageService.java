@@ -102,11 +102,8 @@ public class MessageService {
                 log.info("massage4 {}",message);
             }
         }
-        log.info("this key{}",key);
-
-        if(key.equals("tx_partner_id")){
-
-           message.replace(0,6, String.valueOf(trace));
+        if(key.equals("tx_partner_id") | key.equals("inquiry_partner_id")){
+            message.replace(0,6, String.valueOf(trace));
         }
         return message;
     }

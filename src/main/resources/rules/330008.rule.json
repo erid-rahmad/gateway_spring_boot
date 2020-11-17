@@ -7,7 +7,7 @@
         {
           "key": "bank_account",
           "length": "20",
-          "leftpad": " "
+          "leftpad": "0"
         },
         {
           "key": "bank_code",
@@ -27,26 +27,9 @@
       "bit": "120",
       "value": [
         {
-          "key": "bank_account_name",
-          "length": "3",
+          "key": "inquiry_partner_id",
+          "length": "32",
           "leftpad": " "
-        },
-        {
-          "key": "status",
-          "length": "11",
-          "leftpad": "0",
-          "lain": [
-            {
-              "key": "code",
-              "length": "3",
-              "leftpad": " "
-            },
-            {
-              "key": "message",
-              "length": "255",
-              "leftpad": " "
-            }
-          ]
         },
         {
           "key": "inquiry_id",
@@ -54,9 +37,27 @@
           "leftpad": " "
         },
         {
-          "key": "inquiry_partner_id",
-          "length": "32",
-          "leftpad": "0"
+          "key": "status",
+          "length": "5",
+          "leftpad": "0",
+          "lain": [
+
+            {
+              "key": "message",
+              "length": "30",
+              "leftpad": " "
+            },
+            {
+              "key": "code",
+              "length": "3",
+              "leftpad": " "
+            }
+          ]
+        },
+        {
+          "key": "bank_account_name",
+          "length": "50",
+          "leftpad": " "
         }
       ]
     }
