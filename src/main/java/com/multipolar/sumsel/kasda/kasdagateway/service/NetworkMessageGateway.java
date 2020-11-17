@@ -87,8 +87,8 @@ public class NetworkMessageGateway {
             try {
                 final ISOMsgLogEntry requestEntry = new ISOMsgLogEntry(m, new Date());
                 ISOMsg resp = mux.request(m, t);
-                log.debug("its sendToHost t: {}",t);
-                log.debug("its sendToHost m: {}",m);
+                log.debug("its sendToHost t : {}",t);
+                log.debug("its sendToHost m : {}",m);
                 log.debug("its sendToHost resp: {}",resp);
                 final ISOMsgLogEntry responseEntry = new ISOMsgLogEntry(resp, new Date());
                 log.debug("its sendToHost reqentry: {}",requestEntry);
@@ -103,7 +103,7 @@ public class NetworkMessageGateway {
                 }
 
                 Thread thread = new Thread(() -> log(requestEntry, responseEntry));
-                log.debug("its send to house  thread: {}",thread);
+                log.debug("its send to house  requesentry: {}",requestEntry);
                 thread.start();
 
                 return resp;

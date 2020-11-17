@@ -4,7 +4,7 @@
     <channel class="org.jpos.iso.channel.ASCIIChannel"
              packager="org.jpos.iso.packager.ISO87APackager">
         <property name="host" value="localhost"/>
-        <property name="port" value="8000"/>
+        <property name="port" value="8001"/>
     </channel>
     <in>vlink-send</in>
     <out>vlink-receive</out>

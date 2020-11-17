@@ -32,6 +32,9 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
     @Autowired
     MessageService messageService;
 
+    @Autowired
+    TraceNumberGenerator traceNumberGenerator;
+
     public DefaultConverterHandler() {
     }
 
@@ -44,7 +47,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
     @Override
     protected void setPrivateMessage(ISOMsg msg, Map<String, Object> map) throws ISOException {
         try {
-            log.info("its setprivate message");
+//            log.info("its setprivate message msg {} map {}",msg,map);
             Rule rule = getRule();
 
             msg.set(3, rule.getPcode());
@@ -53,8 +56,10 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             for (RequestRule requestRule : requestRules) {
                 int bit = requestRule.getBit();
                 ConverterRule[] values = requestRule.getValue();
-                String valueForBit = getValueForBit(map, bit, values);
+                String valueForBit = getValueForBit(map, bit, values,msg);
                 msg.set(bit, valueForBit);
+
+//                log.info(" this bit {} map {} values {}",map,bit,values);
             }
         } catch (FileNotFoundException fnfe) {
             log.error("file not found exception", fnfe);
@@ -131,12 +136,22 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
         return map;
     }
 
-    protected String getValueForBit(Map<String, Object> map, int bit, ConverterRule[] rules) throws IllegalArgumentException {
+    protected String getValueForBit(Map<String, Object> map, int bit, ConverterRule[] rules,ISOMsg msg) throws IllegalArgumentException {
 
         StringBuilder message = new StringBuilder();
+
+
         StringBuilder message1,message2,message3 = new StringBuilder();
         StringBuilder message4,message5 = new StringBuilder();
         message1= message;
+
+        StringBuilder trace = new StringBuilder();
+        trace.append(msg);
+        trace.delete(0,10);
+        log.info("this trace {} length {}",trace,trace.length());
+
+        String pcodetrx ="";
+
 
         for (ConverterRule rule : rules) {
 
@@ -146,6 +161,11 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
             String leftpad = rule.getLeftpad();
             String rightpad = rule.getRightpad();
             NestedRule[] nestedRule = rule.getLain();
+            String pcode =rule.getPcodee();
+
+            if(pcode != null){
+                pcodetrx=pcode;
+            }
 
             Object value1 =  map.get(key);
 
@@ -190,7 +210,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                                 message5=message4.append(message5);
                             }
 
-                            log.info("this message 5 {}",message5);
+//                            log.info("this message 5 {}",message5);
                         }
                     }
 
@@ -199,48 +219,51 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
 
                         if(message3 == null){
                             message3 = message2;
-
+//                            log.info("this message 3.1 {}",message3);
                         }else {
                             message3=message2.append(message3);
-                            log.info("this message 3.2 {}",message3);
+//                            log.info("this message 3.2 {}",message3);
                         }
                     }
                     else {
                         if (message5==null){
 
-                            log.info("this message 3.3 {}",message3);
+
                         }
                         else {
                             message3=message5.append(message3);
-                            log.info("this message 3.3 {}",message3);
+//                            log.info("this message 3.3 {}",message3);
                         }
                     }
                 }
             }
 
-            log.info("this message final 3 {}",message3);
-            log.info("this message final 1 {}",message1);
+//            log.info("this message final 3 {}",message3);
+
             if(nestedRule == null){
-                message = messageService.convert(other,key,leftpad,rightpad,length,value1,bit,x);
+                message = messageService.convert(other,key,leftpad,rightpad,length,value1,bit,x,trace);
                 if(message1==null){
                     message1=message;
-                    log.info("this message1.1 {}",message1);
+//                    log.info("this message1.1 {}",message1);
                 }
                 else {
                     message1=message.append(message1);
-                    log.info("this message1.2 {}",message1);
+//                    log.info("this message1.2 {}",message1);
                 }
-
-
             }else {
                 if (message1==null){
-                    log.info("nul");
+
                 }
-                else {log.info("nulnot");}
-                log.info("not with asd");
-                message1=message3.append(message1);
-                log.info("this message1.3 {}",message1);
+                else {
+//                    log.info("this message 1 {} and message 3 {}",message1,message3);
+                    message1 = message3.append(message1);
+//                    log.info("this message1.3 {}", message1);
+                }
             }
+        }
+        if (pcodetrx.equals("330007")) {
+            message1.delete(692, message1.length());
+            log.info("this 330007 transaction ");
         }
         return message1.toString();
     }
@@ -301,7 +324,6 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                                 index = index + length;
                                 isi.put(key2, value2);
                             }
-
                         }
 
                         if (length == 0)
@@ -352,7 +374,6 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                                 index = index + length;
                                 isi.put(key2, value2);
                             }
-
                         }
 
                         if (length == 0)
@@ -403,9 +424,7 @@ public class DefaultConverterHandler extends AbstractMessageConverter {
                                 index = index + length;
                                 isi.put(key2, value2);
                             }
-
                         }
-
                         if (length == 0)
                             length = bitValue.length();
 

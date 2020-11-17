@@ -4,41 +4,34 @@
     {
       "bit": "120",
       "value": [
-
         {
           "key": "tx_additional_data",
-          "length": "11",
+          "length": "0",
           "leftpad": "0",
+          "pcodee":"330007",
           "lain": [
-
-
             {
-
               "key": "kode_wilayah",
               "length": "5",
               "leftpad": " "
             },
             {
               "key": "desc_sp2d",
-              "length": "50",
+              "length": "100",
               "leftpad": " "
             },
             {
               "key": "no_sp2d",
               "length": "50",
               "leftpad": " "
-
             }
-
           ]
         },
         {
           "key": "recipient_info",
-          "length": "11",
+          "length": "0",
           "leftpad": "0",
           "lain": [
-
-
             {
               "key": "account_number",
               "length": "20",
@@ -50,17 +43,16 @@
               "length": "3",
               "leftpad": " "
             }
-
           ]
         },
         {
           "key": "sender_info",
-          "length": "11",
+          "length": "0",
           "leftpad": "0",
           "lain": [
             {
               "key": "additional_data",
-              "length": "3",
+              "length": "0",
               "leftpad": " ",
               "lainsec": [
                 {
@@ -79,6 +71,12 @@
                 {
                   "key": "jenis_setoran",
                   "length": "3",
+                  "leftpad": " "
+                }
+              ,
+                {
+                  "key": "map",
+                  "length": "5",
                   "leftpad": " "
                 }
               ,
@@ -110,14 +108,14 @@
               ,
                 {
                   "key": "nominal_pajak",
-                  "length": "10",
+                  "length": "15",
                   "leftpad": " "
                 }
                 ,
 
                 {
                   "key": "include_pajak",
-                  "length": "10",
+                  "length": "5",
                   "leftpad": " "
                 }
 
@@ -145,7 +143,7 @@
         {
           "key": "amount",
           "length": "15",
-          "leftpad": "0"
+          "leftpad": " "
         }
       ,
         {
@@ -166,6 +164,7 @@
           "key": "additional_data",
           "length": "11",
           "leftpad": "0",
+          "pcodee":"330007",
           "lain": [
             {
               "key": "tgl_ntpn",

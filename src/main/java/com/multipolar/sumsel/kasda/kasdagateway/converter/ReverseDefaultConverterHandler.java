@@ -34,7 +34,7 @@ public class ReverseDefaultConverterHandler extends DefaultConverterHandler {
             for (RequestRule responseRule : responseRules) {
                 int bit = responseRule.getBit();
                 ConverterRule[] values = responseRule.getValue();
-                String valueForBit = getValueForBit(map, bit, values);
+                String valueForBit = getValueForBit(map, bit, values,msg);
                 msg.set(bit, valueForBit);
             }
         } catch (FileNotFoundException fnfe) {
